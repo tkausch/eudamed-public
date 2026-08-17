@@ -43,6 +43,7 @@ Available operations:
 - `Sources/EudamedClient/openapi.yaml` — the source OpenAPI specification used by the generator plugin (`operationId`s renamed from raw UUIDs to readable names: `getActors`, `getReference`, `getUdi`)
 - `Sources/EudamedClient/openapi-generator-config.yaml` — generator configuration (`types`, `client`, public access modifier)
 - `Sources/EudamedClient/EudamedClient.swift` — convenience initializer
+- `Tests/EudamedClientTests` — unit tests that exercise `Client` against a mock transport (no network access required)
 
 Generated `Types.swift`, `Client.swift`, and `Server.swift` are produced at build time by the `swift-openapi-generator` build plugin and are not checked into source control.
 
@@ -50,4 +51,10 @@ Generated `Types.swift`, `Client.swift`, and `Server.swift` are produced at buil
 
 ```sh
 swift build
+```
+
+## Testing
+
+```sh
+swift test
 ```
