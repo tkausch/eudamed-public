@@ -11,6 +11,18 @@ info:
     healthcare professionals, and to enhance coordination between the different
     Member States in the EU.
 
+
+    Field-level documentation below draws on general MDR/IVDR and UDI domain
+    knowledge, cross-referenced with the community-maintained, reverse-engineered
+    EUDAMED API reference at
+    https://github.com/openregulatory/eudamed-api (which documents EUDAMED's
+    internal UI API rather than this public Datalake API). Where the exact
+    meaning of a field could not be confirmed, the description is phrased as a
+    best-effort interpretation.
+
+externalDocs:
+  description: Community-maintained EUDAMED API reference (documents a related, internal API)
+  url: https://github.com/openregulatory/eudamed-api
 servers:
   - url: https://api.datalake.sante.service.ec.europa.eu/eudamed
 paths:
@@ -20,34 +32,49 @@ paths:
         - hidden-configportal
         - hidden-public
       summary: actors
+      description: >-
+        Search economic operators (manufacturers, authorised representatives,
+        importers, producers, etc.) registered in EUDAMED. Corresponds to the
+        results shown on the EUDAMED "Actors" search page.
       operationId: getActors
       parameters:
         - name: ACTOR_ID
           in: query
+          description: Filter by the actor's unique EUDAMED identifier (UUID).
           schema:
             type: string
         - name: NAME
           in: query
+          description: Filter by the actor's full registered name.
           schema:
             type: string
         - name: ABBREVIATED_NAME
           in: query
+          description: Filter by the actor's abbreviated/short name.
           schema:
             type: string
         - name: ACTOR_TYPE
           in: query
+          description: >-
+            Filter by actor type, e.g. manufacturer, authorised
+            representative, importer, or system/procedure pack producer.
           schema:
             type: string
         - name: CA_NAME
           in: query
+          description: Filter by the name of the Competent Authority (CA) that validated the actor.
           schema:
             type: string
         - name: CA_ACTOR_ID
           in: query
+          description: Filter by the EUDAMED identifier of the validating Competent Authority.
           schema:
             type: string
         - name: ACT_COUNTRY_ISO2_CODE
           in: query
+          description: >-
+            Filter by the actor's country, using its ISO 3166-1 alpha-2 code
+            (e.g. DE, FR).
           schema:
             type: string
         - name: format
@@ -57,6 +84,7 @@ paths:
             type: string
         - name: api-version
           in: query
+          description: Version of the EUDAMED API to target.
           schema:
             type: string
       responses:
@@ -85,81 +113,120 @@ paths:
                 properties:
                   value:
                     type: array
+                    description: Matching actor records for this page of results.
                     items:
                       type: object
                       properties:
                         ACTOR_ID:
                           type: string
+                          description: Unique EUDAMED identifier (UUID) of the actor.
                         NAME:
                           type: string
+                          description: Full registered name of the actor.
                         ABBREVIATED_NAME:
                           type: string
+                          description: Abbreviated/short name of the actor.
                         STATUS_FROM_DATE:
                           nullable: true
+                          description: Date from which the current STATUS has applied.
                         STATUS:
                           type: string
+                          description: Current status of the actor's registration, e.g. active.
                         ACTOR_TYPE:
                           type: string
+                          description: >-
+                            Type of actor, e.g. manufacturer, authorised
+                            representative, or importer.
                         SPONSOR_TYPE:
                           nullable: true
+                          description: Type of clinical investigation sponsor, if the actor is registered as one.
                         EUROPEAN_VAT_NUMBER:
                           type: string
+                          description: European VAT number of the actor, if applicable.
                         VERSION:
                           type: integer
+                          description: Version number of this actor record.
                         ACT_COUNTRY_NAME:
                           type: string
+                          description: Name of the country associated with the actor.
                         ACT_COUNTRY_ISO2_CODE:
                           type: string
+                          description: ISO 3166-1 alpha-2 code of the actor's country.
                         ACT_COUNTRY_TYPE:
                           type: string
+                          description: Indicates whether the actor's country is an EU member state or a non-EU country.
                         ACT_EMAIL:
                           type: string
                           format: email
+                          description: Contact email address of the actor.
                         ACT_TELEPHONE:
                           type: string
+                          description: Contact telephone number of the actor.
                         ACT_WEBSITE:
                           type: string
+                          description: Website URL of the actor.
                         ACT_ADDR_BUILDING_NUMBER:
                           type: string
+                          description: Building/house number of the actor's registered address.
                         ACT_ADDR_STREET_NAME:
                           type: string
+                          description: Street name of the actor's registered address.
                         ACT_ADDR_POST_BOX:
                           nullable: true
+                          description: Post box of the actor's registered address, if used instead of a street address.
                         ACT_ADDR_POSTAL_ZONE:
                           type: string
+                          description: Postal/ZIP code of the actor's registered address.
                         ACT_ADDR_CITY_NAME:
                           type: string
+                          description: City of the actor's registered address.
                         ACT_ADDR_COUNTRY_NAME:
                           type: string
+                          description: Country name of the actor's registered address.
                         ACT_ADDR_COUNTRY_CODE:
                           type: string
+                          description: ISO 3166-1 alpha-2 code of the actor's registered address country.
                         ACT_ADDR_COUNTRY_TYPE:
                           type: string
+                          description: Indicates whether the address country is an EU member state or a non-EU country.
                         PRRC_FIRST_NAME:
                           type: string
+                          description: First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
                         PRRC_FAMILY_NAME:
                           type: string
+                          description: Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
                   nextLink:
                     type: string
                     format: uri
+                    description: URL to the next page of results, present only when more results are available.
   /reference:
     get:
       tags:
         - hidden-configportal
         - hidden-public
       summary: reference
+      description: >-
+        Look up EUDAMED reference/nomenclature data (code lists), such as
+        actor types, risk classes, applicable legislation, and device
+        statuses, which are referenced by ID or code from the other
+        endpoints.
       operationId: getReference
       parameters:
         - name: ID
           in: query
+          description: Filter by the numeric identifier of the reference data entry.
           schema:
             type: number
         - name: CODE
           in: query
+          description: >-
+            Filter by the reference data code, e.g.
+            "refdata.risk-class.class-iii".
           schema:
             type: string
         - name: LANGUAGE
           in: query
+          description: Filter/localize by language code (e.g. en, fr, de).
           schema:
             type: string
         - name: format
@@ -169,6 +236,7 @@ paths:
             type: string
         - name: api-version
           in: query
+          description: Version of the EUDAMED API to target.
           schema:
             type: string
       responses:
@@ -197,78 +265,115 @@ paths:
                 properties:
                   value:
                     type: array
+                    description: Matching reference data entries for this page of results.
                     items:
                       type: object
                       properties:
                         ID:
                           type: integer
+                          description: Numeric identifier of the reference data entry.
                         CODE:
                           type: string
+                          description: >-
+                            Machine-readable code of the reference data entry,
+                            e.g. "refdata.risk-class.class-iii".
                         LANGUAGE:
                           type: string
+                          description: Language code of the localized VALUE (e.g. en, fr, de).
                         VALUE:
                           type: string
+                          description: Human-readable, localized label for the reference data entry.
                   nextLink:
                     type: string
                     format: uri
+                    description: URL to the next page of results, present only when more results are available.
   /udi:
     get:
       tags:
         - hidden-configportal
         - hidden-public
       summary: udi
+      description: >-
+        Search Unique Device Identification (UDI) records, i.e. the devices
+        registered in EUDAMED, identified by their Basic UDI-DI and (primary)
+        UDI-DI. Corresponds to the results shown on the EUDAMED "Devices"
+        search page.
       operationId: getUdi
       parameters:
         - name: PRIMARY_DI
           in: query
+          description: Filter by the primary Device Identifier (UDI-DI).
           schema:
             type: string
         - name: BASIC_UDI
           in: query
+          description: >-
+            Filter by the Basic UDI-DI, the device identifier shared across
+            all versions/packaging of a device model.
           schema:
             type: string
         - name: TRADE_NAME
           in: query
+          description: Filter by the trade/brand name of the device.
           schema:
             type: string
         - name: DEVICE_NAME
           in: query
+          description: Filter by the device's name.
           schema:
             type: string
         - name: DEVICE_MODEL
           in: query
+          description: Filter by the device's model designation.
           schema:
             type: string
         - name: REFERENCE
           in: query
+          description: Filter by the manufacturer's reference/catalogue number for the device.
           schema:
             type: string
         - name: NOMENCLATURE_CODE
           in: query
+          description: Filter by the CND or GMDN nomenclature code assigned to the device.
           schema:
             type: string
         - name: RISK_CLASS_ID
           in: query
+          description: >-
+            Filter by the numeric identifier of the device's risk class (see
+            /reference for the corresponding codes, e.g. class I, IIa, IIb,
+            III, or IVD classes A-D).
           schema:
             type: number
         - name: APPLICABLE_LEGISLATION_ID
           in: query
+          description: >-
+            Filter by the numeric identifier of the applicable legislation
+            (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
           schema:
             type: number
         - name: PLACED_ON_THE_MARKET_ID
           in: query
+          description: >-
+            Filter by the numeric identifier of the country/market where the
+            device is placed on the market.
           schema:
             type: number
         - name: MF_SRN
           in: query
+          description: Filter by the manufacturer's Single Registration Number (SRN).
           schema:
             type: string
         - name: SPECIAL_DEVICE_TYPE_ID
           in: query
+          description: >-
+            Filter by the numeric identifier of the special device type (see
+            /reference; e.g. software, orthopaedic device).
           schema:
             type: number
         - name: MEDICAL_PURPOSE
           in: query
+          description: Filter by the device's intended medical purpose/use.
           schema:
             type: string
         - name: format
@@ -278,6 +383,7 @@ paths:
             type: string
         - name: api-version
           in: query
+          description: Version of the EUDAMED API to target.
           schema:
             type: string
       responses:
@@ -306,142 +412,225 @@ paths:
                 properties:
                   value:
                     type: array
+                    description: Matching UDI/device records for this page of results.
                     items:
                       type: object
                       properties:
                         ID:
                           type: integer
+                          description: Internal numeric identifier of this UDI-DI record.
                         UDI_DI_DATA_ULID:
                           type: string
+                          description: ULID identifier of this UDI-DI record.
                         UUID:
                           type: string
+                          description: Internal EUDAMED UUID of this UDI-DI record.
                         TRADE_NAME:
                           type: string
+                          description: Trade/brand name of the device.
                         REFERENCE:
                           type: string
+                          description: Manufacturer's reference/catalogue number for the device.
                         PLACED_ON_THE_MARKET_ID:
                           type: integer
+                          description: Identifier of the country/market where the device is placed on the market.
                         LATEST_VERSION:
                           type: integer
+                          description: 1 if this is the latest version of the record, 0 otherwise.
                         CMR_SUBSTANCE:
                           type: integer
+                          description: >-
+                            1 if the device contains carcinogenic, mutagenic,
+                            or reprotoxic (CMR) substances, 0 otherwise.
                         ENDOCRINE_DISRUPTOR:
                           type: integer
+                          description: 1 if the device contains endocrine-disrupting substances, 0 otherwise.
                         LATEX:
                           type: integer
+                          description: 1 if the device contains natural rubber latex, 0 otherwise.
                         REPROCESSED:
                           type: integer
+                          description: 1 if the device is a reprocessed single-use device, 0 otherwise.
                         STERILE:
                           type: integer
+                          description: 1 if the device is supplied sterile, 0 otherwise.
                         STERILIZATION:
                           type: integer
+                          description: 1 if the device requires sterilization before use, 0 otherwise.
                         NEW_DEVICE:
                           nullable: true
+                          description: >-
+                            Whether the device is classified as a "new
+                            device" under Article 52(4) MDR, when applicable.
                         VERSION_NUMBER:
                           type: integer
+                          description: Version number of this UDI-DI record.
                         PRIMARY_DI:
                           type: string
+                          description: Primary Device Identifier (UDI-DI).
                         BASIC_UDI:
                           type: string
+                          description: Basic UDI-DI shared across all versions/packaging of this device model.
                         BASIC_UDI_DATA_UUID:
                           type: string
+                          description: EUDAMED UUID of the associated Basic UDI-DI record.
                         BASIC_UDI_DATA_ULID:
                           type: string
+                          description: ULID of the associated Basic UDI-DI record.
                         ACTIVE:
                           type: integer
+                          description: 1 if the device is an active device, 0 otherwise.
                         ADMINISTERING_MEDICINE:
                           type: integer
+                          description: 1 if the device administers or is used with a medicinal product, 0 otherwise.
                         ANIMAL_TISSUES:
                           type: integer
+                          description: 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
                         COMPANION_DIAGNOSTICS:
                           nullable: true
+                          description: 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
                         HUMAN_TISSUES:
                           type: integer
+                          description: 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
                         IMPLANTABLE:
                           type: integer
+                          description: 1 if the device is implantable, 0 otherwise.
                         KIT:
                           nullable: true
+                          description: 1 if the device is a kit, 0 otherwise (IVDs only).
                         MEASURING_FUNCTION:
                           type: integer
+                          description: 1 if the device has a measuring function, 0 otherwise.
                         MICROBIAL_SUBSTANCES:
                           nullable: true
+                          description: 1 if the device contains microbial substances, 0 otherwise.
                         NEAR_PATIENT_TESTING:
                           nullable: true
+                          description: 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
                         REUSABLE:
                           type: integer
+                          description: 1 if the device is reusable, 0 otherwise.
                         SELF_TESTING:
                           nullable: true
+                          description: 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
                         SPECIAL_DEVICE_TYPE_ID:
                           nullable: true
+                          description: >-
+                            Identifier of the device's special device type, if
+                            any (e.g. software, orthopaedic device); see
+                            /reference.
                         REAGENT:
                           nullable: true
+                          description: 1 if the device is a reagent, 0 otherwise (IVDs only).
                         MULTI_COMPONENT_ID:
                           nullable: true
+                          description: >-
+                            Identifier grouping this device with other
+                            components of a multi-component device system, if
+                            applicable.
                         INSTRUMENT:
                           nullable: true
+                          description: 1 if the device is an instrument, 0 otherwise (IVDs only).
                         PROFESSIONAL_TESTING:
                           nullable: true
+                          description: 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
                         SUTURES:
                           nullable: true
+                          description: 1 if the device is a suture, 0 otherwise.
                         HUMAN_PRODUCT:
                           type: integer
+                          description: 1 if the device incorporates a human-derived product, 0 otherwise.
                         MEDICINAL_PRODUCT:
                           type: integer
+                          description: 1 if the device incorporates a medicinal product, 0 otherwise.
                         DEVICE_NAME:
                           nullable: true
+                          description: Name of the device.
                         DEVICE_MODEL:
                           type: string
+                          description: Model designation of the device.
                         RISK_CLASS_ID:
                           type: integer
+                          description: >-
+                            Identifier of the device's risk class (see
+                            /reference; e.g. class I, IIa, IIb, III, or IVD
+                            classes A-D).
                         APPLICABLE_LEGISLATION_ID:
                           type: integer
+                          description: >-
+                            Identifier of the legislation the device is
+                            registered under (see /reference; e.g. MDD, MDR,
+                            IVDD, IVDR, AIMDD).
                         DEVICE_CRITERION:
                           type: string
+                          description: Classification rule/criterion applied to determine the device's risk class.
                         MEDICAL_PURPOSE:
                           nullable: true
+                          description: Intended medical purpose/use of the device.
                         NOMENCLATURE_CODE:
                           type: string
+                          description: CND or GMDN nomenclature code assigned to the device.
                         MF_SRN:
                           type: string
+                          description: Single Registration Number (SRN) of the manufacturer.
                         MF_NAME:
                           type: string
+                          description: Name of the manufacturer.
                         DEVICE_STATUS_TYPE_ID:
                           type: integer
+                          description: >-
+                            Identifier of the device's market status (see
+                            /reference; e.g. on the market, no longer on the
+                            market, not intended for the EU market).
                         MF_ACTOR_NAMES:
                           type: string
+                          description: Name(s) of the manufacturer actor.
                         ACTOR_ABBREVIATED_NAMES:
                           type: string
+                          description: Abbreviated name(s) of the associated actor(s).
                         STATUS_ID:
                           type: integer
+                          description: Identifier of this record's status (see /reference).
                         AR_NAME:
                           nullable: true
+                          description: Name of the authorised representative, if applicable.
                         AR_SRN:
                           nullable: true
+                          description: Single Registration Number (SRN) of the authorised representative, if applicable.
                         AR_ACTOR_NAMES:
                           nullable: true
+                          description: Name(s) of the authorised representative actor, if applicable.
                         UNIT_OF_USE_DI:
                           nullable: true
+                          description: Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
                         DIRECT_MARKETING_DI:
                           type: string
+                          description: Direct marking Device Identifier, if the device carries a direct UDI marking.
                         SECONDARY_DI:
                           nullable: true
+                          description: Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
                         CONTAINER_PACKAGE_DIS:
                           nullable: true
+                          description: Device Identifiers of the container/package levels for this device, if applicable.
                         SUBSTATUSES:
                           nullable: true
+                          description: Additional sub-statuses associated with the device record.
                   nextLink:
                     type: string
                     format: uri
+                    description: URL to the next page of results, present only when more results are available.
 components:
   securitySchemes:
     apiKeyHeader:
       type: apiKey
       name: Ocp-Apim-Subscription-Key
       in: header
+      description: Subscription key issued for the EUDAMED public API, sent as a request header.
     apiKeyQuery:
       type: apiKey
       name: subscription-key
       in: query
+      description: Subscription key issued for the EUDAMED public API, sent as a query parameter.
 security:
   - apiKeyHeader: []
 
