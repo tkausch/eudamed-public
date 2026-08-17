@@ -1,0 +1,447 @@
+openapi: 3.0.1
+info:
+  title: API - EUDAMED Public
+  version: 1.0.0
+  description: >+
+    EUDAMED is the IT system established by Regulation (EU) 2017/745 on medical
+    devices and Regulation (EU) 2017/746 on in vitro diagnosis medical devices.
+    EUDAMED provides a living picture of the lifecycle of medical devices that
+    are made available in the European Union (EU) and aims to enhance overall
+    transparency, including better access to information for public and
+    healthcare professionals, and to enhance coordination between the different
+    Member States in the EU.
+
+servers:
+  - url: https://api.datalake.sante.service.ec.europa.eu/eudamed
+paths:
+  /actors:
+    get:
+      tags:
+        - hidden-configportal
+        - hidden-public
+      summary: actors
+      operationId: getActors
+      parameters:
+        - name: ACTOR_ID
+          in: query
+          schema:
+            type: string
+        - name: NAME
+          in: query
+          schema:
+            type: string
+        - name: ABBREVIATED_NAME
+          in: query
+          schema:
+            type: string
+        - name: ACTOR_TYPE
+          in: query
+          schema:
+            type: string
+        - name: CA_NAME
+          in: query
+          schema:
+            type: string
+        - name: CA_ACTOR_ID
+          in: query
+          schema:
+            type: string
+        - name: ACT_COUNTRY_ISO2_CODE
+          in: query
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Type of the response json|csv
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          headers:
+            date:
+              schema:
+                type: string
+            content-length:
+              schema:
+                type: integer
+            connection:
+              schema:
+                type: string
+            x-ms-correlation-id:
+              schema:
+                type: string
+            request-context:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ACTOR_ID:
+                          type: string
+                        NAME:
+                          type: string
+                        ABBREVIATED_NAME:
+                          type: string
+                        STATUS_FROM_DATE:
+                          nullable: true
+                        STATUS:
+                          type: string
+                        ACTOR_TYPE:
+                          type: string
+                        SPONSOR_TYPE:
+                          nullable: true
+                        EUROPEAN_VAT_NUMBER:
+                          type: string
+                        VERSION:
+                          type: integer
+                        ACT_COUNTRY_NAME:
+                          type: string
+                        ACT_COUNTRY_ISO2_CODE:
+                          type: string
+                        ACT_COUNTRY_TYPE:
+                          type: string
+                        ACT_EMAIL:
+                          type: string
+                          format: email
+                        ACT_TELEPHONE:
+                          type: string
+                        ACT_WEBSITE:
+                          type: string
+                        ACT_ADDR_BUILDING_NUMBER:
+                          type: string
+                        ACT_ADDR_STREET_NAME:
+                          type: string
+                        ACT_ADDR_POST_BOX:
+                          nullable: true
+                        ACT_ADDR_POSTAL_ZONE:
+                          type: string
+                        ACT_ADDR_CITY_NAME:
+                          type: string
+                        ACT_ADDR_COUNTRY_NAME:
+                          type: string
+                        ACT_ADDR_COUNTRY_CODE:
+                          type: string
+                        ACT_ADDR_COUNTRY_TYPE:
+                          type: string
+                        PRRC_FIRST_NAME:
+                          type: string
+                        PRRC_FAMILY_NAME:
+                          type: string
+                  nextLink:
+                    type: string
+                    format: uri
+  /reference:
+    get:
+      tags:
+        - hidden-configportal
+        - hidden-public
+      summary: reference
+      operationId: getReference
+      parameters:
+        - name: ID
+          in: query
+          schema:
+            type: number
+        - name: CODE
+          in: query
+          schema:
+            type: string
+        - name: LANGUAGE
+          in: query
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Type of the response csv|json
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          headers:
+            date:
+              schema:
+                type: string
+            content-length:
+              schema:
+                type: integer
+            connection:
+              schema:
+                type: string
+            x-ms-correlation-id:
+              schema:
+                type: string
+            request-context:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                        CODE:
+                          type: string
+                        LANGUAGE:
+                          type: string
+                        VALUE:
+                          type: string
+                  nextLink:
+                    type: string
+                    format: uri
+  /udi:
+    get:
+      tags:
+        - hidden-configportal
+        - hidden-public
+      summary: udi
+      operationId: getUdi
+      parameters:
+        - name: PRIMARY_DI
+          in: query
+          schema:
+            type: string
+        - name: BASIC_UDI
+          in: query
+          schema:
+            type: string
+        - name: TRADE_NAME
+          in: query
+          schema:
+            type: string
+        - name: DEVICE_NAME
+          in: query
+          schema:
+            type: string
+        - name: DEVICE_MODEL
+          in: query
+          schema:
+            type: string
+        - name: REFERENCE
+          in: query
+          schema:
+            type: string
+        - name: NOMENCLATURE_CODE
+          in: query
+          schema:
+            type: string
+        - name: RISK_CLASS_ID
+          in: query
+          schema:
+            type: number
+        - name: APPLICABLE_LEGISLATION_ID
+          in: query
+          schema:
+            type: number
+        - name: PLACED_ON_THE_MARKET_ID
+          in: query
+          schema:
+            type: number
+        - name: MF_SRN
+          in: query
+          schema:
+            type: string
+        - name: SPECIAL_DEVICE_TYPE_ID
+          in: query
+          schema:
+            type: number
+        - name: MEDICAL_PURPOSE
+          in: query
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Type of the response csv|json
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: udi
+          headers:
+            date:
+              schema:
+                type: string
+            content-length:
+              schema:
+                type: integer
+            connection:
+              schema:
+                type: string
+            x-ms-correlation-id:
+              schema:
+                type: string
+            request-context:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: integer
+                        UDI_DI_DATA_ULID:
+                          type: string
+                        UUID:
+                          type: string
+                        TRADE_NAME:
+                          type: string
+                        REFERENCE:
+                          type: string
+                        PLACED_ON_THE_MARKET_ID:
+                          type: integer
+                        LATEST_VERSION:
+                          type: integer
+                        CMR_SUBSTANCE:
+                          type: integer
+                        ENDOCRINE_DISRUPTOR:
+                          type: integer
+                        LATEX:
+                          type: integer
+                        REPROCESSED:
+                          type: integer
+                        STERILE:
+                          type: integer
+                        STERILIZATION:
+                          type: integer
+                        NEW_DEVICE:
+                          nullable: true
+                        VERSION_NUMBER:
+                          type: integer
+                        PRIMARY_DI:
+                          type: string
+                        BASIC_UDI:
+                          type: string
+                        BASIC_UDI_DATA_UUID:
+                          type: string
+                        BASIC_UDI_DATA_ULID:
+                          type: string
+                        ACTIVE:
+                          type: integer
+                        ADMINISTERING_MEDICINE:
+                          type: integer
+                        ANIMAL_TISSUES:
+                          type: integer
+                        COMPANION_DIAGNOSTICS:
+                          nullable: true
+                        HUMAN_TISSUES:
+                          type: integer
+                        IMPLANTABLE:
+                          type: integer
+                        KIT:
+                          nullable: true
+                        MEASURING_FUNCTION:
+                          type: integer
+                        MICROBIAL_SUBSTANCES:
+                          nullable: true
+                        NEAR_PATIENT_TESTING:
+                          nullable: true
+                        REUSABLE:
+                          type: integer
+                        SELF_TESTING:
+                          nullable: true
+                        SPECIAL_DEVICE_TYPE_ID:
+                          nullable: true
+                        REAGENT:
+                          nullable: true
+                        MULTI_COMPONENT_ID:
+                          nullable: true
+                        INSTRUMENT:
+                          nullable: true
+                        PROFESSIONAL_TESTING:
+                          nullable: true
+                        SUTURES:
+                          nullable: true
+                        HUMAN_PRODUCT:
+                          type: integer
+                        MEDICINAL_PRODUCT:
+                          type: integer
+                        DEVICE_NAME:
+                          nullable: true
+                        DEVICE_MODEL:
+                          type: string
+                        RISK_CLASS_ID:
+                          type: integer
+                        APPLICABLE_LEGISLATION_ID:
+                          type: integer
+                        DEVICE_CRITERION:
+                          type: string
+                        MEDICAL_PURPOSE:
+                          nullable: true
+                        NOMENCLATURE_CODE:
+                          type: string
+                        MF_SRN:
+                          type: string
+                        MF_NAME:
+                          type: string
+                        DEVICE_STATUS_TYPE_ID:
+                          type: integer
+                        MF_ACTOR_NAMES:
+                          type: string
+                        ACTOR_ABBREVIATED_NAMES:
+                          type: string
+                        STATUS_ID:
+                          type: integer
+                        AR_NAME:
+                          nullable: true
+                        AR_SRN:
+                          nullable: true
+                        AR_ACTOR_NAMES:
+                          nullable: true
+                        UNIT_OF_USE_DI:
+                          nullable: true
+                        DIRECT_MARKETING_DI:
+                          type: string
+                        SECONDARY_DI:
+                          nullable: true
+                        CONTAINER_PACKAGE_DIS:
+                          nullable: true
+                        SUBSTATUSES:
+                          nullable: true
+                  nextLink:
+                    type: string
+                    format: uri
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: []
+
