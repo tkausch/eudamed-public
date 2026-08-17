@@ -41,8 +41,7 @@ Available operations:
 
 ## Project layout
 
-- `eudamed.yaml` — the source OpenAPI specification
-- `Sources/EudamedClient/openapi.yaml` — a copy of the spec used by the generator plugin (`operationId`s renamed from raw UUIDs to readable names: `getActors`, `getReference`, `getUdi`)
+- `Sources/EudamedClient/openapi.yaml` — the source OpenAPI specification used by the generator plugin (`operationId`s renamed from raw UUIDs to readable names: `getActors`, `getReference`, `getUdi`)
 - `Sources/EudamedClient/openapi-generator-config.yaml` — generator configuration (`types`, `client`, public access modifier)
 - `Sources/EudamedClient/EudamedClient.swift` — convenience initializer and auth middleware
 
