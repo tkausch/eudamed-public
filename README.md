@@ -7,7 +7,6 @@ EUDAMED is the IT system established by Regulation (EU) 2017/745 on medical devi
 ## Requirements
 
 - Swift 5.9+
-- An EUDAMED API subscription key (`Ocp-Apim-Subscription-Key`)
 
 ## Installation
 
