@@ -52,6 +52,18 @@ Available operations:
 swift package plugin --allow-writing-to-package-directory generate-code-from-openapi
 ```
 
+## Updating the generator plugin
+
+To pick up a newer `swift-openapi-generator` release:
+
+1. Bump the version in the `dependencies` array of `Package.swift` (or run `swift package update swift-openapi-generator`).
+2. Regenerate the checked-in sources so they match the new generator version:
+   ```sh
+   swift package plugin --allow-writing-to-package-directory generate-code-from-openapi
+   ```
+3. Review the diff in `Sources/EudamedClient/GeneratedSources/`, then `swift build` and `swift test` to confirm everything still compiles and passes.
+4. Commit the updated `Package.swift`, `Package.resolved`, and regenerated sources together.
+
 ## Building
 
 ```sh
