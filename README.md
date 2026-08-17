@@ -1,4 +1,4 @@
-# EudamedPublic
+# 🇪🇺 EudamedPublicSwift
 
 A Swift package providing a type-safe client for the [EUDAMED](https://ec.europa.eu/tools/eudamed/) public API, generated from an OpenAPI specification using [swift-openapi-generator](https://github.com/apple/swift-openapi-generator).
 
