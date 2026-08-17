@@ -25,7 +25,7 @@ Then add `EudamedClient` as a dependency of your target.
 ```swift
 import EudamedClient
 
-let client = try Client(subscriptionKey: "YOUR_SUBSCRIPTION_KEY")
+let client = try Client()
 
 let response = try await client.getActors(.init(query: .init(NAME: "Acme")))
 ```
@@ -42,7 +42,7 @@ Available operations:
 
 - `Sources/EudamedClient/openapi.yaml` — the source OpenAPI specification used by the generator plugin (`operationId`s renamed from raw UUIDs to readable names: `getActors`, `getReference`, `getUdi`)
 - `Sources/EudamedClient/openapi-generator-config.yaml` — generator configuration (`types`, `client`, public access modifier)
-- `Sources/EudamedClient/EudamedClient.swift` — convenience initializer and auth middleware
+- `Sources/EudamedClient/EudamedClient.swift` — convenience initializer
 
 Generated `Types.swift`, `Client.swift`, and `Server.swift` are produced at build time by the `swift-openapi-generator` build plugin and are not checked into source control.
 
