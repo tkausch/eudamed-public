@@ -6,7 +6,7 @@
 import Foundation
 import SwiftData
 
-public actor CachingUdiRepository: UdiDevicesRepository {
+public actor CachingUdiDeviceRepository: UdiDevicesRepository {
 
     private let remote: RemoteUdiDevicesRepository
     private let local: LocalUdiDevicesRepository

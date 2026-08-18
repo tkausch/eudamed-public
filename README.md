@@ -17,7 +17,7 @@ Add the package to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/tkausch/eudamedPublic", branch: "main")
+    .package(url: "https://github.com/tkausch/swift-eudamed-public", branch: "main")
 ]
 ```
 
@@ -27,8 +27,8 @@ Add the targets you need:
 .target(
     name: "MyApp",
     dependencies: [
-        .product(name: "EudamedClient",    package: "eudamedPublic"),  // raw API client
-        .product(name: "EudamedDataModel", package: "eudamedPublic"),  // domain models + repositories
+        .product(name: "EudamedClient",    package: "swift-eudamed-public"),  // raw API client
+        .product(name: "EudamedDataModel", package: "swift-eudamed-public"),  // domain models + repositories
     ]
 )
 ```
