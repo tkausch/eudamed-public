@@ -1,5 +1,3 @@
-# 🇪🇺 EudamedPublicSwift 🦾🦿🫀
-
 ![EudamedPublicSwift](Eudamed.png)
 
 A Swift package providing a type-safe client and offline-capable data layer for the [EUDAMED](https://ec.europa.eu/tools/eudamed/) public API.
