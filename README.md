@@ -1,5 +1,7 @@
 # 🇪🇺 EudamedPublicSwift 🦾🦿🫀
 
+![EudamedPublicSwift](Eudamed.png)
+
 A Swift package providing a type-safe client and offline-capable data layer for the [EUDAMED](https://ec.europa.eu/tools/eudamed/) public API.
 
 EUDAMED is the IT system established by Regulation (EU) 2017/745 on medical devices and Regulation (EU) 2017/746 on in vitro diagnostic medical devices.
