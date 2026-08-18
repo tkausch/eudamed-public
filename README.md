@@ -42,8 +42,6 @@ Add the targets you need:
 
 ## EudamedClient
 
-### Single page
-
 ```swift
 import EudamedClient
 
@@ -52,23 +50,15 @@ let response = try await client.getActors(.init(query: .init(NAME: "Acme")))
 let actors = try response.ok.body.json.value ?? []
 ```
 
-### All pages (automatic pagination)
-
-```swift
-let actors  = try await client.getAllActors(.init(query: .init(NAME: "Acme")))
-let devices = try await client.getAllUdi(.init(query: .init(TRADE_NAME: "Acme")))
-let refs    = try await client.getAllReference(.init(query: .init(CODE: "refdata.risk-class.class-iii")))
-```
-
-The `getAll` methods follow `nextLink` cursors automatically until all pages are fetched.
+The raw client returns one page at a time. For automatic pagination across all pages, use the `Remote*Repository` classes in `EudamedDataModel` (see below).
 
 ### Available operations
 
 | Operation | Path | Description |
 |---|---|---|
-| `getActors` / `getAllActors` | `/actors` | Search economic operators (manufacturers, authorised representatives, importers, etc.) |
-| `getReference` / `getAllReference` | `/reference` | Look up reference/nomenclature data |
-| `getUdi` / `getAllUdi` | `/udi` | Search Unique Device Identification (UDI) records |
+| `getActors` | `/actors` | Search economic operators (manufacturers, authorised representatives, importers, etc.) |
+| `getReference` | `/reference` | Look up reference/nomenclature data |
+| `getUdi` | `/udi` | Search Unique Device Identification (UDI) records |
 
 ---
 
@@ -133,7 +123,7 @@ All fields are optional; omitting a field means "no filter on that field".
 | `Sources/EudamedClient/openapi.yaml` | OpenAPI specification (source of truth) |
 | `Sources/EudamedClient/openapi-generator-config.yaml` | Generator configuration |
 | `Sources/EudamedClient/GeneratedSources/` | Generated `Types.swift` and `Client.swift`, checked into source control |
-| `Sources/EudamedClient/EudamedClient.swift` | Pagination wrappers and convenience initialisers |
+| `Sources/EudamedClient/EudamedClient.swift` | Convenience `Client()` initialiser (points at the EUDAMED server) |
 | `Sources/EudamedClient/TypesExtensions.swift` | Convenience extensions on generated OpenAPI types |
 | `Sources/EudamedDataModel/models/` | SwiftData `@Model` domain types (`Actor`, `UdiDevice`, `ReferenceEntry`) |
 | `Sources/EudamedDataModel/Remote*.swift` | Remote repository implementations (live API + pagination) |
