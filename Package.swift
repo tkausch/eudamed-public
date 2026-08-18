@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-eudamed-public",
+    name: "eudamed-public",
     platforms: [
         .macOS(.v14),
         .iOS(.v17),
