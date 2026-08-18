@@ -79,14 +79,25 @@ paths:
             type: string
         - name: format
           in: query
+          required: true
           description: Type of the response json|csv
+          schema:
+            type: string
+            default: json
+        - name: $after
+          in: query
+          description: >-
+            Opaque pagination cursor returned in the `nextLink` of a previous
+            response. Pass this value to retrieve the next page of results.
           schema:
             type: string
         - name: api-version
           in: query
+          required: true
           description: Version of the EUDAMED API to target.
           schema:
             type: string
+            default: v1.0
       responses:
         "200":
           description: "200"
@@ -198,7 +209,11 @@ paths:
                   nextLink:
                     type: string
                     format: uri
-                    description: URL to the next page of results, present only when more results are available.
+                    description: >-
+                      URL to the next page of results, present only when more
+                      results are available. Extract the `$after` query
+                      parameter from this URL and pass it to the next request
+                      to retrieve the following page.
   /reference:
     get:
       tags:
@@ -231,14 +246,25 @@ paths:
             type: string
         - name: format
           in: query
+          required: true
           description: Type of the response csv|json
+          schema:
+            type: string
+            default: json
+        - name: $after
+          in: query
+          description: >-
+            Opaque pagination cursor returned in the `nextLink` of a previous
+            response. Pass this value to retrieve the next page of results.
           schema:
             type: string
         - name: api-version
           in: query
+          required: true
           description: Version of the EUDAMED API to target.
           schema:
             type: string
+            default: v1.0
       responses:
         "200":
           description: "200"
@@ -286,7 +312,11 @@ paths:
                   nextLink:
                     type: string
                     format: uri
-                    description: URL to the next page of results, present only when more results are available.
+                    description: >-
+                      URL to the next page of results, present only when more
+                      results are available. Extract the `$after` query
+                      parameter from this URL and pass it to the next request
+                      to retrieve the following page.
   /udi:
     get:
       tags:
@@ -378,14 +408,25 @@ paths:
             type: string
         - name: format
           in: query
+          required: true
           description: Type of the response csv|json
+          schema:
+            type: string
+            default: json
+        - name: $after
+          in: query
+          description: >-
+            Opaque pagination cursor returned in the `nextLink` of a previous
+            response. Pass this value to retrieve the next page of results.
           schema:
             type: string
         - name: api-version
           in: query
+          required: true
           description: Version of the EUDAMED API to target.
           schema:
             type: string
+            default: v1.0
       responses:
         "200":
           description: udi
@@ -618,7 +659,11 @@ paths:
                   nextLink:
                     type: string
                     format: uri
-                    description: URL to the next page of results, present only when more results are available.
+                    description: >-
+                      URL to the next page of results, present only when more
+                      results are available. Extract the `$after` query
+                      parameter from this URL and pass it to the next request
+                      to retrieve the following page.
 components:
   securitySchemes:
     apiKeyHeader:

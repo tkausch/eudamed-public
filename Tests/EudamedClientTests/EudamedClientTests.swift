@@ -107,4 +107,41 @@ final class EudamedClientTests: XCTestCase {
         XCTAssertEqual(devices.first?.MF_SRN, "DE-MF-000012345")
         XCTAssertEqual(devices.first?.RISK_CLASS_ID, 3)
     }
+
+    // MARK: - Pagination
+
+    func testNextLinkIsDecodedFromResponse() async throws {
+        let cursor = "W3siRW50aXR5TmFtZSI6IkVVREFNRURTQ0hfVURJX0RJX0RBVEFfUFVCTElDX1ZJRVciLCJGaWVsZE5hbWUiOiJoYXNoX2NvbHVtbiIsIkZpZWxkVmFsdWUiOiJBQlNZc3FJL0Z4UHF0bmNHOTlvdk9XejRVYVE9IiwiRGlyZWN0aW9uIjowfV0="
+        let transport = MockClientTransport(
+            responseBody: """
+            {
+              "value": [],
+              "nextLink": "https://api.datalake.sante.service.ec.europa.eu/eudamed/udi?$after=\(cursor)&format=json&api-version=v1.0"
+            }
+            """
+        )
+        let client = Client(serverURL: try Servers.Server1.url(), transport: transport)
+
+        let output = try await client.getUdi(.init(query: .init()))
+        let body = try output.ok.body.json
+
+        XCTAssertNotNil(body.nextLink)
+        let nextLinkURL = try XCTUnwrap(URL(string: body.nextLink!))
+        let afterValue = URLComponents(url: nextLinkURL, resolvingAgainstBaseURL: false)?
+            .queryItems?.first(where: { $0.name == "$after" })?.value
+        XCTAssertEqual(afterValue, cursor)
+    }
+
+  
+
+    func testAfterCursorIsSentInRequest() async throws {
+        let cursor = "W3siRW50aXR5TmFtZSI6IkVVREFNRURTQ0hfVURJX0RJX0RBVEFfUFVCTElDX1ZJRVciLCJGaWVsZE5hbWUiOiJoYXNoX2NvbHVtbiIsIkZpZWxkVmFsdWUiOiJBQlNZc3FJL0Z4UHF0bmNHOTlvdk9XejRVYVE9IiwiRGlyZWN0aW9uIjowfV0="
+        let transport = MockClientTransport(responseBody: #"{"value":[]}"#)
+        let client = Client(serverURL: try Servers.Server1.url(), transport: transport)
+
+        _ = try await client.getUdi(.init(query: .init(_dollar_after: cursor)))
+
+        let path = try XCTUnwrap(transport.capturedRequest?.path)
+        XCTAssertTrue(path.contains("%24after="), "Expected percent-encoded $after in request path, got: \(path)")
+    }
 }

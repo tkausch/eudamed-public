@@ -3,23 +3,18 @@ import HTTPTypes
 import OpenAPIRuntime
 
 /// A `ClientTransport` test double that records the outgoing request and
-/// returns a canned response, so tests can verify `Client` behavior without
+/// returns a canned response, so tests can verify repository behavior without
 /// performing real network calls.
 final class MockClientTransport: ClientTransport, @unchecked Sendable {
-    private(set) var capturedRequest: HTTPRequest?
-    private(set) var capturedBaseURL: URL?
-    private(set) var capturedOperationID: String?
+    private(set) var capturedRequests: [HTTPRequest] = []
 
-    private let responseStatus: HTTPResponse.Status
     private let responseBodyProvider: () -> String
 
-    init(responseStatus: HTTPResponse.Status = .ok, responseBody: String) {
-        self.responseStatus = responseStatus
+    init(responseBody: String) {
         self.responseBodyProvider = { responseBody }
     }
 
-    init(responseStatus: HTTPResponse.Status = .ok, responseBodyProvider: @escaping () -> String) {
-        self.responseStatus = responseStatus
+    init(responseBodyProvider: @escaping () -> String) {
         self.responseBodyProvider = responseBodyProvider
     }
 
@@ -29,11 +24,8 @@ final class MockClientTransport: ClientTransport, @unchecked Sendable {
         baseURL: URL,
         operationID: String
     ) async throws -> (HTTPResponse, HTTPBody?) {
-        capturedRequest = request
-        capturedBaseURL = baseURL
-        capturedOperationID = operationID
-
-        var response = HTTPResponse(status: responseStatus)
+        capturedRequests.append(request)
+        var response = HTTPResponse(status: .ok)
         response.headerFields[.contentType] = "application/json"
         return (response, HTTPBody(responseBodyProvider()))
     }

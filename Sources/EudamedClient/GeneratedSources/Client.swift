@@ -122,6 +122,13 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
+                    name: "$after",
+                    value: input.query._dollar_after
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
                     name: "api-version",
                     value: input.query.api_hyphen_version
                 )
@@ -244,6 +251,13 @@ public struct Client: APIProtocol {
                     explode: true,
                     name: "format",
                     value: input.query.format
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "$after",
+                    value: input.query._dollar_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
@@ -441,6 +455,13 @@ public struct Client: APIProtocol {
                     explode: true,
                     name: "format",
                     value: input.query.format
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "$after",
+                    value: input.query._dollar_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,

@@ -2,15 +2,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "EudamedPublic",
+    name: "EudamedPublicSwift",
     platforms: [
-        .macOS(.v13),
-        .iOS(.v16),
+        .macOS(.v14),
+        .iOS(.v17),
     ],
     products: [
         .library(
             name: "EudamedClient",
             targets: ["EudamedClient"]
+        ),
+        .library(
+            name: "EudamedDataModel",
+            targets: ["EudamedDataModel"]
         ),
     ],
     dependencies: [
@@ -25,15 +29,24 @@ let package = Package(
             dependencies: [
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
-            ],
-            exclude: [
-                "openapi.yaml",
-                "openapi-generator-config.yaml",
             ]
+        ),
+        .target(
+            name: "EudamedDataModel",
+            dependencies: ["EudamedClient"]
         ),
         .testTarget(
             name: "EudamedClientTests",
             dependencies: [
+                "EudamedClient",
+                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+                .product(name: "HTTPTypes", package: "swift-http-types"),
+            ]
+        ),
+        .testTarget(
+            name: "EudamedDataModelTests",
+            dependencies: [
+                "EudamedDataModel",
                 "EudamedClient",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "HTTPTypes", package: "swift-http-types"),

@@ -43,7 +43,7 @@ extension APIProtocol {
     /// - Remark: HTTP `GET /actors`.
     /// - Remark: Generated from `#/paths//actors/get(getActors)`.
     public func getActors(
-        query: Operations.getActors.Input.Query = .init(),
+        query: Operations.getActors.Input.Query,
         headers: Operations.getActors.Input.Headers = .init()
     ) async throws -> Operations.getActors.Output {
         try await getActors(Operations.getActors.Input(
@@ -58,7 +58,7 @@ extension APIProtocol {
     /// - Remark: HTTP `GET /reference`.
     /// - Remark: Generated from `#/paths//reference/get(getReference)`.
     public func getReference(
-        query: Operations.getReference.Input.Query = .init(),
+        query: Operations.getReference.Input.Query,
         headers: Operations.getReference.Input.Headers = .init()
     ) async throws -> Operations.getReference.Output {
         try await getReference(Operations.getReference.Input(
@@ -73,7 +73,7 @@ extension APIProtocol {
     /// - Remark: HTTP `GET /udi`.
     /// - Remark: Generated from `#/paths//udi/get(getUdi)`.
     public func getUdi(
-        query: Operations.getUdi.Input.Query = .init(),
+        query: Operations.getUdi.Input.Query,
         headers: Operations.getUdi.Input.Headers = .init()
     ) async throws -> Operations.getUdi.Output {
         try await getUdi(Operations.getUdi.Input(
@@ -160,11 +160,15 @@ public enum Operations {
                 /// Type of the response json|csv
                 ///
                 /// - Remark: Generated from `#/paths/actors/GET/query/format`.
-                public var format: Swift.String?
+                public var format: Swift.String
+                /// Opaque pagination cursor returned in the `nextLink` of a previous response. Pass this value to retrieve the next page of results.
+                ///
+                /// - Remark: Generated from `#/paths/actors/GET/query/$after`.
+                public var _dollar_after: Swift.String?
                 /// Version of the EUDAMED API to target.
                 ///
                 /// - Remark: Generated from `#/paths/actors/GET/query/api-version`.
-                public var api_hyphen_version: Swift.String?
+                public var api_hyphen_version: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
@@ -176,6 +180,7 @@ public enum Operations {
                 ///   - CA_ACTOR_ID: Filter by the EUDAMED identifier of the validating Competent Authority.
                 ///   - ACT_COUNTRY_ISO2_CODE: Filter by the actor's country, using its ISO 3166-1 alpha-2 code (e.g. DE, FR).
                 ///   - format: Type of the response json|csv
+                ///   - _dollar_after: Opaque pagination cursor returned in the `nextLink` of a previous response. Pass this value to retrieve the next page of results.
                 ///   - api_hyphen_version: Version of the EUDAMED API to target.
                 public init(
                     ACTOR_ID: Swift.String? = nil,
@@ -185,8 +190,9 @@ public enum Operations {
                     CA_NAME: Swift.String? = nil,
                     CA_ACTOR_ID: Swift.String? = nil,
                     ACT_COUNTRY_ISO2_CODE: Swift.String? = nil,
-                    format: Swift.String? = nil,
-                    api_hyphen_version: Swift.String? = nil
+                    format: Swift.String,
+                    _dollar_after: Swift.String? = nil,
+                    api_hyphen_version: Swift.String
                 ) {
                     self.ACTOR_ID = ACTOR_ID
                     self.NAME = NAME
@@ -196,6 +202,7 @@ public enum Operations {
                     self.CA_ACTOR_ID = CA_ACTOR_ID
                     self.ACT_COUNTRY_ISO2_CODE = ACT_COUNTRY_ISO2_CODE
                     self.format = format
+                    self._dollar_after = _dollar_after
                     self.api_hyphen_version = api_hyphen_version
                 }
             }
@@ -218,7 +225,7 @@ public enum Operations {
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.getActors.Input.Query = .init(),
+                query: Operations.getActors.Input.Query,
                 headers: Operations.getActors.Input.Headers = .init()
             ) {
                 self.query = query
@@ -486,7 +493,7 @@ public enum Operations {
                         ///
                         /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/value`.
                         public var value: Operations.getActors.Output.Ok.Body.jsonPayload.valuePayload?
-                        /// URL to the next page of results, present only when more results are available.
+                        /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
                         ///
                         /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/nextLink`.
                         public var nextLink: Swift.String?
@@ -494,7 +501,7 @@ public enum Operations {
                         ///
                         /// - Parameters:
                         ///   - value: Matching actor records for this page of results.
-                        ///   - nextLink: URL to the next page of results, present only when more results are available.
+                        ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
                         public init(
                             value: Operations.getActors.Output.Ok.Body.jsonPayload.valuePayload? = nil,
                             nextLink: Swift.String? = nil
@@ -617,11 +624,15 @@ public enum Operations {
                 /// Type of the response csv|json
                 ///
                 /// - Remark: Generated from `#/paths/reference/GET/query/format`.
-                public var format: Swift.String?
+                public var format: Swift.String
+                /// Opaque pagination cursor returned in the `nextLink` of a previous response. Pass this value to retrieve the next page of results.
+                ///
+                /// - Remark: Generated from `#/paths/reference/GET/query/$after`.
+                public var _dollar_after: Swift.String?
                 /// Version of the EUDAMED API to target.
                 ///
                 /// - Remark: Generated from `#/paths/reference/GET/query/api-version`.
-                public var api_hyphen_version: Swift.String?
+                public var api_hyphen_version: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
@@ -629,18 +640,21 @@ public enum Operations {
                 ///   - CODE: Filter by the reference data code, e.g. "refdata.risk-class.class-iii".
                 ///   - LANGUAGE: Filter/localize by language code (e.g. en, fr, de).
                 ///   - format: Type of the response csv|json
+                ///   - _dollar_after: Opaque pagination cursor returned in the `nextLink` of a previous response. Pass this value to retrieve the next page of results.
                 ///   - api_hyphen_version: Version of the EUDAMED API to target.
                 public init(
                     ID: Swift.Double? = nil,
                     CODE: Swift.String? = nil,
                     LANGUAGE: Swift.String? = nil,
-                    format: Swift.String? = nil,
-                    api_hyphen_version: Swift.String? = nil
+                    format: Swift.String,
+                    _dollar_after: Swift.String? = nil,
+                    api_hyphen_version: Swift.String
                 ) {
                     self.ID = ID
                     self.CODE = CODE
                     self.LANGUAGE = LANGUAGE
                     self.format = format
+                    self._dollar_after = _dollar_after
                     self.api_hyphen_version = api_hyphen_version
                 }
             }
@@ -663,7 +677,7 @@ public enum Operations {
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.getReference.Input.Query = .init(),
+                query: Operations.getReference.Input.Query,
                 headers: Operations.getReference.Input.Headers = .init()
             ) {
                 self.query = query
@@ -763,7 +777,7 @@ public enum Operations {
                         ///
                         /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/value`.
                         public var value: Operations.getReference.Output.Ok.Body.jsonPayload.valuePayload?
-                        /// URL to the next page of results, present only when more results are available.
+                        /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
                         ///
                         /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/nextLink`.
                         public var nextLink: Swift.String?
@@ -771,7 +785,7 @@ public enum Operations {
                         ///
                         /// - Parameters:
                         ///   - value: Matching reference data entries for this page of results.
-                        ///   - nextLink: URL to the next page of results, present only when more results are available.
+                        ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
                         public init(
                             value: Operations.getReference.Output.Ok.Body.jsonPayload.valuePayload? = nil,
                             nextLink: Swift.String? = nil
@@ -934,11 +948,15 @@ public enum Operations {
                 /// Type of the response csv|json
                 ///
                 /// - Remark: Generated from `#/paths/udi/GET/query/format`.
-                public var format: Swift.String?
+                public var format: Swift.String
+                /// Opaque pagination cursor returned in the `nextLink` of a previous response. Pass this value to retrieve the next page of results.
+                ///
+                /// - Remark: Generated from `#/paths/udi/GET/query/$after`.
+                public var _dollar_after: Swift.String?
                 /// Version of the EUDAMED API to target.
                 ///
                 /// - Remark: Generated from `#/paths/udi/GET/query/api-version`.
-                public var api_hyphen_version: Swift.String?
+                public var api_hyphen_version: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
@@ -956,6 +974,7 @@ public enum Operations {
                 ///   - SPECIAL_DEVICE_TYPE_ID: Filter by the numeric identifier of the special device type (see /reference; e.g. software, orthopaedic device).
                 ///   - MEDICAL_PURPOSE: Filter by the device's intended medical purpose/use.
                 ///   - format: Type of the response csv|json
+                ///   - _dollar_after: Opaque pagination cursor returned in the `nextLink` of a previous response. Pass this value to retrieve the next page of results.
                 ///   - api_hyphen_version: Version of the EUDAMED API to target.
                 public init(
                     PRIMARY_DI: Swift.String? = nil,
@@ -971,8 +990,9 @@ public enum Operations {
                     MF_SRN: Swift.String? = nil,
                     SPECIAL_DEVICE_TYPE_ID: Swift.Double? = nil,
                     MEDICAL_PURPOSE: Swift.String? = nil,
-                    format: Swift.String? = nil,
-                    api_hyphen_version: Swift.String? = nil
+                    format: Swift.String,
+                    _dollar_after: Swift.String? = nil,
+                    api_hyphen_version: Swift.String
                 ) {
                     self.PRIMARY_DI = PRIMARY_DI
                     self.BASIC_UDI = BASIC_UDI
@@ -988,6 +1008,7 @@ public enum Operations {
                     self.SPECIAL_DEVICE_TYPE_ID = SPECIAL_DEVICE_TYPE_ID
                     self.MEDICAL_PURPOSE = MEDICAL_PURPOSE
                     self.format = format
+                    self._dollar_after = _dollar_after
                     self.api_hyphen_version = api_hyphen_version
                 }
             }
@@ -1010,7 +1031,7 @@ public enum Operations {
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.getUdi.Input.Query = .init(),
+                query: Operations.getUdi.Input.Query,
                 headers: Operations.getUdi.Input.Headers = .init()
             ) {
                 self.query = query
@@ -1558,7 +1579,7 @@ public enum Operations {
                         ///
                         /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/value`.
                         public var value: Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayload?
-                        /// URL to the next page of results, present only when more results are available.
+                        /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
                         ///
                         /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/nextLink`.
                         public var nextLink: Swift.String?
@@ -1566,7 +1587,7 @@ public enum Operations {
                         ///
                         /// - Parameters:
                         ///   - value: Matching UDI/device records for this page of results.
-                        ///   - nextLink: URL to the next page of results, present only when more results are available.
+                        ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
                         public init(
                             value: Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayload? = nil,
                             nextLink: Swift.String? = nil
