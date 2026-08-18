@@ -156,3 +156,12 @@ The `CachingUdiRepositoryLiveTests` suite requires network access to the EUDAMED
 ```sh
 ENABLE_LIVE_TESTS=1 swift test --filter CachingUdiRepositoryLiveTests
 ```
+
+## License
+
+EudamedPublicSwift is available for **noncommercial use** under the
+[PolyForm Noncommercial License 1.0.0](LICENSE). See [EULA.md](EULA.md)
+for the full End User License Agreement, including restrictions on
+commercial use.
+
+For commercial licensing, contact thomas@kausch.li.
