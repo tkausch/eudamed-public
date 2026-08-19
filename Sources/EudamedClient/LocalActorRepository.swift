@@ -24,17 +24,29 @@ public actor LocalActorRepository: ActorRepository {
     public func upsert(_ actors: [Actor]) throws {
         guard !actors.isEmpty else { return }
 
-        let ids = actors.map(\.id)
+        // Deduplicate by id — remote pagination can yield the same actor more than once.
+        // Inserting two @Model objects with the same unique id in one save causes a fatal
+        // "remapped to temporary identifier" error in SwiftData's DefaultStore.
+        var incomingByID: [String: Actor] = [:]
+        for actor in actors { incomingByID[actor.id] = actor }
+
+        let ids = Array(incomingByID.keys)
         let existing = try modelContext.fetch(
             FetchDescriptor<Actor>(predicate: #Predicate { ids.contains($0.id) })
         )
-        let byID = Dictionary(existing.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let existingByID = Dictionary(existing.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
 
-        for incoming in actors {
-            if let existing = byID[incoming.id] {
+        for (_, incoming) in incomingByID {
+            if let existing = existingByID[incoming.id] {
                 existing.update(from: incoming)
             } else {
-                modelContext.insert(incoming)
+                // Create a fresh instance owned by this context rather than inserting the
+                // remote-sourced @Model object directly. Inserting a @Model instance that
+                // was created outside this ModelContext causes SwiftData to fail to remap
+                // its temporary PersistentIdentifier to a permanent one during save.
+                let newActor = Actor(actorId: incoming.id)
+                modelContext.insert(newActor)
+                newActor.update(from: incoming)
             }
         }
 

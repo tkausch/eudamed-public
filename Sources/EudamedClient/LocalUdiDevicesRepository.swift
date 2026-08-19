@@ -24,15 +24,27 @@ public actor LocalUdiDevicesRepository: UdiDevicesRepository {
     }
 
     public func upsert(_ devices: [UdiDevice]) throws {
-        for incoming in devices {
-            let id = incoming.id
-            let predicate = #Predicate<UdiDevice> { $0.id == id }
-            if let existing = try modelContext.fetch(FetchDescriptor<UdiDevice>(predicate: predicate)).first {
+        guard !devices.isEmpty else { return }
+
+        var incomingByID: [String: UdiDevice] = [:]
+        for device in devices { incomingByID[device.id] = device }
+
+        let ids = Array(incomingByID.keys)
+        let existing = try modelContext.fetch(
+            FetchDescriptor<UdiDevice>(predicate: #Predicate { ids.contains($0.id) })
+        )
+        let existingByID = Dictionary(existing.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+
+        for (_, incoming) in incomingByID {
+            if let existing = existingByID[incoming.id] {
                 existing.update(from: incoming)
             } else {
-                modelContext.insert(incoming)
+                let newDevice = UdiDevice(primaryDi: incoming.id)
+                modelContext.insert(newDevice)
+                newDevice.update(from: incoming)
             }
         }
+
         try modelContext.save()
     }
 

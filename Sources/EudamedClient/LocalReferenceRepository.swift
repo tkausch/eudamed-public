@@ -21,15 +21,27 @@ public actor LocalReferenceRepository: ReferenceRepository {
     }
 
     public func upsert(_ entries: [ReferenceEntry]) throws {
-        for incoming in entries {
-            let id = incoming.id
-            let predicate = #Predicate<ReferenceEntry> { $0.id == id }
-            if let existing = try modelContext.fetch(FetchDescriptor<ReferenceEntry>(predicate: predicate)).first {
+        guard !entries.isEmpty else { return }
+
+        var incomingByID: [Int: ReferenceEntry] = [:]
+        for entry in entries { incomingByID[entry.id] = entry }
+
+        let ids = Array(incomingByID.keys)
+        let existing = try modelContext.fetch(
+            FetchDescriptor<ReferenceEntry>(predicate: #Predicate { ids.contains($0.id) })
+        )
+        let existingByID = Dictionary(existing.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+
+        for (_, incoming) in incomingByID {
+            if let existing = existingByID[incoming.id] {
                 existing.update(from: incoming)
             } else {
-                modelContext.insert(incoming)
+                let newEntry = ReferenceEntry(id: incoming.id)
+                modelContext.insert(newEntry)
+                newEntry.update(from: incoming)
             }
         }
+
         try modelContext.save()
     }
 
