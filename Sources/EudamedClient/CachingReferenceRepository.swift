@@ -30,6 +30,10 @@ public actor CachingReferenceRepository: ReferenceRepository {
         try await local.entry(id: id)
     }
 
+    public func cacheCount() async throws -> Int {
+        return try await local.search().count
+    }
+    
     public func sync() async throws {
         let entries = try await remote.search()
         try await local.upsert(entries)

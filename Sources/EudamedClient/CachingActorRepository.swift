@@ -30,6 +30,10 @@ public actor CachingActorRepository: ActorRepository {
         try await local.actor(id: id)
     }
 
+    public func cacheCount() async throws -> Int {
+        return try await local.search().count
+    }
+    
     public func sync() async throws {
         let actors = try await remote.search()
         try await local.upsert(actors)

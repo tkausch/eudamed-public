@@ -30,6 +30,10 @@ public actor CachingUdiDeviceRepository: UdiDevicesRepository {
         try await local.device(primaryDi: primaryDi)
     }
 
+    public func cacheCount() async throws -> Int {
+        return try await local.search().count
+    }
+    
     public func sync(query: UdiDevicesQuery = UdiDevicesQuery()) async throws {
         let devices = try await remote.search(query: query)
         try await local.upsert(devices)
