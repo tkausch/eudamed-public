@@ -10,45 +10,81 @@ typealias RawUdiDevice = Operations.getUdi.Output.Ok.Body.jsonPayload.valuePaylo
 
 @Model
 public final class UdiDevice: @unchecked Sendable, Identifiable, Hashable {
+    /// Primary Device Identifier (UDI-DI).
     @Attribute(.unique) public var id: String
     public var primaryDi: String { id }
 
+    /// Basic UDI-DI shared across all versions/packaging of this device model.
     public var basicUdi: String?
+    /// Trade/brand name of the device.
     public var tradeName: String?
+    /// Name of the device.
     public var deviceName: String?
+    /// Model designation of the device.
     public var deviceModel: String?
+    /// Manufacturer's reference/catalogue number for the device.
     public var reference: String?
+    /// CND or GMDN nomenclature code assigned to the device.
     public var nomenclatureCode: String?
+    /// Single Registration Number (SRN) of the manufacturer.
     public var mfSrn: String?
+    /// Name of the manufacturer.
     public var mfName: String?
+    /// Name(s) of the manufacturer actor.
     public var mfActorNames: String?
+    /// Abbreviated name(s) of the associated actor(s).
     public var actorAbbreviatedNames: String?
+    /// Classification rule/criterion applied to determine the device's risk class.
     public var deviceCriterion: String?
+    /// Direct marking Device Identifier, if the device carries a direct UDI marking.
     public var directMarketingDi: String?
 
+    /// Identifier of the device's risk class (see /reference; e.g. class I, IIa, IIb, III, or IVD classes A-D).
     public var riskClassId: Int?
+    /// Identifier of the legislation the device is registered under (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
     public var applicableLegislationId: Int?
+    /// Identifier of this record's status (see /reference).
     public var statusId: Int?
+    /// Identifier of the device's market status (see /reference; e.g. on the market, no longer on the market, not intended for the EU market).
     public var deviceStatusTypeId: Int?
+    /// Identifier of the country/market where the device is placed on the market.
     public var placedOnTheMarketId: Int?
+    /// Version number of this UDI-DI record.
     public var versionNumber: Int?
+    /// 1 if this is the latest version of the record, 0 otherwise.
     public var latestVersion: Int?
 
+    /// 1 if the device is an active device, 0 otherwise.
     public var active: Int?
+    /// 1 if the device is implantable, 0 otherwise.
     public var implantable: Int?
+    /// 1 if the device is supplied sterile, 0 otherwise.
     public var sterile: Int?
+    /// 1 if the device requires sterilization before use, 0 otherwise.
     public var sterilization: Int?
+    /// 1 if the device is reusable, 0 otherwise.
     public var reusable: Int?
+    /// 1 if the device is a reprocessed single-use device, 0 otherwise.
     public var reprocessed: Int?
+    /// 1 if the device has a measuring function, 0 otherwise.
     public var measuringFunction: Int?
+    /// 1 if the device administers or is used with a medicinal product, 0 otherwise.
     public var administeringMedicine: Int?
+    /// 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
     public var humanTissues: Int?
+    /// 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
     public var animalTissues: Int?
+    /// 1 if the device incorporates a human-derived product, 0 otherwise.
     public var humanProduct: Int?
+    /// 1 if the device incorporates a medicinal product, 0 otherwise.
     public var medicinalProduct: Int?
+    /// 1 if the device contains carcinogenic, mutagenic, or reprotoxic (CMR) substances, 0 otherwise.
     public var cmrSubstance: Int?
+    /// 1 if the device contains endocrine-disrupting substances, 0 otherwise.
     public var endocrineDisruptor: Int?
+    /// 1 if the device contains natural rubber latex, 0 otherwise.
     public var latex: Int?
+    /// 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
     public var companionDiagnostics: Int?
 
     public init(primaryDi: String) {

@@ -10,31 +10,56 @@ typealias RawActor = Operations.getActors.Output.Ok.Body.jsonPayload.valuePayloa
 
 @Model
 public final class Actor: @unchecked Sendable, Identifiable, Hashable {
+    /// Unique EUDAMED identifier (UUID) of the actor.
     @Attribute(.unique) public var id: String
     public var actorId: String { id }
+    /// Full registered name of the actor.
     public var name: String?
+    /// Abbreviated/short name of the actor.
     public var abbreviatedName: String?
+    /// Current status of the actor's registration, e.g. active.
     public var status: String?
+    /// Date from which the current status has applied.
     public var statusFromDate: String?
+    /// Type of actor, e.g. manufacturer, authorised representative, or importer.
     public var actorType: String?
+    /// Type of clinical investigation sponsor, if the actor is registered as one.
     public var sponsorType: String?
+    /// European VAT number of the actor, if applicable.
     public var europeanVatNumber: String?
+    /// Version number of this actor record.
     public var version: Int?
+    /// Name of the country associated with the actor.
     public var countryName: String?
+    /// ISO 3166-1 alpha-2 code of the actor's country.
     public var countryIso2Code: String?
+    /// Indicates whether the actor's country is an EU member state or a non-EU country.
     public var countryType: String?
+    /// Contact email address of the actor.
     public var email: String?
+    /// Contact telephone number of the actor.
     public var telephone: String?
+    /// Website URL of the actor.
     public var website: String?
+    /// Building/house number of the actor's registered address.
     public var addressBuildingNumber: String?
+    /// Street name of the actor's registered address.
     public var addressStreetName: String?
+    /// Post box of the actor's registered address, if used instead of a street address.
     public var addressPostBox: String?
+    /// Postal/ZIP code of the actor's registered address.
     public var addressPostalZone: String?
+    /// City of the actor's registered address.
     public var addressCityName: String?
+    /// Country name of the actor's registered address.
     public var addressCountryName: String?
+    /// ISO 3166-1 alpha-2 code of the actor's registered address country.
     public var addressCountryCode: String?
+    /// Indicates whether the address country is an EU member state or a non-EU country.
     public var addressCountryType: String?
+    /// First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
     public var prrcFirstName: String?
+    /// Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
     public var prrcFamilyName: String?
 
     public init(actorId: String) {

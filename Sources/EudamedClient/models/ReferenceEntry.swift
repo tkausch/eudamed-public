@@ -10,9 +10,13 @@ typealias RawReferenceEntry = Operations.getReference.Output.Ok.Body.jsonPayload
 
 @Model
 public final class ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
+    /// Numeric identifier of the reference data entry.
     @Attribute(.unique) public var id: Int
+    /// Machine-readable code of the reference data entry, e.g. "refdata.risk-class.class-iii".
     public var code: String?
+    /// Language code of the localized value (e.g. en, fr, de).
     public var language: String?
+    /// Human-readable, localized label for the reference data entry.
     public var value: String?
 
     public init(id: Int) {
