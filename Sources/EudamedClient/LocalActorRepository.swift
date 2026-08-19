@@ -22,15 +22,22 @@ public actor LocalActorRepository: ActorRepository {
     }
 
     public func upsert(_ actors: [Actor]) throws {
+        guard !actors.isEmpty else { return }
+
+        let ids = actors.map(\.id)
+        let existing = try modelContext.fetch(
+            FetchDescriptor<Actor>(predicate: #Predicate { ids.contains($0.id) })
+        )
+        let byID = Dictionary(existing.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+
         for incoming in actors {
-            let id = incoming.id
-            let predicate = #Predicate<Actor> { $0.id == id }
-            if let existing = try modelContext.fetch(FetchDescriptor<Actor>(predicate: predicate)).first {
+            if let existing = byID[incoming.id] {
                 existing.update(from: incoming)
             } else {
                 modelContext.insert(incoming)
             }
         }
+
         try modelContext.save()
     }
 
