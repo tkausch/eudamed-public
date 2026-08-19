@@ -14,7 +14,11 @@ public actor LocalActorRepository: ActorRepository {
 
     public func search(query: ActorQuery = ActorQuery()) async throws -> [Actor] {
         let predicate = buildPredicate(query: query)
-        return try modelContext.fetch(FetchDescriptor<Actor>(predicate: predicate))
+        let descriptor = FetchDescriptor<Actor>(
+            predicate: predicate,
+            sortBy: [SortDescriptor(\.countryIso2Code), SortDescriptor(\.name)]
+        )
+        return try modelContext.fetch(descriptor)
     }
 
     public func actor(id: String) async throws -> Actor? {
