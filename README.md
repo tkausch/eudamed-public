@@ -7,7 +7,8 @@ EUDAMED is the IT system established by Regulation (EU) 2017/745 on medical devi
 ## Requirements
 
 - Swift 5.9+
-- SwiftData (iOS 17 / macOS 14 or later) — required for `EudamedDataModel` only
+- macOS 14 / iOS 17 or later
+- SwiftData — required for `EudamedClient` only
 
 ## Installation
 
@@ -15,60 +16,61 @@ Add the package to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/tkausch/eudamed-public", branch: "main")
+    .package(url: "https://github.com/tkausch/eudamed-public", from: "0.1.1")
 ]
 ```
 
-Add the targets you need:
+Add the products you need:
 
 ```swift
 .target(
     name: "MyApp",
     dependencies: [
-        .product(name: "EudamedClient",    package: "eudamed-public"),  // raw API client
-        .product(name: "EudamedDataModel", package: "eudamed-public"),  // domain models + repositories
+        .product(name: "EudamedClient", package: "eudamed-public"),  // domain models + repositories
+        .product(name: "EudamedCore",   package: "eudamed-public"),  // raw REST client only
     ]
 )
 ```
 
-## Targets
+## Products
 
-| Target | Description |
+| Product | Description |
 |---|---|
-| `EudamedClient` | Low-level OpenAPI-generated client. Use directly when you want raw API access. |
-| `EudamedDataModel` | Domain models (`Actor`, `UdiDevice`, `ReferenceEntry`) and the repository layer. Depends on SwiftData. |
+| `EudamedCore` | Low-level OpenAPI-generated REST client. Use when you only need raw API access without SwiftData. |
+| `EudamedClient` | Domain models (`Actor`, `UdiDevice`, `ReferenceEntry`) and the three-layer repository pattern. Depends on SwiftData. |
+| `EudamedServer` | Server-side library for building Vapor-based EUDAMED back-ends. |
 
 ---
 
-## EudamedClient
+## EudamedCore
 
 ```swift
-import EudamedClient
+import EudamedCore
 
 let client = try Client()
 let response = try await client.getActors(.init(query: .init(NAME: "Acme")))
 let actors = try response.ok.body.json.value ?? []
 ```
 
-The raw client returns one page at a time. For automatic pagination across all pages, use the `Remote*Repository` classes in `EudamedDataModel` (see below).
+The raw client returns one page at a time. For automatic pagination use the `Remote*Repository` types in `EudamedClient` (see below).
 
 ### Available operations
 
 | Operation | Path | Description |
 |---|---|---|
 | `getActors` | `/actors` | Search economic operators (manufacturers, authorised representatives, importers, etc.) |
-| `getReference` | `/reference` | Look up reference/nomenclature data |
+| `getReference` | `/reference` | Look up reference / nomenclature data |
 | `getUdi` | `/udi` | Search Unique Device Identification (UDI) records |
 
 ---
 
-## EudamedDataModel
+## EudamedClient
 
-`EudamedDataModel` provides SwiftData-backed domain models and a three-layer repository pattern.
+`EudamedClient` provides SwiftData-backed domain models and a three-layer repository pattern.
 
 ### Domain models
 
-`Actor`, `UdiDevice`, and `ReferenceEntry` are SwiftData `@Model` classes with unique constraints on their primary keys. They can be inserted directly into a `ModelContainer`.
+`Actor`, `UdiDevice`, and `ReferenceEntry` are SwiftData `@Model` classes with unique constraints on their primary keys.
 
 ### Repository pattern
 
@@ -76,24 +78,23 @@ Each entity has three repository implementations:
 
 | Class | Description |
 |---|---|
-| `RemoteActorRepository` | Fetches from the live EUDAMED API, follows pagination. |
-| `LocalActorRepository` | Reads/writes a SwiftData store. |
+| `RemoteActorRepository` | Fetches from the live EUDAMED API, follows pagination automatically. |
+| `LocalActorRepository` | Reads and writes a SwiftData store (`@ModelActor`-isolated). |
 | `CachingActorRepository` | Offline-first: `search` always hits the local store; `sync()` fetches from remote and upserts locally. |
 
-The same three-tier pattern applies to `UdiDevice` (`RemoteUdiDevicesRepository`, `LocalUdiDevicesRepository`, `CachingUdiRepository`) and `ReferenceEntry` (`RemoteReferenceRepository`, `LocalReferenceRepository`, `CachingReferenceRepository`).
+The same pattern applies to `UdiDevice` (`RemoteUdiDevicesRepository`, `LocalUdiDevicesRepository`, `CachingUdiDeviceRepository`) and `ReferenceEntry` (`RemoteReferenceRepository`, `LocalReferenceRepository`, `CachingReferenceRepository`).
 
 ### Offline-first usage
 
 ```swift
-import EudamedDataModel
+import EudamedClient
 import SwiftData
 
-// Create a persistent container (or use .isStoredInMemoryOnly: true for testing)
 let container = try ModelContainer(
     for: Actor.self, UdiDevice.self, ReferenceEntry.self
 )
 
-let repo = try CachingUdiRepository(modelContainer: container)
+let repo = try CachingUdiDeviceRepository(modelContainer: container)
 
 // Pull fresh data from EUDAMED and persist it locally
 try await repo.sync()
@@ -120,17 +121,18 @@ All fields are optional; omitting a field means "no filter on that field".
 
 | Path | Purpose |
 |---|---|
-| `Sources/EudamedClient/openapi.yaml` | OpenAPI specification (source of truth) |
-| `Sources/EudamedClient/openapi-generator-config.yaml` | Generator configuration |
-| `Sources/EudamedClient/GeneratedSources/` | Generated `Types.swift` and `Client.swift`, checked into source control |
-| `Sources/EudamedClient/EudamedClient.swift` | Convenience `Client()` initialiser (points at the EUDAMED server) |
-| `Sources/EudamedClient/TypesExtensions.swift` | Convenience extensions on generated OpenAPI types |
-| `Sources/EudamedDataModel/models/` | SwiftData `@Model` domain types (`Actor`, `UdiDevice`, `ReferenceEntry`) |
-| `Sources/EudamedDataModel/Remote*.swift` | Remote repository implementations (live API + pagination) |
-| `Sources/EudamedDataModel/Local*.swift` | Local repository implementations (SwiftData `@ModelActor`) |
-| `Sources/EudamedDataModel/Caching*.swift` | Caching repository implementations (offline-first composition) |
-| `Tests/EudamedClientTests/` | Unit tests for `EudamedClient` using a mock transport |
-| `Tests/EudamedDataModelTests/` | Unit tests for local repositories (in-memory SwiftData) and a live integration test for `CachingUdiRepository` |
+| `Sources/EudamedRest/openapi.yaml` | OpenAPI specification (source of truth) |
+| `Sources/EudamedRest/openapi-generator-config.yaml` | Generator configuration |
+| `Sources/EudamedRest/GeneratedSources/` | Generated `Types.swift` and `Client.swift`, checked into source control |
+| `Sources/EudamedRest/EudamedClient.swift` | Convenience `Client()` initialiser (points at the EUDAMED server) |
+| `Sources/EudamedRest/TypesExtensions.swift` | Convenience extensions on generated OpenAPI types |
+| `Sources/EudamedClient/models/` | SwiftData `@Model` domain types (`Actor`, `UdiDevice`, `ReferenceEntry`) |
+| `Sources/EudamedClient/Remote*.swift` | Remote repository implementations (live API + pagination) |
+| `Sources/EudamedClient/Local*.swift` | Local repository implementations (SwiftData `@ModelActor`) |
+| `Sources/EudamedClient/Caching*.swift` | Caching repository implementations (offline-first composition) |
+| `Sources/EudamedServer/` | Server-side library skeleton |
+| `Tests/EudamedRestTests/` | Unit tests for the REST client using a mock transport |
+| `Tests/EudamedClientTests/` | Unit tests for local, remote, and caching repositories (in-memory SwiftData) |
 
 ## Regenerating sources
 
@@ -148,14 +150,6 @@ swift test
 ```
 
 Commit the updated `openapi.yaml` and `GeneratedSources/` together.
-
-## Running live integration tests
-
-The `CachingUdiRepositoryLiveTests` suite requires network access to the EUDAMED API and is skipped by default. Enable it by setting the `ENABLE_LIVE_TESTS` environment variable:
-
-```sh
-ENABLE_LIVE_TESTS=1 swift test --filter CachingUdiRepositoryLiveTests
-```
 
 ## License
 
