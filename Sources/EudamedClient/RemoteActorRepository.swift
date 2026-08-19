@@ -65,7 +65,9 @@ public struct RemoteActorRepository: ActorRepository {
         var result = [Actor]()
         while true {
             let body = try await client.getActors(input).ok.body.json
-            result += (body.value ?? []).compactMap { Actor($0) }
+            let pageActors = (body.value ?? []).compactMap { Actor($0) }
+            pageActors.forEach { logger.debug("\($0.debugLog())") }
+            result += pageActors
             logger.info("getActors: fetched \(result.count) items so far")
             guard let cursor = body.nextLink.flatMap({ Self.extractAfterCursor(from: $0) }) else { break }
             input.query._dollar_after = cursor

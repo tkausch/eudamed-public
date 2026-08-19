@@ -33,6 +33,10 @@ public final class ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
         value    = other.value
     }
 
+    public func debugLog() -> String {
+        "ReferenceEntry(id: \(id), code: \(code ?? "-"), language: \(language ?? "-"), value: \(value ?? "-"))"
+    }
+
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: ReferenceEntry, rhs: ReferenceEntry) -> Bool { lhs.id == rhs.id }
 }

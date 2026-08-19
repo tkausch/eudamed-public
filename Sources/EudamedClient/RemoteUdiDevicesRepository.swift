@@ -95,6 +95,7 @@ public struct RemoteUdiDevicesRepository: UdiDevicesRepository {
         while true {
             let body = try await client.getUdi(input).ok.body.json
             let pageDevices = (body.value ?? []).compactMap { UdiDevice($0) }
+            pageDevices.forEach { logger.debug("\($0.debugLog())") }
             result += pageDevices
             logger.info("getUdi: page \(page) — \(pageDevices.count) devices, \(result.count) total")
             guard let cursor = body.nextLink.flatMap({ Self.extractAfterCursor(from: $0) }) else { break }

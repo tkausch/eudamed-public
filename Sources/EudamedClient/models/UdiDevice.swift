@@ -133,6 +133,10 @@ public final class UdiDevice: @unchecked Sendable, Identifiable, Hashable {
         companionDiagnostics    = other.companionDiagnostics
     }
 
+    public func debugLog() -> String {
+        "UdiDevice(primaryDi: \(id), tradeName: \(tradeName ?? "-"), deviceName: \(deviceName ?? "-"), mfName: \(mfName ?? "-"), statusId: \(statusId.map(String.init) ?? "-"))"
+    }
+
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: UdiDevice, rhs: UdiDevice) -> Bool { lhs.id == rhs.id }
 }

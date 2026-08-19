@@ -97,6 +97,10 @@ public final class Actor: @unchecked Sendable, Identifiable, Hashable {
         prrcFamilyName        = other.prrcFamilyName
     }
 
+    public func debugLog() -> String {
+        "Actor(id: \(id), name: \(name ?? "-"), abbreviatedName: \(abbreviatedName ?? "-"), status: \(status ?? "-"), actorType: \(actorType ?? "-"), country: \(countryIso2Code ?? "-"))"
+    }
+
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: Actor, rhs: Actor) -> Bool { lhs.id == rhs.id }
 }
