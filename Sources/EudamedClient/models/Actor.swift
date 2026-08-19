@@ -3,7 +3,7 @@
 // Copyright © 2026 Thomas Kausch.
 // All Rights Reserved.
 
-import EudamedClient
+import EudamedRest
 import SwiftData
 
 typealias RawActor = Operations.getActors.Output.Ok.Body.jsonPayload.valuePayloadPayload

@@ -17,6 +17,11 @@ public actor CachingActorRepository: ActorRepository {
         self.local = LocalActorRepository(modelContainer: modelContainer)
     }
 
+    init(modelContainer: ModelContainer, remote: RemoteActorRepository) {
+        self.remote = remote
+        self.local = LocalActorRepository(modelContainer: modelContainer)
+    }
+
     public func search(query: ActorQuery = ActorQuery()) async throws -> [Actor] {
         try await local.search(query: query)
     }

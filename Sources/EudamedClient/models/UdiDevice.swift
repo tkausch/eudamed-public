@@ -3,7 +3,7 @@
 // Copyright © 2026 Thomas Kausch.
 // All Rights Reserved.
 
-import EudamedClient
+import EudamedRest
 import SwiftData
 
 typealias RawUdiDevice = Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayloadPayload

@@ -17,6 +17,11 @@ public actor CachingReferenceRepository: ReferenceRepository {
         self.local = LocalReferenceRepository(modelContainer: modelContainer)
     }
 
+    init(modelContainer: ModelContainer, remote: RemoteReferenceRepository) {
+        self.remote = remote
+        self.local = LocalReferenceRepository(modelContainer: modelContainer)
+    }
+
     public func search(query: ReferenceQuery = ReferenceQuery()) async throws -> [ReferenceEntry] {
         try await local.search(query: query)
     }

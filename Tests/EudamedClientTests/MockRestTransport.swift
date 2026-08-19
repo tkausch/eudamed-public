@@ -5,7 +5,7 @@ import OpenAPIRuntime
 /// A `ClientTransport` test double that records the outgoing request and
 /// returns a canned response, so tests can verify repository behavior without
 /// performing real network calls.
-final class MockClientTransport: ClientTransport, @unchecked Sendable {
+final class MockRestTransport: ClientTransport, @unchecked Sendable {
     private(set) var capturedRequests: [HTTPRequest] = []
 
     private let responseBodyProvider: () -> String

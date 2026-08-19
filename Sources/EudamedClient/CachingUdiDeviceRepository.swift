@@ -17,6 +17,11 @@ public actor CachingUdiDeviceRepository: UdiDevicesRepository {
         self.local = LocalUdiDevicesRepository(modelContainer: modelContainer)
     }
 
+    init(modelContainer: ModelContainer, remote: RemoteUdiDevicesRepository) {
+        self.remote = remote
+        self.local = LocalUdiDevicesRepository(modelContainer: modelContainer)
+    }
+
     public func search(query: UdiDevicesQuery = UdiDevicesQuery()) async throws -> [UdiDevice] {
         try await local.search(query: query)
     }

@@ -9,12 +9,16 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "EudamedCore",
+            targets: ["EudamedRest"]
+        ),
+        .library(
             name: "EudamedClient",
             targets: ["EudamedClient"]
         ),
         .library(
-            name: "EudamedDataModel",
-            targets: ["EudamedDataModel"]
+            name: "EudamedServer",
+            targets: ["EudamedServer"]
         ),
     ],
     dependencies: [
@@ -25,29 +29,36 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "EudamedClient",
+            name: "EudamedRest",
             dependencies: [
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
             ]
         ),
         .target(
-            name: "EudamedDataModel",
-            dependencies: ["EudamedClient"]
+            name: "EudamedClient",
+            dependencies: ["EudamedRest"]
+        ),
+        .target(
+            name: "EudamedServer",
+            dependencies: [
+                "EudamedRest",
+                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+            ]
         ),
         .testTarget(
-            name: "EudamedClientTests",
+            name: "EudamedRestTests",
             dependencies: [
-                "EudamedClient",
+                "EudamedRest",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "HTTPTypes", package: "swift-http-types"),
             ]
         ),
         .testTarget(
-            name: "EudamedDataModelTests",
+            name: "EudamedClientTests",
             dependencies: [
-                "EudamedDataModel",
                 "EudamedClient",
+                "EudamedRest",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "HTTPTypes", package: "swift-http-types"),
             ]

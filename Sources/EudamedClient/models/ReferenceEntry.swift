@@ -3,7 +3,7 @@
 // Copyright © 2026 Thomas Kausch.
 // All Rights Reserved.
 
-import EudamedClient
+import EudamedRest
 import SwiftData
 
 typealias RawReferenceEntry = Operations.getReference.Output.Ok.Body.jsonPayload.valuePayloadPayload

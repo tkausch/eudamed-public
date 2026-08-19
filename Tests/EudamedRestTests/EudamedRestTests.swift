@@ -1,9 +1,9 @@
 import HTTPTypes
 import XCTest
 
-@testable import EudamedClient
+@testable import EudamedRest
 
-final class EudamedClientTests: XCTestCase {
+final class EudamedRestTests: XCTestCase {
 
     // MARK: - Client construction
 
@@ -19,7 +19,7 @@ final class EudamedClientTests: XCTestCase {
     // MARK: - getActors
 
     func testGetActorsSendsExpectedRequestAndDecodesResponse() async throws {
-        let transport = MockClientTransport(
+        let transport = MockRestTransport(
             responseBody: """
             {
               "value": [
@@ -50,7 +50,7 @@ final class EudamedClientTests: XCTestCase {
     // MARK: - getReference
 
     func testGetReferenceSendsExpectedRequestAndDecodesResponse() async throws {
-        let transport = MockClientTransport(
+        let transport = MockRestTransport(
             responseBody: """
             {
               "value": [
@@ -79,7 +79,7 @@ final class EudamedClientTests: XCTestCase {
     // MARK: - getUdi
 
     func testGetUdiSendsExpectedRequestAndDecodesResponse() async throws {
-        let transport = MockClientTransport(
+        let transport = MockRestTransport(
             responseBody: """
             {
               "value": [
@@ -112,7 +112,7 @@ final class EudamedClientTests: XCTestCase {
 
     func testNextLinkIsDecodedFromResponse() async throws {
         let cursor = "W3siRW50aXR5TmFtZSI6IkVVREFNRURTQ0hfVURJX0RJX0RBVEFfUFVCTElDX1ZJRVciLCJGaWVsZE5hbWUiOiJoYXNoX2NvbHVtbiIsIkZpZWxkVmFsdWUiOiJBQlNZc3FJL0Z4UHF0bmNHOTlvdk9XejRVYVE9IiwiRGlyZWN0aW9uIjowfV0="
-        let transport = MockClientTransport(
+        let transport = MockRestTransport(
             responseBody: """
             {
               "value": [],
@@ -132,11 +132,9 @@ final class EudamedClientTests: XCTestCase {
         XCTAssertEqual(afterValue, cursor)
     }
 
-  
-
     func testAfterCursorIsSentInRequest() async throws {
         let cursor = "W3siRW50aXR5TmFtZSI6IkVVREFNRURTQ0hfVURJX0RJX0RBVEFfUFVCTElDX1ZJRVciLCJGaWVsZE5hbWUiOiJoYXNoX2NvbHVtbiIsIkZpZWxkVmFsdWUiOiJBQlNZc3FJL0Z4UHF0bmNHOTlvdk9XejRVYVE9IiwiRGlyZWN0aW9uIjowfV0="
-        let transport = MockClientTransport(responseBody: #"{"value":[]}"#)
+        let transport = MockRestTransport(responseBody: #"{"value":[]}"#)
         let client = Client(serverURL: try Servers.Server1.url(), transport: transport)
 
         _ = try await client.getUdi(.init(query: .init(_dollar_after: cursor)))
