@@ -72,12 +72,11 @@ public struct RemoteActorRepository: ActorRepository {
             guard let cursor = body.nextLink.flatMap({ Self.extractAfterCursor(from: $0) }) else { break }
             input.query._dollar_after = cursor
         }
-        return result.sorted {
-            let lhsCountry = $0.countryIso2Code ?? ""
-            let rhsCountry = $1.countryIso2Code ?? ""
-            if lhsCountry != rhsCountry { return lhsCountry < rhsCountry }
-            return ($0.name ?? "") < ($1.name ?? "")
+        let unique = Dictionary(result.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        if unique.count < result.count {
+            logger.warning("getActors: deduplicated \(result.count - unique.count) duplicate SRN entries")
         }
+        return unique.values.sorted { ($0.name ?? "") < ($1.name ?? "") }
     }
 
     public func actor(id: String) async throws -> Actor? {

@@ -5,6 +5,9 @@
 
 import Foundation
 import SwiftData
+import os.log
+
+private let logger = Logger(subsystem: "EudamedDataModel", category: "udi")
 
 // MARK: - LocalUdiRepository
 
@@ -37,8 +40,10 @@ public actor LocalUdiDevicesRepository: UdiDevicesRepository {
 
         for (_, incoming) in incomingByID {
             if let existing = existingByID[incoming.id] {
+                logger.debug("upsert: updating device primaryDi=\(incoming.primaryDi)")
                 existing.update(from: incoming)
             } else {
+                logger.debug("upsert: inserting device primaryDi=\(incoming.primaryDi)")
                 let newDevice = UdiDevice(primaryDi: incoming.id)
                 modelContext.insert(newDevice)
                 newDevice.update(from: incoming)
