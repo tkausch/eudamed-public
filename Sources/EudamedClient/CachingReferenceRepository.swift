@@ -9,21 +9,26 @@ public actor CachingReferenceRepository: ReferenceRepository {
     
     private var cachedEntries = [ReferenceEntry]()
     
-    private let remote: any ReferenceRepository
+    private let remote: (any ReferenceRepository)?
     
     
-    public init() throws {
-        self.remote = try RemoteReferenceRepository()
+    public init() {
+        self.remote = try? RemoteReferenceRepository()
     }
     
     init(remote: any ReferenceRepository) {
         self.remote = remote
     }
     
-    public func search(query: ReferenceQuery = ReferenceQuery()) async  -> [ReferenceEntry] {
+    public func search(query: ReferenceQuery = ReferenceQuery()) async throws -> [ReferenceEntry] {
         let cached = await searchFromCache(query: query)
         guard cached.isEmpty else { return cached }
-        return await loadFromRemoteAndCache(query: query)
+        return try await loadFromRemoteAndCache(query: query)
+    }
+    
+    public func getValue(id: Double, code: String, language: String = "en") async -> String? {
+        let query = ReferenceQuery(id: id, code: code, language: language)
+        return try? await search(query: query).first?.value
     }
     
     
@@ -35,12 +40,10 @@ public actor CachingReferenceRepository: ReferenceRepository {
         }
     }
     
-    private func loadFromRemoteAndCache(query: ReferenceQuery) async  -> [ReferenceEntry] {
-        if let newReferences = try? await remote.search(query: query) {
-            cachedEntries += newReferences
-            return newReferences
-        }
-        return []
+    private func loadFromRemoteAndCache(query: ReferenceQuery) async throws -> [ReferenceEntry] {
+        guard let newReferences = try await remote?.search(query: query) else { return [] }
+        cachedEntries += newReferences
+        return newReferences
     }
     
 }

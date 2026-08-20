@@ -20,6 +20,10 @@ private actor MockReferenceRepository: ReferenceRepository {
         callCount += 1
         return entries
     }
+
+    func getValue(id: Double, code: String, language: String) async -> String? {
+        entries.first { $0.code == code && $0.language == language }?.value
+    }
 }
 
 // MARK: - Tests
@@ -47,34 +51,34 @@ final class CachingReferenceRepositoryTests: XCTestCase {
 
     // MARK: Remote call behavior
 
-    func testHitsRemoteWhenCacheIsEmpty() async {
+    func testHitsRemoteWhenCacheIsEmpty() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()
+        _ = try await repo.search()
 
         let count = await mock.callCount
         XCTAssertEqual(count, 1)
     }
 
-    func testDoesNotHitRemoteWhenCacheHasMatchingEntries() async {
+    func testDoesNotHitRemoteWhenCacheHasMatchingEntries() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()     // prime cache
-        _ = await repo.search()     // served from cache
+        _ = try await repo.search()     // prime cache
+        _ = try await repo.search()     // served from cache
 
         let count = await mock.callCount
         XCTAssertEqual(count, 1)
     }
 
-    func testCachedEntriesServeMultipleDifferentFilteredQueries() async {
+    func testCachedEntriesServeMultipleDifferentFilteredQueries() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()     // prime cache with all entries
-        _ = await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-i"))
-        _ = await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-iii"))
+        _ = try await repo.search()     // prime cache with all entries
+        _ = try await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-i"))
+        _ = try await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-iii"))
 
         let count = await mock.callCount
         XCTAssertEqual(count, 1)
@@ -82,44 +86,44 @@ final class CachingReferenceRepositoryTests: XCTestCase {
 
     // MARK: Filter behavior
 
-    func testUnfilteredSearchReturnsAllCachedEntries() async {
+    func testUnfilteredSearchReturnsAllCachedEntries() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()     // prime cache
-        let results = await repo.search()
+        _ = try await repo.search()     // prime cache
+        let results = try await repo.search()
 
         XCTAssertEqual(results.count, 3)
     }
 
-    func testFiltersByCode() async {
+    func testFiltersByCode() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()     // prime cache
-        let results = await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-i"))
+        _ = try await repo.search()     // prime cache
+        let results = try await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-i"))
 
         XCTAssertEqual(results.count, 2)
         XCTAssertTrue(results.allSatisfy { $0.code == "refdata.risk-class.class-i" })
     }
 
-    func testFiltersByLanguage() async {
+    func testFiltersByLanguage() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()     // prime cache
-        let results = await repo.search(query: ReferenceQuery(language: "de"))
+        _ = try await repo.search()     // prime cache
+        let results = try await repo.search(query: ReferenceQuery(language: "de"))
 
         XCTAssertEqual(results.count, 1)
         XCTAssertEqual(results.first?.id, 3)
     }
 
-    func testFiltersByCodeAndLanguage() async {
+    func testFiltersByCodeAndLanguage() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        _ = await repo.search()     // prime cache
-        let results = await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-i", language: "en"))
+        _ = try await repo.search()     // prime cache
+        let results = try await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-i", language: "en"))
 
         XCTAssertEqual(results.count, 1)
         XCTAssertEqual(results.first?.id, 1)
@@ -127,11 +131,11 @@ final class CachingReferenceRepositoryTests: XCTestCase {
 
     // MARK: First-fetch result
 
-    func testFirstSearchReturnsRemoteResults() async {
+    func testFirstSearchReturnsRemoteResults() async throws {
         let mock = MockReferenceRepository(entries: makeEntries())
         let repo = CachingReferenceRepository(remote: mock)
 
-        let results = await repo.search()
+        let results = try await repo.search()
 
         XCTAssertEqual(results.count, 3)
     }

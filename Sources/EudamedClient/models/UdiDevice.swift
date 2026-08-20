@@ -10,6 +10,8 @@ typealias RawUdiDevice = Operations.getUdi.Output.Ok.Body.jsonPayload.valuePaylo
 
 public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
     
+    static let references = CachingReferenceRepository()
+    
     /// Primary Device Identifier (UDI-DI).
     public var id: String
     public var primaryDi: String { id }
@@ -139,5 +141,37 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
     public static func == (lhs: UdiDevice, rhs: UdiDevice) -> Bool { lhs.id == rhs.id }
 }
 
+extension UdiDevice {
+
+    /// Resolves the risk class label (e.g. "Class I", "Class IIa", "Class IIb", "Class III", or IVD classes A–D).
+    public func riskClass(language: String = "en") async -> String? {
+        guard let id = riskClassId else { return nil }
+        return await Self.references.getValue(id: Double(id), code: "risk_class_id", language: language)
+    }
+
+    /// Resolves the applicable legislation label (e.g. "MDD", "MDR", "IVDD", "IVDR", "AIMDD").
+    public func applicableLegislation(language: String = "en") async -> String? {
+        guard let id = applicableLegislationId else { return nil }
+        return await Self.references.getValue(id: Double(id), code: "applicable_legislation", language: language)
+    }
+
+    /// Resolves the record status label.
+    public func status(language: String = "en") async -> String? {
+        guard let id = statusId else { return nil }
+        return await Self.references.getValue(id: Double(id), code: "status_id", language: language)
+    }
+
+    /// Resolves the market status label (e.g. "On the market", "No longer on the market").
+    public func deviceStatusType(language: String = "en") async -> String? {
+        guard let id = deviceStatusTypeId else { return nil }
+        return await Self.references.getValue(id: Double(id), code: "device_status_type_id", language: language)
+    }
+
+    /// Resolves the country/market label where the device is placed on the market.
+    public func placedOnTheMarket(language: String = "en") async -> String? {
+        guard let id = placedOnTheMarketId else { return nil }
+        return await Self.references.getValue(id: Double(id), code: "placed_on_the_market_id", language: language)
+    }
+}
 
 
