@@ -89,11 +89,27 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
     /// 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
     public var companionDiagnostics: Int?
 
+    /// Resolved risk class label (e.g. "Class I", "Class IIa", "Class IIb", "Class III", or IVD classes A–D).
+    public var riskClass: String?
+    /// Resolved applicable legislation label (e.g. "MDD", "MDR", "IVDD", "IVDR", "AIMDD").
+    public var applicableLegislation: String?
+    /// Resolved record status label.
+    public var status: String?
+    /// Resolved market status label (e.g. "On the market", "No longer on the market").
+    public var deviceStatusType: String?
+    /// Resolved country/market label where the device is placed on the market.
+    public var placedOnTheMarket: String?
+
     public init(primaryDi: String) {
         self.id = primaryDi
+        riskClass = nil
+        applicableLegislation = nil
+        status = nil
+        deviceStatusType = nil
+        placedOnTheMarket = nil
     }
 
-    init?(_ raw: RawUdiDevice) {
+    init?(_ raw: RawUdiDevice) async {
         guard let di = raw.PRIMARY_DI, !di.isEmpty else { return nil }
         self.init(primaryDi: di)
         basicUdi                = raw.BASIC_UDI
@@ -131,6 +147,22 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
         endocrineDisruptor      = raw.ENDOCRINE_DISRUPTOR
         latex                   = raw.LATEX
         companionDiagnostics    = raw.COMPANION_DIAGNOSTICS?.value as? Int
+
+        if let id = riskClassId {
+            riskClass = await Self.references.getValue(id: Double(id), code: "risk_class_id", language: "en")
+        }
+        if let id = applicableLegislationId {
+            applicableLegislation = await Self.references.getValue(id: Double(id), code: "applicable_legislation", language: "en")
+        }
+        if let id = statusId {
+            status = await Self.references.getValue(id: Double(id), code: "status_id", language: "en")
+        }
+        if let id = deviceStatusTypeId {
+            deviceStatusType = await Self.references.getValue(id: Double(id), code: "device_status_type_id", language: "en")
+        }
+        if let id = placedOnTheMarketId {
+            placedOnTheMarket = await Self.references.getValue(id: Double(id), code: "placed_on_the_market_id", language: "en")
+        }
     }
 
     public func debugLog() -> String {
@@ -140,38 +172,3 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: UdiDevice, rhs: UdiDevice) -> Bool { lhs.id == rhs.id }
 }
-
-extension UdiDevice {
-
-    /// Resolves the risk class label (e.g. "Class I", "Class IIa", "Class IIb", "Class III", or IVD classes A–D).
-    public func riskClass(language: String = "en") async -> String? {
-        guard let id = riskClassId else { return nil }
-        return await Self.references.getValue(id: Double(id), code: "risk_class_id", language: language)
-    }
-
-    /// Resolves the applicable legislation label (e.g. "MDD", "MDR", "IVDD", "IVDR", "AIMDD").
-    public func applicableLegislation(language: String = "en") async -> String? {
-        guard let id = applicableLegislationId else { return nil }
-        return await Self.references.getValue(id: Double(id), code: "applicable_legislation", language: language)
-    }
-
-    /// Resolves the record status label.
-    public func status(language: String = "en") async -> String? {
-        guard let id = statusId else { return nil }
-        return await Self.references.getValue(id: Double(id), code: "status_id", language: language)
-    }
-
-    /// Resolves the market status label (e.g. "On the market", "No longer on the market").
-    public func deviceStatusType(language: String = "en") async -> String? {
-        guard let id = deviceStatusTypeId else { return nil }
-        return await Self.references.getValue(id: Double(id), code: "device_status_type_id", language: language)
-    }
-
-    /// Resolves the country/market label where the device is placed on the market.
-    public func placedOnTheMarket(language: String = "en") async -> String? {
-        guard let id = placedOnTheMarketId else { return nil }
-        return await Self.references.getValue(id: Double(id), code: "placed_on_the_market_id", language: language)
-    }
-}
-
-

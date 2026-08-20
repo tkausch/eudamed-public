@@ -94,7 +94,12 @@ public struct RemoteUdiDevicesRepository: UdiDevicesRepository {
         var page = 1
         while true {
             let body = try await client.getUdi(input).ok.body.json
-            let pageDevices = (body.value ?? []).compactMap { UdiDevice($0) }
+            var pageDevices: [UdiDevice] = []
+            for raw in body.value ?? [] {
+                if let device = await UdiDevice(raw) {
+                    pageDevices.append(device)
+                }
+            }
             pageDevices.forEach { logger.debug("\($0.debugLog())") }
             result += pageDevices
             logger.info("getUdi: page \(page) — \(pageDevices.count) devices, \(result.count) total")
