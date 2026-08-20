@@ -8,6 +8,16 @@ import SwiftData
 
 typealias RawActor = Operations.getActors.Output.Ok.Body.jsonPayload.valuePayloadPayload
 
+extension String {
+    var strippingQuotes: String {
+        let quotes: Set<Character> = ["\"", "'", "\u{201C}", "\u{201D}", "\u{2018}", "\u{2019}"]
+        var s = self
+        while let first = s.first, quotes.contains(first) { s.removeFirst() }
+        while let last = s.last, quotes.contains(last) { s.removeLast() }
+        return s
+    }
+}
+
 @Model
 public final class Actor: @unchecked Sendable, Identifiable, Hashable {
     /// Unique EUDAMED identifier (UUID) of the actor.
@@ -69,8 +79,8 @@ public final class Actor: @unchecked Sendable, Identifiable, Hashable {
     convenience init?(_ raw: RawActor) {
         guard let id = raw.ACTOR_ID, !id.isEmpty else { return nil }
         self.init(actorId: id)
-        name                  = raw.NAME
-        abbreviatedName       = raw.ABBREVIATED_NAME
+        name                  = raw.NAME?.strippingQuotes
+        abbreviatedName       = raw.ABBREVIATED_NAME?.strippingQuotes
         status                = raw.STATUS
         statusFromDate        = raw.STATUS_FROM_DATE?.value as? String
         actorType             = raw.ACTOR_TYPE
