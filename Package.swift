@@ -16,10 +16,6 @@ let package = Package(
             name: "EudamedClient",
             targets: ["EudamedClient"]
         ),
-        .library(
-            name: "EudamedServer",
-            targets: ["EudamedServer"]
-        ),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.6.0"),
@@ -38,13 +34,6 @@ let package = Package(
         .target(
             name: "EudamedClient",
             dependencies: ["EudamedRest"]
-        ),
-        .target(
-            name: "EudamedServer",
-            dependencies: [
-                "EudamedRest",
-                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
-            ]
         ),
         .testTarget(
             name: "EudamedRestTests",

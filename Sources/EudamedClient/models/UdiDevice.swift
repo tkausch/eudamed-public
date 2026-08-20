@@ -8,10 +8,10 @@ import SwiftData
 
 typealias RawUdiDevice = Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayloadPayload
 
-@Model
-public final class UdiDevice: @unchecked Sendable, Identifiable, Hashable {
+public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
+    
     /// Primary Device Identifier (UDI-DI).
-    @Attribute(.unique) public var id: String
+    public var id: String
     public var primaryDi: String { id }
 
     /// Basic UDI-DI shared across all versions/packaging of this device model.
@@ -91,7 +91,7 @@ public final class UdiDevice: @unchecked Sendable, Identifiable, Hashable {
         self.id = primaryDi
     }
 
-    convenience init?(_ raw: RawUdiDevice) {
+    init?(_ raw: RawUdiDevice) {
         guard let di = raw.PRIMARY_DI, !di.isEmpty else { return nil }
         self.init(primaryDi: di)
         basicUdi                = raw.BASIC_UDI
@@ -131,44 +131,6 @@ public final class UdiDevice: @unchecked Sendable, Identifiable, Hashable {
         companionDiagnostics    = raw.COMPANION_DIAGNOSTICS?.value as? Int
     }
 
-    func update(from other: UdiDevice) {
-        basicUdi                = other.basicUdi
-        tradeName               = other.tradeName
-        deviceName              = other.deviceName
-        deviceModel             = other.deviceModel
-        reference               = other.reference
-        nomenclatureCode        = other.nomenclatureCode
-        mfSrn                   = other.mfSrn
-        mfName                  = other.mfName
-        mfActorNames            = other.mfActorNames
-        actorAbbreviatedNames   = other.actorAbbreviatedNames
-        deviceCriterion         = other.deviceCriterion
-        directMarketingDi       = other.directMarketingDi
-        riskClassId             = other.riskClassId
-        applicableLegislationId = other.applicableLegislationId
-        statusId                = other.statusId
-        deviceStatusTypeId      = other.deviceStatusTypeId
-        placedOnTheMarketId     = other.placedOnTheMarketId
-        versionNumber           = other.versionNumber
-        latestVersion           = other.latestVersion
-        active                  = other.active
-        implantable             = other.implantable
-        sterile                 = other.sterile
-        sterilization           = other.sterilization
-        reusable                = other.reusable
-        reprocessed             = other.reprocessed
-        measuringFunction       = other.measuringFunction
-        administeringMedicine   = other.administeringMedicine
-        humanTissues            = other.humanTissues
-        animalTissues           = other.animalTissues
-        humanProduct            = other.humanProduct
-        medicinalProduct        = other.medicinalProduct
-        cmrSubstance            = other.cmrSubstance
-        endocrineDisruptor      = other.endocrineDisruptor
-        latex                   = other.latex
-        companionDiagnostics    = other.companionDiagnostics
-    }
-
     public func debugLog() -> String {
         "UdiDevice(primaryDi: \(id), tradeName: \(tradeName ?? "-"), deviceName: \(deviceName ?? "-"), mfName: \(mfName ?? "-"), statusId: \(statusId.map(String.init) ?? "-"))"
     }
@@ -176,3 +138,6 @@ public final class UdiDevice: @unchecked Sendable, Identifiable, Hashable {
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: UdiDevice, rhs: UdiDevice) -> Bool { lhs.id == rhs.id }
 }
+
+
+

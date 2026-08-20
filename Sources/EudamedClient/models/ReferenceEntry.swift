@@ -8,10 +8,10 @@ import SwiftData
 
 typealias RawReferenceEntry = Operations.getReference.Output.Ok.Body.jsonPayload.valuePayloadPayload
 
-@Model
-public final class ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
+
+public struct ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
     /// Numeric identifier of the reference data entry.
-    @Attribute(.unique) public var id: Int
+    public var id: Int
     /// Machine-readable code of the reference data entry, e.g. "refdata.risk-class.class-iii".
     public var code: String?
     /// Language code of the localized value (e.g. en, fr, de).
@@ -23,18 +23,12 @@ public final class ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
         self.id = id
     }
 
-    convenience init?(_ raw: RawReferenceEntry) {
+    init?(_ raw: RawReferenceEntry) {
         guard let id = raw.ID else { return nil }
         self.init(id: id)
         code     = raw.CODE
         language = raw.LANGUAGE
         value    = raw.VALUE
-    }
-
-    func update(from other: ReferenceEntry) {
-        code     = other.code
-        language = other.language
-        value    = other.value
     }
 
     public func debugLog() -> String {

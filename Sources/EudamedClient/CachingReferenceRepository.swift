@@ -4,39 +4,43 @@
 // All Rights Reserved.
 
 import Foundation
-import SwiftData
 
 public actor CachingReferenceRepository: ReferenceRepository {
-
-    private let remote: RemoteReferenceRepository
-    private let local: LocalReferenceRepository
-    public private(set) var lastSync: Date?
-
-    public init(modelContainer: ModelContainer) throws {
+    
+    private var cachedEntries = [ReferenceEntry]()
+    
+    private let remote: any ReferenceRepository
+    
+    
+    public init() throws {
         self.remote = try RemoteReferenceRepository()
-        self.local = LocalReferenceRepository(modelContainer: modelContainer)
-    }
-
-    init(modelContainer: ModelContainer, remote: RemoteReferenceRepository) {
-        self.remote = remote
-        self.local = LocalReferenceRepository(modelContainer: modelContainer)
-    }
-
-    public func search(query: ReferenceQuery = ReferenceQuery()) async throws -> [ReferenceEntry] {
-        try await local.search(query: query)
-    }
-
-    public func entry(id: Int) async throws -> ReferenceEntry? {
-        try await local.entry(id: id)
-    }
-
-    public func cacheCount() async throws -> Int {
-        return try await local.search().count
     }
     
-    public func sync() async throws {
-        let entries = try await remote.search()
-        try await local.upsert(entries)
-        lastSync = .now
+    init(remote: any ReferenceRepository) {
+        self.remote = remote
     }
+    
+    public func search(query: ReferenceQuery = ReferenceQuery()) async  -> [ReferenceEntry] {
+        let cached = await searchFromCache(query: query)
+        guard cached.isEmpty else { return cached }
+        return await loadFromRemoteAndCache(query: query)
+    }
+    
+    
+    private func searchFromCache(query: ReferenceQuery) async -> [ReferenceEntry] {
+        cachedEntries.filter { entry in
+            if let code = query.code, entry.code != code { return false }
+            if let language = query.language, entry.language != language { return false }
+            return true
+        }
+    }
+    
+    private func loadFromRemoteAndCache(query: ReferenceQuery) async  -> [ReferenceEntry] {
+        if let newReferences = try? await remote.search(query: query) {
+            cachedEntries += newReferences
+            return newReferences
+        }
+        return []
+    }
+    
 }

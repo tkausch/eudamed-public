@@ -18,10 +18,9 @@ extension String {
     }
 }
 
-@Model
-public final class Actor: @unchecked Sendable, Identifiable, Hashable {
+public struct Actor: @unchecked Sendable, Identifiable, Hashable {
     /// Unique EUDAMED identifier (UUID) of the actor.
-    @Attribute(.unique) public var id: String
+    public var id: String
     public var actorId: String { id }
     /// Full registered name of the actor.
     public var name: String?
@@ -76,7 +75,7 @@ public final class Actor: @unchecked Sendable, Identifiable, Hashable {
         self.id = actorId
     }
 
-    convenience init?(_ raw: RawActor) {
+    init?(_ raw: RawActor) {
         guard let id = raw.ACTOR_ID, !id.isEmpty else { return nil }
         self.init(actorId: id)
         name                  = raw.NAME?.strippingQuotes
@@ -103,33 +102,6 @@ public final class Actor: @unchecked Sendable, Identifiable, Hashable {
         addressCountryType    = raw.ACT_ADDR_COUNTRY_TYPE
         prrcFirstName         = raw.PRRC_FIRST_NAME
         prrcFamilyName        = raw.PRRC_FAMILY_NAME
-    }
-
-    func update(from other: Actor) {
-        name                  = other.name
-        abbreviatedName       = other.abbreviatedName
-        status                = other.status
-        statusFromDate        = other.statusFromDate
-        actorType             = other.actorType
-        sponsorType           = other.sponsorType
-        europeanVatNumber     = other.europeanVatNumber
-        version               = other.version
-        countryName           = other.countryName
-        countryIso2Code       = other.countryIso2Code
-        countryType           = other.countryType
-        email                 = other.email
-        telephone             = other.telephone
-        website               = other.website
-        addressBuildingNumber = other.addressBuildingNumber
-        addressStreetName     = other.addressStreetName
-        addressPostBox        = other.addressPostBox
-        addressPostalZone     = other.addressPostalZone
-        addressCityName       = other.addressCityName
-        addressCountryName    = other.addressCountryName
-        addressCountryCode    = other.addressCountryCode
-        addressCountryType    = other.addressCountryType
-        prrcFirstName         = other.prrcFirstName
-        prrcFamilyName        = other.prrcFamilyName
     }
 
     public func debugLog() -> String {
