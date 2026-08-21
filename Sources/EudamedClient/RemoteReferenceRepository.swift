@@ -26,7 +26,7 @@ public struct ReferenceQuery: Sendable {
     ) {
         self.id = id
         self.code = code?.capitalized
-        self.language = language
+        self.language = language?.capitalized
     }
 }
 
