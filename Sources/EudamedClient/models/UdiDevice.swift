@@ -152,7 +152,7 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
             riskClass = await Self.references.getReferenceValue(id: id, code: "RISK_CLASS_ID", language: "en")
         }
         if let id = applicableLegislationId {
-            applicableLegislation = await Self.references.getReferenceValue(id: id, code: "APPLICABLE_LEGISLATION", language: "en")
+            applicableLegislation = await Self.references.getReferenceValue(id: id, code: "APPLICABLE_LEGISLATION_ID", language: "en")
         }
         if let id = statusId {
             status = await Self.references.getReferenceValue(id: id, code: "STATUS_ID", language: "en")
