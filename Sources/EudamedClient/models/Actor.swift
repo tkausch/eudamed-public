@@ -6,7 +6,7 @@
 import EudamedRest
 import SwiftData
 
-typealias RawActor = Operations.getActors.Output.Ok.Body.jsonPayload.valuePayloadPayload
+typealias RawActor = Components.Schemas.Actor
 
 extension String {
     var strippingQuotes: String {

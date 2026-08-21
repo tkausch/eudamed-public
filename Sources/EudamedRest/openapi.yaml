@@ -120,100 +120,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  value:
-                    type: array
-                    description: Matching actor records for this page of results.
-                    items:
-                      type: object
-                      properties:
-                        ACTOR_ID:
-                          type: string
-                          description: Unique EUDAMED identifier (UUID) of the actor.
-                        NAME:
-                          type: string
-                          description: Full registered name of the actor.
-                        ABBREVIATED_NAME:
-                          type: string
-                          description: Abbreviated/short name of the actor.
-                        STATUS_FROM_DATE:
-                          nullable: true
-                          description: Date from which the current STATUS has applied.
-                        STATUS:
-                          type: string
-                          description: Current status of the actor's registration, e.g. active.
-                        ACTOR_TYPE:
-                          type: string
-                          description: >-
-                            Type of actor, e.g. manufacturer, authorised
-                            representative, or importer.
-                        SPONSOR_TYPE:
-                          nullable: true
-                          description: Type of clinical investigation sponsor, if the actor is registered as one.
-                        EUROPEAN_VAT_NUMBER:
-                          type: string
-                          description: European VAT number of the actor, if applicable.
-                        VERSION:
-                          type: integer
-                          description: Version number of this actor record.
-                        ACT_COUNTRY_NAME:
-                          type: string
-                          description: Name of the country associated with the actor.
-                        ACT_COUNTRY_ISO2_CODE:
-                          type: string
-                          description: ISO 3166-1 alpha-2 code of the actor's country.
-                        ACT_COUNTRY_TYPE:
-                          type: string
-                          description: Indicates whether the actor's country is an EU member state or a non-EU country.
-                        ACT_EMAIL:
-                          type: string
-                          format: email
-                          description: Contact email address of the actor.
-                        ACT_TELEPHONE:
-                          type: string
-                          description: Contact telephone number of the actor.
-                        ACT_WEBSITE:
-                          type: string
-                          description: Website URL of the actor.
-                        ACT_ADDR_BUILDING_NUMBER:
-                          type: string
-                          description: Building/house number of the actor's registered address.
-                        ACT_ADDR_STREET_NAME:
-                          type: string
-                          description: Street name of the actor's registered address.
-                        ACT_ADDR_POST_BOX:
-                          nullable: true
-                          description: Post box of the actor's registered address, if used instead of a street address.
-                        ACT_ADDR_POSTAL_ZONE:
-                          type: string
-                          description: Postal/ZIP code of the actor's registered address.
-                        ACT_ADDR_CITY_NAME:
-                          type: string
-                          description: City of the actor's registered address.
-                        ACT_ADDR_COUNTRY_NAME:
-                          type: string
-                          description: Country name of the actor's registered address.
-                        ACT_ADDR_COUNTRY_CODE:
-                          type: string
-                          description: ISO 3166-1 alpha-2 code of the actor's registered address country.
-                        ACT_ADDR_COUNTRY_TYPE:
-                          type: string
-                          description: Indicates whether the address country is an EU member state or a non-EU country.
-                        PRRC_FIRST_NAME:
-                          type: string
-                          description: First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
-                        PRRC_FAMILY_NAME:
-                          type: string
-                          description: Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
-                  nextLink:
-                    type: string
-                    format: uri
-                    description: >-
-                      URL to the next page of results, present only when more
-                      results are available. Extract the `$after` query
-                      parameter from this URL and pass it to the next request
-                      to retrieve the following page.
+                $ref: '#/components/schemas/ActorResponse'
   /reference:
     get:
       tags:
@@ -287,36 +194,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  value:
-                    type: array
-                    description: Matching reference data entries for this page of results.
-                    items:
-                      type: object
-                      properties:
-                        ID:
-                          type: integer
-                          description: Numeric identifier of the reference data entry.
-                        CODE:
-                          type: string
-                          description: >-
-                            Machine-readable code of the reference data entry,
-                            e.g. "refdata.risk-class.class-iii".
-                        LANGUAGE:
-                          type: string
-                          description: Language code of the localized VALUE (e.g. en, fr, de).
-                        VALUE:
-                          type: string
-                          description: Human-readable, localized label for the reference data entry.
-                  nextLink:
-                    type: string
-                    format: uri
-                    description: >-
-                      URL to the next page of results, present only when more
-                      results are available. Extract the `$after` query
-                      parameter from this URL and pass it to the next request
-                      to retrieve the following page.
+                $ref: '#/components/schemas/ReferenceResponse'
   /udi:
     get:
       tags:
@@ -665,6 +543,137 @@ paths:
                       parameter from this URL and pass it to the next request
                       to retrieve the following page.
 components:
+  schemas:
+    Actor:
+      type: object
+      properties:
+        ACTOR_ID:
+          type: string
+          description: Unique EUDAMED identifier (UUID) of the actor.
+        NAME:
+          type: string
+          description: Full registered name of the actor.
+        ABBREVIATED_NAME:
+          type: string
+          description: Abbreviated/short name of the actor.
+        STATUS_FROM_DATE:
+          nullable: true
+          description: Date from which the current STATUS has applied.
+        STATUS:
+          type: string
+          description: Current status of the actor's registration, e.g. active.
+        ACTOR_TYPE:
+          type: string
+          description: >-
+            Type of actor, e.g. manufacturer, authorised
+            representative, or importer.
+        SPONSOR_TYPE:
+          nullable: true
+          description: Type of clinical investigation sponsor, if the actor is registered as one.
+        EUROPEAN_VAT_NUMBER:
+          type: string
+          description: European VAT number of the actor, if applicable.
+        VERSION:
+          type: integer
+          description: Version number of this actor record.
+        ACT_COUNTRY_NAME:
+          type: string
+          description: Name of the country associated with the actor.
+        ACT_COUNTRY_ISO2_CODE:
+          type: string
+          description: ISO 3166-1 alpha-2 code of the actor's country.
+        ACT_COUNTRY_TYPE:
+          type: string
+          description: Indicates whether the actor's country is an EU member state or a non-EU country.
+        ACT_EMAIL:
+          type: string
+          format: email
+          description: Contact email address of the actor.
+        ACT_TELEPHONE:
+          type: string
+          description: Contact telephone number of the actor.
+        ACT_WEBSITE:
+          type: string
+          description: Website URL of the actor.
+        ACT_ADDR_BUILDING_NUMBER:
+          type: string
+          description: Building/house number of the actor's registered address.
+        ACT_ADDR_STREET_NAME:
+          type: string
+          description: Street name of the actor's registered address.
+        ACT_ADDR_POST_BOX:
+          nullable: true
+          description: Post box of the actor's registered address, if used instead of a street address.
+        ACT_ADDR_POSTAL_ZONE:
+          type: string
+          description: Postal/ZIP code of the actor's registered address.
+        ACT_ADDR_CITY_NAME:
+          type: string
+          description: City of the actor's registered address.
+        ACT_ADDR_COUNTRY_NAME:
+          type: string
+          description: Country name of the actor's registered address.
+        ACT_ADDR_COUNTRY_CODE:
+          type: string
+          description: ISO 3166-1 alpha-2 code of the actor's registered address country.
+        ACT_ADDR_COUNTRY_TYPE:
+          type: string
+          description: Indicates whether the address country is an EU member state or a non-EU country.
+        PRRC_FIRST_NAME:
+          type: string
+          description: First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
+        PRRC_FAMILY_NAME:
+          type: string
+          description: Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
+    ActorResponse:
+      type: object
+      properties:
+        value:
+          type: array
+          description: Matching actor records for this page of results.
+          items:
+            $ref: '#/components/schemas/Actor'
+        nextLink:
+          type: string
+          format: uri
+          description: >-
+            URL to the next page of results, present only when more
+            results are available. Extract the `$after` query
+            parameter from this URL and pass it to the next request
+            to retrieve the following page.
+    Reference:
+      type: object
+      properties:
+        ID:
+          type: integer
+          description: Numeric identifier of the reference data entry.
+        CODE:
+          type: string
+          description: >-
+            Machine-readable code of the reference data entry,
+            e.g. "refdata.risk-class.class-iii".
+        LANGUAGE:
+          type: string
+          description: Language code of the localized VALUE (e.g. en, fr, de).
+        VALUE:
+          type: string
+          description: Human-readable, localized label for the reference data entry.
+    ReferenceResponse:
+      type: object
+      properties:
+        value:
+          type: array
+          description: Matching reference data entries for this page of results.
+          items:
+            $ref: '#/components/schemas/Reference'
+        nextLink:
+          type: string
+          format: uri
+          description: >-
+            URL to the next page of results, present only when more
+            results are available. Extract the `$after` query
+            parameter from this URL and pass it to the next request
+            to retrieve the following page.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

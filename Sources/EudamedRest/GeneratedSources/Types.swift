@@ -105,7 +105,316 @@ public enum Servers {
 /// Types generated from the components section of the OpenAPI document.
 public enum Components {
     /// Types generated from the `#/components/schemas` section of the OpenAPI document.
-    public enum Schemas {}
+    public enum Schemas {
+        /// - Remark: Generated from `#/components/schemas/Actor`.
+        public struct Actor: Codable, Hashable, Sendable {
+            /// Unique EUDAMED identifier (UUID) of the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACTOR_ID`.
+            public var ACTOR_ID: Swift.String?
+            /// Full registered name of the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/NAME`.
+            public var NAME: Swift.String?
+            /// Abbreviated/short name of the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ABBREVIATED_NAME`.
+            public var ABBREVIATED_NAME: Swift.String?
+            /// Date from which the current STATUS has applied.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/STATUS_FROM_DATE`.
+            public var STATUS_FROM_DATE: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Current status of the actor's registration, e.g. active.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/STATUS`.
+            public var STATUS: Swift.String?
+            /// Type of actor, e.g. manufacturer, authorised representative, or importer.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACTOR_TYPE`.
+            public var ACTOR_TYPE: Swift.String?
+            /// Type of clinical investigation sponsor, if the actor is registered as one.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/SPONSOR_TYPE`.
+            public var SPONSOR_TYPE: OpenAPIRuntime.OpenAPIValueContainer?
+            /// European VAT number of the actor, if applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/EUROPEAN_VAT_NUMBER`.
+            public var EUROPEAN_VAT_NUMBER: Swift.String?
+            /// Version number of this actor record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/VERSION`.
+            public var VERSION: Swift.Int?
+            /// Name of the country associated with the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_COUNTRY_NAME`.
+            public var ACT_COUNTRY_NAME: Swift.String?
+            /// ISO 3166-1 alpha-2 code of the actor's country.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_COUNTRY_ISO2_CODE`.
+            public var ACT_COUNTRY_ISO2_CODE: Swift.String?
+            /// Indicates whether the actor's country is an EU member state or a non-EU country.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_COUNTRY_TYPE`.
+            public var ACT_COUNTRY_TYPE: Swift.String?
+            /// Contact email address of the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_EMAIL`.
+            public var ACT_EMAIL: Swift.String?
+            /// Contact telephone number of the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_TELEPHONE`.
+            public var ACT_TELEPHONE: Swift.String?
+            /// Website URL of the actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_WEBSITE`.
+            public var ACT_WEBSITE: Swift.String?
+            /// Building/house number of the actor's registered address.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_BUILDING_NUMBER`.
+            public var ACT_ADDR_BUILDING_NUMBER: Swift.String?
+            /// Street name of the actor's registered address.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_STREET_NAME`.
+            public var ACT_ADDR_STREET_NAME: Swift.String?
+            /// Post box of the actor's registered address, if used instead of a street address.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_POST_BOX`.
+            public var ACT_ADDR_POST_BOX: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Postal/ZIP code of the actor's registered address.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_POSTAL_ZONE`.
+            public var ACT_ADDR_POSTAL_ZONE: Swift.String?
+            /// City of the actor's registered address.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_CITY_NAME`.
+            public var ACT_ADDR_CITY_NAME: Swift.String?
+            /// Country name of the actor's registered address.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_COUNTRY_NAME`.
+            public var ACT_ADDR_COUNTRY_NAME: Swift.String?
+            /// ISO 3166-1 alpha-2 code of the actor's registered address country.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_COUNTRY_CODE`.
+            public var ACT_ADDR_COUNTRY_CODE: Swift.String?
+            /// Indicates whether the address country is an EU member state or a non-EU country.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/ACT_ADDR_COUNTRY_TYPE`.
+            public var ACT_ADDR_COUNTRY_TYPE: Swift.String?
+            /// First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/PRRC_FIRST_NAME`.
+            public var PRRC_FIRST_NAME: Swift.String?
+            /// Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
+            ///
+            /// - Remark: Generated from `#/components/schemas/Actor/PRRC_FAMILY_NAME`.
+            public var PRRC_FAMILY_NAME: Swift.String?
+            /// Creates a new `Actor`.
+            ///
+            /// - Parameters:
+            ///   - ACTOR_ID: Unique EUDAMED identifier (UUID) of the actor.
+            ///   - NAME: Full registered name of the actor.
+            ///   - ABBREVIATED_NAME: Abbreviated/short name of the actor.
+            ///   - STATUS_FROM_DATE: Date from which the current STATUS has applied.
+            ///   - STATUS: Current status of the actor's registration, e.g. active.
+            ///   - ACTOR_TYPE: Type of actor, e.g. manufacturer, authorised representative, or importer.
+            ///   - SPONSOR_TYPE: Type of clinical investigation sponsor, if the actor is registered as one.
+            ///   - EUROPEAN_VAT_NUMBER: European VAT number of the actor, if applicable.
+            ///   - VERSION: Version number of this actor record.
+            ///   - ACT_COUNTRY_NAME: Name of the country associated with the actor.
+            ///   - ACT_COUNTRY_ISO2_CODE: ISO 3166-1 alpha-2 code of the actor's country.
+            ///   - ACT_COUNTRY_TYPE: Indicates whether the actor's country is an EU member state or a non-EU country.
+            ///   - ACT_EMAIL: Contact email address of the actor.
+            ///   - ACT_TELEPHONE: Contact telephone number of the actor.
+            ///   - ACT_WEBSITE: Website URL of the actor.
+            ///   - ACT_ADDR_BUILDING_NUMBER: Building/house number of the actor's registered address.
+            ///   - ACT_ADDR_STREET_NAME: Street name of the actor's registered address.
+            ///   - ACT_ADDR_POST_BOX: Post box of the actor's registered address, if used instead of a street address.
+            ///   - ACT_ADDR_POSTAL_ZONE: Postal/ZIP code of the actor's registered address.
+            ///   - ACT_ADDR_CITY_NAME: City of the actor's registered address.
+            ///   - ACT_ADDR_COUNTRY_NAME: Country name of the actor's registered address.
+            ///   - ACT_ADDR_COUNTRY_CODE: ISO 3166-1 alpha-2 code of the actor's registered address country.
+            ///   - ACT_ADDR_COUNTRY_TYPE: Indicates whether the address country is an EU member state or a non-EU country.
+            ///   - PRRC_FIRST_NAME: First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
+            ///   - PRRC_FAMILY_NAME: Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
+            public init(
+                ACTOR_ID: Swift.String? = nil,
+                NAME: Swift.String? = nil,
+                ABBREVIATED_NAME: Swift.String? = nil,
+                STATUS_FROM_DATE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                STATUS: Swift.String? = nil,
+                ACTOR_TYPE: Swift.String? = nil,
+                SPONSOR_TYPE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                EUROPEAN_VAT_NUMBER: Swift.String? = nil,
+                VERSION: Swift.Int? = nil,
+                ACT_COUNTRY_NAME: Swift.String? = nil,
+                ACT_COUNTRY_ISO2_CODE: Swift.String? = nil,
+                ACT_COUNTRY_TYPE: Swift.String? = nil,
+                ACT_EMAIL: Swift.String? = nil,
+                ACT_TELEPHONE: Swift.String? = nil,
+                ACT_WEBSITE: Swift.String? = nil,
+                ACT_ADDR_BUILDING_NUMBER: Swift.String? = nil,
+                ACT_ADDR_STREET_NAME: Swift.String? = nil,
+                ACT_ADDR_POST_BOX: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                ACT_ADDR_POSTAL_ZONE: Swift.String? = nil,
+                ACT_ADDR_CITY_NAME: Swift.String? = nil,
+                ACT_ADDR_COUNTRY_NAME: Swift.String? = nil,
+                ACT_ADDR_COUNTRY_CODE: Swift.String? = nil,
+                ACT_ADDR_COUNTRY_TYPE: Swift.String? = nil,
+                PRRC_FIRST_NAME: Swift.String? = nil,
+                PRRC_FAMILY_NAME: Swift.String? = nil
+            ) {
+                self.ACTOR_ID = ACTOR_ID
+                self.NAME = NAME
+                self.ABBREVIATED_NAME = ABBREVIATED_NAME
+                self.STATUS_FROM_DATE = STATUS_FROM_DATE
+                self.STATUS = STATUS
+                self.ACTOR_TYPE = ACTOR_TYPE
+                self.SPONSOR_TYPE = SPONSOR_TYPE
+                self.EUROPEAN_VAT_NUMBER = EUROPEAN_VAT_NUMBER
+                self.VERSION = VERSION
+                self.ACT_COUNTRY_NAME = ACT_COUNTRY_NAME
+                self.ACT_COUNTRY_ISO2_CODE = ACT_COUNTRY_ISO2_CODE
+                self.ACT_COUNTRY_TYPE = ACT_COUNTRY_TYPE
+                self.ACT_EMAIL = ACT_EMAIL
+                self.ACT_TELEPHONE = ACT_TELEPHONE
+                self.ACT_WEBSITE = ACT_WEBSITE
+                self.ACT_ADDR_BUILDING_NUMBER = ACT_ADDR_BUILDING_NUMBER
+                self.ACT_ADDR_STREET_NAME = ACT_ADDR_STREET_NAME
+                self.ACT_ADDR_POST_BOX = ACT_ADDR_POST_BOX
+                self.ACT_ADDR_POSTAL_ZONE = ACT_ADDR_POSTAL_ZONE
+                self.ACT_ADDR_CITY_NAME = ACT_ADDR_CITY_NAME
+                self.ACT_ADDR_COUNTRY_NAME = ACT_ADDR_COUNTRY_NAME
+                self.ACT_ADDR_COUNTRY_CODE = ACT_ADDR_COUNTRY_CODE
+                self.ACT_ADDR_COUNTRY_TYPE = ACT_ADDR_COUNTRY_TYPE
+                self.PRRC_FIRST_NAME = PRRC_FIRST_NAME
+                self.PRRC_FAMILY_NAME = PRRC_FAMILY_NAME
+            }
+            public enum CodingKeys: String, CodingKey {
+                case ACTOR_ID
+                case NAME
+                case ABBREVIATED_NAME
+                case STATUS_FROM_DATE
+                case STATUS
+                case ACTOR_TYPE
+                case SPONSOR_TYPE
+                case EUROPEAN_VAT_NUMBER
+                case VERSION
+                case ACT_COUNTRY_NAME
+                case ACT_COUNTRY_ISO2_CODE
+                case ACT_COUNTRY_TYPE
+                case ACT_EMAIL
+                case ACT_TELEPHONE
+                case ACT_WEBSITE
+                case ACT_ADDR_BUILDING_NUMBER
+                case ACT_ADDR_STREET_NAME
+                case ACT_ADDR_POST_BOX
+                case ACT_ADDR_POSTAL_ZONE
+                case ACT_ADDR_CITY_NAME
+                case ACT_ADDR_COUNTRY_NAME
+                case ACT_ADDR_COUNTRY_CODE
+                case ACT_ADDR_COUNTRY_TYPE
+                case PRRC_FIRST_NAME
+                case PRRC_FAMILY_NAME
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ActorResponse`.
+        public struct ActorResponse: Codable, Hashable, Sendable {
+            /// Matching actor records for this page of results.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ActorResponse/value`.
+            public var value: [Components.Schemas.Actor]?
+            /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ActorResponse/nextLink`.
+            public var nextLink: Swift.String?
+            /// Creates a new `ActorResponse`.
+            ///
+            /// - Parameters:
+            ///   - value: Matching actor records for this page of results.
+            ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
+            public init(
+                value: [Components.Schemas.Actor]? = nil,
+                nextLink: Swift.String? = nil
+            ) {
+                self.value = value
+                self.nextLink = nextLink
+            }
+            public enum CodingKeys: String, CodingKey {
+                case value
+                case nextLink
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Reference`.
+        public struct Reference: Codable, Hashable, Sendable {
+            /// Numeric identifier of the reference data entry.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Reference/ID`.
+            public var ID: Swift.Int?
+            /// Machine-readable code of the reference data entry, e.g. "refdata.risk-class.class-iii".
+            ///
+            /// - Remark: Generated from `#/components/schemas/Reference/CODE`.
+            public var CODE: Swift.String?
+            /// Language code of the localized VALUE (e.g. en, fr, de).
+            ///
+            /// - Remark: Generated from `#/components/schemas/Reference/LANGUAGE`.
+            public var LANGUAGE: Swift.String?
+            /// Human-readable, localized label for the reference data entry.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Reference/VALUE`.
+            public var VALUE: Swift.String?
+            /// Creates a new `Reference`.
+            ///
+            /// - Parameters:
+            ///   - ID: Numeric identifier of the reference data entry.
+            ///   - CODE: Machine-readable code of the reference data entry, e.g. "refdata.risk-class.class-iii".
+            ///   - LANGUAGE: Language code of the localized VALUE (e.g. en, fr, de).
+            ///   - VALUE: Human-readable, localized label for the reference data entry.
+            public init(
+                ID: Swift.Int? = nil,
+                CODE: Swift.String? = nil,
+                LANGUAGE: Swift.String? = nil,
+                VALUE: Swift.String? = nil
+            ) {
+                self.ID = ID
+                self.CODE = CODE
+                self.LANGUAGE = LANGUAGE
+                self.VALUE = VALUE
+            }
+            public enum CodingKeys: String, CodingKey {
+                case ID
+                case CODE
+                case LANGUAGE
+                case VALUE
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ReferenceResponse`.
+        public struct ReferenceResponse: Codable, Hashable, Sendable {
+            /// Matching reference data entries for this page of results.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ReferenceResponse/value`.
+            public var value: [Components.Schemas.Reference]?
+            /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ReferenceResponse/nextLink`.
+            public var nextLink: Swift.String?
+            /// Creates a new `ReferenceResponse`.
+            ///
+            /// - Parameters:
+            ///   - value: Matching reference data entries for this page of results.
+            ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
+            public init(
+                value: [Components.Schemas.Reference]? = nil,
+                nextLink: Swift.String? = nil
+            ) {
+                self.value = value
+                self.nextLink = nextLink
+            }
+            public enum CodingKeys: String, CodingKey {
+                case value
+                case nextLink
+            }
+        }
+    }
     /// Types generated from the `#/components/parameters` section of the OpenAPI document.
     public enum Parameters {}
     /// Types generated from the `#/components/requestBodies` section of the OpenAPI document.
@@ -272,255 +581,13 @@ public enum Operations {
                 public var headers: Operations.getActors.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/actors/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload`.
-                        public struct valuePayloadPayload: Codable, Hashable, Sendable {
-                            /// Unique EUDAMED identifier (UUID) of the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACTOR_ID`.
-                            public var ACTOR_ID: Swift.String?
-                            /// Full registered name of the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/NAME`.
-                            public var NAME: Swift.String?
-                            /// Abbreviated/short name of the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ABBREVIATED_NAME`.
-                            public var ABBREVIATED_NAME: Swift.String?
-                            /// Date from which the current STATUS has applied.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/STATUS_FROM_DATE`.
-                            public var STATUS_FROM_DATE: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Current status of the actor's registration, e.g. active.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/STATUS`.
-                            public var STATUS: Swift.String?
-                            /// Type of actor, e.g. manufacturer, authorised representative, or importer.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACTOR_TYPE`.
-                            public var ACTOR_TYPE: Swift.String?
-                            /// Type of clinical investigation sponsor, if the actor is registered as one.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/SPONSOR_TYPE`.
-                            public var SPONSOR_TYPE: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// European VAT number of the actor, if applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/EUROPEAN_VAT_NUMBER`.
-                            public var EUROPEAN_VAT_NUMBER: Swift.String?
-                            /// Version number of this actor record.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/VERSION`.
-                            public var VERSION: Swift.Int?
-                            /// Name of the country associated with the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_COUNTRY_NAME`.
-                            public var ACT_COUNTRY_NAME: Swift.String?
-                            /// ISO 3166-1 alpha-2 code of the actor's country.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_COUNTRY_ISO2_CODE`.
-                            public var ACT_COUNTRY_ISO2_CODE: Swift.String?
-                            /// Indicates whether the actor's country is an EU member state or a non-EU country.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_COUNTRY_TYPE`.
-                            public var ACT_COUNTRY_TYPE: Swift.String?
-                            /// Contact email address of the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_EMAIL`.
-                            public var ACT_EMAIL: Swift.String?
-                            /// Contact telephone number of the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_TELEPHONE`.
-                            public var ACT_TELEPHONE: Swift.String?
-                            /// Website URL of the actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_WEBSITE`.
-                            public var ACT_WEBSITE: Swift.String?
-                            /// Building/house number of the actor's registered address.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_BUILDING_NUMBER`.
-                            public var ACT_ADDR_BUILDING_NUMBER: Swift.String?
-                            /// Street name of the actor's registered address.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_STREET_NAME`.
-                            public var ACT_ADDR_STREET_NAME: Swift.String?
-                            /// Post box of the actor's registered address, if used instead of a street address.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_POST_BOX`.
-                            public var ACT_ADDR_POST_BOX: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Postal/ZIP code of the actor's registered address.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_POSTAL_ZONE`.
-                            public var ACT_ADDR_POSTAL_ZONE: Swift.String?
-                            /// City of the actor's registered address.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_CITY_NAME`.
-                            public var ACT_ADDR_CITY_NAME: Swift.String?
-                            /// Country name of the actor's registered address.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_COUNTRY_NAME`.
-                            public var ACT_ADDR_COUNTRY_NAME: Swift.String?
-                            /// ISO 3166-1 alpha-2 code of the actor's registered address country.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_COUNTRY_CODE`.
-                            public var ACT_ADDR_COUNTRY_CODE: Swift.String?
-                            /// Indicates whether the address country is an EU member state or a non-EU country.
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/ACT_ADDR_COUNTRY_TYPE`.
-                            public var ACT_ADDR_COUNTRY_TYPE: Swift.String?
-                            /// First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/PRRC_FIRST_NAME`.
-                            public var PRRC_FIRST_NAME: Swift.String?
-                            /// Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
-                            ///
-                            /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/valuePayload/PRRC_FAMILY_NAME`.
-                            public var PRRC_FAMILY_NAME: Swift.String?
-                            /// Creates a new `valuePayloadPayload`.
-                            ///
-                            /// - Parameters:
-                            ///   - ACTOR_ID: Unique EUDAMED identifier (UUID) of the actor.
-                            ///   - NAME: Full registered name of the actor.
-                            ///   - ABBREVIATED_NAME: Abbreviated/short name of the actor.
-                            ///   - STATUS_FROM_DATE: Date from which the current STATUS has applied.
-                            ///   - STATUS: Current status of the actor's registration, e.g. active.
-                            ///   - ACTOR_TYPE: Type of actor, e.g. manufacturer, authorised representative, or importer.
-                            ///   - SPONSOR_TYPE: Type of clinical investigation sponsor, if the actor is registered as one.
-                            ///   - EUROPEAN_VAT_NUMBER: European VAT number of the actor, if applicable.
-                            ///   - VERSION: Version number of this actor record.
-                            ///   - ACT_COUNTRY_NAME: Name of the country associated with the actor.
-                            ///   - ACT_COUNTRY_ISO2_CODE: ISO 3166-1 alpha-2 code of the actor's country.
-                            ///   - ACT_COUNTRY_TYPE: Indicates whether the actor's country is an EU member state or a non-EU country.
-                            ///   - ACT_EMAIL: Contact email address of the actor.
-                            ///   - ACT_TELEPHONE: Contact telephone number of the actor.
-                            ///   - ACT_WEBSITE: Website URL of the actor.
-                            ///   - ACT_ADDR_BUILDING_NUMBER: Building/house number of the actor's registered address.
-                            ///   - ACT_ADDR_STREET_NAME: Street name of the actor's registered address.
-                            ///   - ACT_ADDR_POST_BOX: Post box of the actor's registered address, if used instead of a street address.
-                            ///   - ACT_ADDR_POSTAL_ZONE: Postal/ZIP code of the actor's registered address.
-                            ///   - ACT_ADDR_CITY_NAME: City of the actor's registered address.
-                            ///   - ACT_ADDR_COUNTRY_NAME: Country name of the actor's registered address.
-                            ///   - ACT_ADDR_COUNTRY_CODE: ISO 3166-1 alpha-2 code of the actor's registered address country.
-                            ///   - ACT_ADDR_COUNTRY_TYPE: Indicates whether the address country is an EU member state or a non-EU country.
-                            ///   - PRRC_FIRST_NAME: First name of the actor's Person Responsible for Regulatory Compliance (PRRC).
-                            ///   - PRRC_FAMILY_NAME: Family name of the actor's Person Responsible for Regulatory Compliance (PRRC).
-                            public init(
-                                ACTOR_ID: Swift.String? = nil,
-                                NAME: Swift.String? = nil,
-                                ABBREVIATED_NAME: Swift.String? = nil,
-                                STATUS_FROM_DATE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                STATUS: Swift.String? = nil,
-                                ACTOR_TYPE: Swift.String? = nil,
-                                SPONSOR_TYPE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                EUROPEAN_VAT_NUMBER: Swift.String? = nil,
-                                VERSION: Swift.Int? = nil,
-                                ACT_COUNTRY_NAME: Swift.String? = nil,
-                                ACT_COUNTRY_ISO2_CODE: Swift.String? = nil,
-                                ACT_COUNTRY_TYPE: Swift.String? = nil,
-                                ACT_EMAIL: Swift.String? = nil,
-                                ACT_TELEPHONE: Swift.String? = nil,
-                                ACT_WEBSITE: Swift.String? = nil,
-                                ACT_ADDR_BUILDING_NUMBER: Swift.String? = nil,
-                                ACT_ADDR_STREET_NAME: Swift.String? = nil,
-                                ACT_ADDR_POST_BOX: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                ACT_ADDR_POSTAL_ZONE: Swift.String? = nil,
-                                ACT_ADDR_CITY_NAME: Swift.String? = nil,
-                                ACT_ADDR_COUNTRY_NAME: Swift.String? = nil,
-                                ACT_ADDR_COUNTRY_CODE: Swift.String? = nil,
-                                ACT_ADDR_COUNTRY_TYPE: Swift.String? = nil,
-                                PRRC_FIRST_NAME: Swift.String? = nil,
-                                PRRC_FAMILY_NAME: Swift.String? = nil
-                            ) {
-                                self.ACTOR_ID = ACTOR_ID
-                                self.NAME = NAME
-                                self.ABBREVIATED_NAME = ABBREVIATED_NAME
-                                self.STATUS_FROM_DATE = STATUS_FROM_DATE
-                                self.STATUS = STATUS
-                                self.ACTOR_TYPE = ACTOR_TYPE
-                                self.SPONSOR_TYPE = SPONSOR_TYPE
-                                self.EUROPEAN_VAT_NUMBER = EUROPEAN_VAT_NUMBER
-                                self.VERSION = VERSION
-                                self.ACT_COUNTRY_NAME = ACT_COUNTRY_NAME
-                                self.ACT_COUNTRY_ISO2_CODE = ACT_COUNTRY_ISO2_CODE
-                                self.ACT_COUNTRY_TYPE = ACT_COUNTRY_TYPE
-                                self.ACT_EMAIL = ACT_EMAIL
-                                self.ACT_TELEPHONE = ACT_TELEPHONE
-                                self.ACT_WEBSITE = ACT_WEBSITE
-                                self.ACT_ADDR_BUILDING_NUMBER = ACT_ADDR_BUILDING_NUMBER
-                                self.ACT_ADDR_STREET_NAME = ACT_ADDR_STREET_NAME
-                                self.ACT_ADDR_POST_BOX = ACT_ADDR_POST_BOX
-                                self.ACT_ADDR_POSTAL_ZONE = ACT_ADDR_POSTAL_ZONE
-                                self.ACT_ADDR_CITY_NAME = ACT_ADDR_CITY_NAME
-                                self.ACT_ADDR_COUNTRY_NAME = ACT_ADDR_COUNTRY_NAME
-                                self.ACT_ADDR_COUNTRY_CODE = ACT_ADDR_COUNTRY_CODE
-                                self.ACT_ADDR_COUNTRY_TYPE = ACT_ADDR_COUNTRY_TYPE
-                                self.PRRC_FIRST_NAME = PRRC_FIRST_NAME
-                                self.PRRC_FAMILY_NAME = PRRC_FAMILY_NAME
-                            }
-                            public enum CodingKeys: String, CodingKey {
-                                case ACTOR_ID
-                                case NAME
-                                case ABBREVIATED_NAME
-                                case STATUS_FROM_DATE
-                                case STATUS
-                                case ACTOR_TYPE
-                                case SPONSOR_TYPE
-                                case EUROPEAN_VAT_NUMBER
-                                case VERSION
-                                case ACT_COUNTRY_NAME
-                                case ACT_COUNTRY_ISO2_CODE
-                                case ACT_COUNTRY_TYPE
-                                case ACT_EMAIL
-                                case ACT_TELEPHONE
-                                case ACT_WEBSITE
-                                case ACT_ADDR_BUILDING_NUMBER
-                                case ACT_ADDR_STREET_NAME
-                                case ACT_ADDR_POST_BOX
-                                case ACT_ADDR_POSTAL_ZONE
-                                case ACT_ADDR_CITY_NAME
-                                case ACT_ADDR_COUNTRY_NAME
-                                case ACT_ADDR_COUNTRY_CODE
-                                case ACT_ADDR_COUNTRY_TYPE
-                                case PRRC_FIRST_NAME
-                                case PRRC_FAMILY_NAME
-                            }
-                        }
-                        /// Matching actor records for this page of results.
-                        ///
-                        /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/value`.
-                        public typealias valuePayload = [Operations.getActors.Output.Ok.Body.jsonPayload.valuePayloadPayload]
-                        /// Matching actor records for this page of results.
-                        ///
-                        /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/value`.
-                        public var value: Operations.getActors.Output.Ok.Body.jsonPayload.valuePayload?
-                        /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
-                        ///
-                        /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/json/nextLink`.
-                        public var nextLink: Swift.String?
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - value: Matching actor records for this page of results.
-                        ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
-                        public init(
-                            value: Operations.getActors.Output.Ok.Body.jsonPayload.valuePayload? = nil,
-                            nextLink: Swift.String? = nil
-                        ) {
-                            self.value = value
-                            self.nextLink = nextLink
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case value
-                            case nextLink
-                        }
-                    }
                     /// - Remark: Generated from `#/paths/actors/GET/responses/200/content/application\/json`.
-                    case json(Operations.getActors.Output.Ok.Body.jsonPayload)
+                    case json(Components.Schemas.ActorResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.getActors.Output.Ok.Body.jsonPayload {
+                    public var json: Components.Schemas.ActorResponse {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -724,87 +791,13 @@ public enum Operations {
                 public var headers: Operations.getReference.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/reference/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/valuePayload`.
-                        public struct valuePayloadPayload: Codable, Hashable, Sendable {
-                            /// Numeric identifier of the reference data entry.
-                            ///
-                            /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/valuePayload/ID`.
-                            public var ID: Swift.Int?
-                            /// Machine-readable code of the reference data entry, e.g. "refdata.risk-class.class-iii".
-                            ///
-                            /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/valuePayload/CODE`.
-                            public var CODE: Swift.String?
-                            /// Language code of the localized VALUE (e.g. en, fr, de).
-                            ///
-                            /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/valuePayload/LANGUAGE`.
-                            public var LANGUAGE: Swift.String?
-                            /// Human-readable, localized label for the reference data entry.
-                            ///
-                            /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/valuePayload/VALUE`.
-                            public var VALUE: Swift.String?
-                            /// Creates a new `valuePayloadPayload`.
-                            ///
-                            /// - Parameters:
-                            ///   - ID: Numeric identifier of the reference data entry.
-                            ///   - CODE: Machine-readable code of the reference data entry, e.g. "refdata.risk-class.class-iii".
-                            ///   - LANGUAGE: Language code of the localized VALUE (e.g. en, fr, de).
-                            ///   - VALUE: Human-readable, localized label for the reference data entry.
-                            public init(
-                                ID: Swift.Int? = nil,
-                                CODE: Swift.String? = nil,
-                                LANGUAGE: Swift.String? = nil,
-                                VALUE: Swift.String? = nil
-                            ) {
-                                self.ID = ID
-                                self.CODE = CODE
-                                self.LANGUAGE = LANGUAGE
-                                self.VALUE = VALUE
-                            }
-                            public enum CodingKeys: String, CodingKey {
-                                case ID
-                                case CODE
-                                case LANGUAGE
-                                case VALUE
-                            }
-                        }
-                        /// Matching reference data entries for this page of results.
-                        ///
-                        /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/value`.
-                        public typealias valuePayload = [Operations.getReference.Output.Ok.Body.jsonPayload.valuePayloadPayload]
-                        /// Matching reference data entries for this page of results.
-                        ///
-                        /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/value`.
-                        public var value: Operations.getReference.Output.Ok.Body.jsonPayload.valuePayload?
-                        /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
-                        ///
-                        /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/json/nextLink`.
-                        public var nextLink: Swift.String?
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - value: Matching reference data entries for this page of results.
-                        ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
-                        public init(
-                            value: Operations.getReference.Output.Ok.Body.jsonPayload.valuePayload? = nil,
-                            nextLink: Swift.String? = nil
-                        ) {
-                            self.value = value
-                            self.nextLink = nextLink
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case value
-                            case nextLink
-                        }
-                    }
                     /// - Remark: Generated from `#/paths/reference/GET/responses/200/content/application\/json`.
-                    case json(Operations.getReference.Output.Ok.Body.jsonPayload)
+                    case json(Components.Schemas.ReferenceResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.getReference.Output.Ok.Body.jsonPayload {
+                    public var json: Components.Schemas.ReferenceResponse {
                         get throws {
                             switch self {
                             case let .json(body):

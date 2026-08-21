@@ -5,7 +5,7 @@
 
 import EudamedRest
 
-typealias RawReferenceEntry = Operations.getReference.Output.Ok.Body.jsonPayload.valuePayloadPayload
+typealias RawReferenceEntry = Components.Schemas.Reference
 
 public struct ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
     /// Numeric identifier of the reference data entry.

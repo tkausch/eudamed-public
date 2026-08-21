@@ -55,11 +55,11 @@ final class RemoteActorRepositoryTests: XCTestCase {
         let client = try makePaginatingClient(
             firstPage: """
             {
-              "value": [{"ACTOR_ID": "aaa-1"}],
+              "value": [{"ACTOR_ID": "aaa-1", "NAME": "Alpha Corp"}],
               "nextLink": "https://example.com/actors?\\u0024after=\(cursor)"
             }
             """,
-            secondPage: #"{"value": [{"ACTOR_ID": "aaa-2"}]}"#
+            secondPage: #"{"value": [{"ACTOR_ID": "aaa-2", "NAME": "Beta Corp"}]}"#
         )
         let repo = RemoteActorRepository(client: client)
 
