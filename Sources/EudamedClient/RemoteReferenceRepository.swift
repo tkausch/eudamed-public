@@ -25,8 +25,8 @@ public struct ReferenceQuery: Sendable {
         language: String? = nil
     ) {
         self.id = id
-        self.code = code?.capitalized
-        self.language = language?.capitalized
+        self.code = code
+        self.language = language
     }
 }
 

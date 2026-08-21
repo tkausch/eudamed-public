@@ -149,19 +149,19 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
         companionDiagnostics    = raw.COMPANION_DIAGNOSTICS?.value as? Int
 
         if let id = riskClassId {
-            riskClass = await Self.references.getReferenceValue(id: id, code: "risk_class_id", language: "en")
+            riskClass = await Self.references.getReferenceValue(id: id, code: "RISK_CLASS_ID", language: "en")
         }
         if let id = applicableLegislationId {
-            applicableLegislation = await Self.references.getReferenceValue(id: id, code: "applicable_legislation", language: "en")
+            applicableLegislation = await Self.references.getReferenceValue(id: id, code: "APPLICABLE_LEGISLATION", language: "en")
         }
         if let id = statusId {
-            status = await Self.references.getReferenceValue(id: id, code: "status_id", language: "en")
+            status = await Self.references.getReferenceValue(id: id, code: "STATUS_ID", language: "en")
         }
         if let id = deviceStatusTypeId {
-            deviceStatusType = await Self.references.getReferenceValue(id: id, code: "device_status_type_id", language: "en")
+            deviceStatusType = await Self.references.getReferenceValue(id: id, code: "DEVICE_STATUS_TYPE_ID", language: "en")
         }
         if let id = placedOnTheMarketId {
-            placedOnTheMarket = await Self.references.getReferenceValue(id: id, code: "placed_on_the_market_id", language: "en")
+            placedOnTheMarket = await Self.references.getReferenceValue(id: id, code: "PLACED_ON_THE_MARKET_ID", language: "en")
         }
     }
 
