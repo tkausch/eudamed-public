@@ -56,7 +56,6 @@ public struct RemoteReferenceRepository: ReferenceRepository {
             let pageEntries = (body.value ?? []).compactMap { ReferenceEntry($0) }
             pageEntries.forEach { logger.debug("\($0.debugLog())") }
             result += pageEntries
-            logger.info("getReference: fetched \(result.count) items so far")
             guard let cursor = body.nextLink.flatMap({ Self.extractAfterCursor(from: $0) }) else { break }
             input.query._dollar_after = cursor
         }

@@ -7,7 +7,6 @@ import EudamedRest
 
 typealias RawReferenceEntry = Operations.getReference.Output.Ok.Body.jsonPayload.valuePayloadPayload
 
-
 public struct ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
     /// Numeric identifier of the reference data entry.
     public var id: Int
@@ -37,6 +36,14 @@ public struct ReferenceEntry: @unchecked Sendable, Identifiable, Hashable {
         "ReferenceEntry(id: \(id), code: \(code), language: \(language), value: \(value))"
     }
 
-    public func hash(into hasher: inout Hasher) { hasher.combine(id) }
-    public static func == (lhs: ReferenceEntry, rhs: ReferenceEntry) -> Bool { lhs.id == rhs.id }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(code)
+        hasher.combine(language)
+        hasher.combine(value)
+    }
+
+    public static func == (lhs: ReferenceEntry, rhs: ReferenceEntry) -> Bool {
+        lhs.id == rhs.id && lhs.code == rhs.code && lhs.language == rhs.language && lhs.value == rhs.value
+    }
 }

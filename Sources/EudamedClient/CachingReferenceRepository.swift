@@ -29,12 +29,16 @@ public actor CachingReferenceRepository: ReferenceRepository {
             logger.debug("cache hit: returning \(cached.count) reference(s) from cache")
             return cached
         }
-        return try await loadFromRemoteAndCache(query: query)
+        let result = try await loadFromRemoteAndCache(query: query)
+        return result
     }
 
     public func getReferenceValue(id: Double, code: String, language: String = "en") async -> String? {
-        let query = ReferenceQuery(id: Int(id), code: code, language: language)
-        return try? await search(query: query).first?.value
+        // Query by code+language only so all entries for that reference list are cached together.
+        // Filter by id locally to avoid a separate remote call per unique id.
+        let query = ReferenceQuery(code: code, language: language)
+        let entries = try? await search(query: query)
+        return entries?.first { $0.id == Int(id) }?.value
     }
 
 
@@ -50,8 +54,8 @@ public actor CachingReferenceRepository: ReferenceRepository {
     private func loadFromRemoteAndCache(query: ReferenceQuery) async throws -> [ReferenceEntry] {
         guard let newReferences = try await remote?.search(query: query) else { return [] }
         cachedEntries += newReferences
-        logger.debug("cache updated: \(newReferences.count) new reference(s) added, total \(self.cachedEntries.count) cached")
         if logger.isEnabled(type: .debug) {
+            logger.debug("cache updated: \(newReferences.count) new reference(s) added, total \(self.cachedEntries.count) cached")
             for entry in newReferences {
                 logger.debug("  cached reference: id=\(entry.id) code=\(entry.code) language=\(entry.language) value=\(entry.value)")
             }
