@@ -44,9 +44,9 @@ public actor CachingReferenceRepository: ReferenceRepository {
 
     private func searchFromCache(query: ReferenceQuery) async -> [ReferenceEntry] {
         cachedEntries.filter { entry in
-            if query.id != 0, query.id != entry.id { return false }
-            if !query.code.isEmpty, query.code != entry.code { return false }
-            if !query.language.isEmpty, query.language != entry.language { return false }
+            if let id = query.id, id != entry.id { return false }
+            if let code = query.code, code != entry.code { return false }
+            if let language = query.language, language != entry.language { return false }
             return true
         }
     }

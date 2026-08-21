@@ -15,14 +15,14 @@ public protocol ReferenceRepository: Sendable {
 }
 
 public struct ReferenceQuery: Sendable {
-    public var id: Int
-    public var code: String
-    public var language: String
+    public var id: Int?
+    public var code: String?
+    public var language: String?
 
     public init(
-        id: Int = 0,
-        code: String = "",
-        language: String = ""
+        id: Int? = nil,
+        code: String? = nil,
+        language: String? = nil
     ) {
         self.id = id
         self.code = code
@@ -45,9 +45,9 @@ public struct RemoteReferenceRepository: ReferenceRepository {
     public func search(query: ReferenceQuery = ReferenceQuery()) async throws -> [ReferenceEntry] {
         var input = Operations.getReference.Input(
             query: .init(
-                ID: query.id == 0 ? nil : Double(query.id),
-                CODE: query.code.isEmpty ? nil : query.code,
-                LANGUAGE: query.language.isEmpty ? nil : query.language
+                ID: query.id.map { Double($0) },
+                CODE: query.code,
+                LANGUAGE: query.language
             )
         )
         var result = [ReferenceEntry]()

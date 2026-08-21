@@ -21,7 +21,7 @@ private actor MockReferenceRepository: ReferenceRepository {
         return entries
     }
 
-    func getReferenceValue(id: Double, code: String, language: String) async -> String? {
+    func getReferenceValue(id: Int, code: String, language: String) async -> String? {
         entries.first { $0.code == code && $0.language == language }?.value
     }
 }

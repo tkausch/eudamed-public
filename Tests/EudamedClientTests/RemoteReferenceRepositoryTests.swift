@@ -125,12 +125,12 @@ final class RemoteReferenceRepositoryTests: XCTestCase {
         XCTAssertTrue(path.contains("LANGUAGE=fr"), "Expected LANGUAGE=fr in path, got: \(path)")
     }
 
-    func testSearchOmitsIdWhenZero() async throws {
+    func testSearchOmitsIdWhenNil() async throws {
         let transport = MockRestTransport(responseBody: #"{"value": []}"#)
         let client = Client(serverURL: try Servers.Server1.url(), transport: transport)
         let repo = RemoteReferenceRepository(client: client)
 
-        _ = try await repo.search(query: ReferenceQuery(id: 0))
+        _ = try await repo.search(query: ReferenceQuery(id: nil))
 
         let path = try XCTUnwrap(transport.capturedRequests.first?.path)
         XCTAssertFalse(path.contains("ID="), "Expected ID omitted from path, got: \(path)")
