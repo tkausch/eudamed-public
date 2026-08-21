@@ -106,6 +106,524 @@ public enum Servers {
 public enum Components {
     /// Types generated from the `#/components/schemas` section of the OpenAPI document.
     public enum Schemas {
+        /// - Remark: Generated from `#/components/schemas/UdiDevice`.
+        public struct UdiDevice: Codable, Hashable, Sendable {
+            /// Internal numeric identifier of this UDI-DI record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/ID`.
+            public var ID: Swift.Int?
+            /// ULID identifier of this UDI-DI record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/UDI_DI_DATA_ULID`.
+            public var UDI_DI_DATA_ULID: Swift.String?
+            /// Internal EUDAMED UUID of this UDI-DI record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/UUID`.
+            public var UUID: Swift.String?
+            /// Trade/brand name of the device.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/TRADE_NAME`.
+            public var TRADE_NAME: Swift.String?
+            /// Manufacturer's reference/catalogue number for the device.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/REFERENCE`.
+            public var REFERENCE: Swift.String?
+            /// Identifier of the country/market where the device is placed on the market.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/PLACED_ON_THE_MARKET_ID`.
+            public var PLACED_ON_THE_MARKET_ID: Swift.Int?
+            /// 1 if this is the latest version of the record, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/LATEST_VERSION`.
+            public var LATEST_VERSION: Swift.Int?
+            /// 1 if the device contains carcinogenic, mutagenic, or reprotoxic (CMR) substances, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/CMR_SUBSTANCE`.
+            public var CMR_SUBSTANCE: Swift.Int?
+            /// 1 if the device contains endocrine-disrupting substances, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/ENDOCRINE_DISRUPTOR`.
+            public var ENDOCRINE_DISRUPTOR: Swift.Int?
+            /// 1 if the device contains natural rubber latex, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/LATEX`.
+            public var LATEX: Swift.Int?
+            /// 1 if the device is a reprocessed single-use device, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/REPROCESSED`.
+            public var REPROCESSED: Swift.Int?
+            /// 1 if the device is supplied sterile, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/STERILE`.
+            public var STERILE: Swift.Int?
+            /// 1 if the device requires sterilization before use, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/STERILIZATION`.
+            public var STERILIZATION: Swift.Int?
+            /// Whether the device is classified as a "new device" under Article 52(4) MDR, when applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/NEW_DEVICE`.
+            public var NEW_DEVICE: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Version number of this UDI-DI record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/VERSION_NUMBER`.
+            public var VERSION_NUMBER: Swift.Int?
+            /// Primary Device Identifier (UDI-DI).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/PRIMARY_DI`.
+            public var PRIMARY_DI: Swift.String?
+            /// Basic UDI-DI shared across all versions/packaging of this device model.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/BASIC_UDI`.
+            public var BASIC_UDI: Swift.String?
+            /// EUDAMED UUID of the associated Basic UDI-DI record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/BASIC_UDI_DATA_UUID`.
+            public var BASIC_UDI_DATA_UUID: Swift.String?
+            /// ULID of the associated Basic UDI-DI record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/BASIC_UDI_DATA_ULID`.
+            public var BASIC_UDI_DATA_ULID: Swift.String?
+            /// 1 if the device is an active device, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/ACTIVE`.
+            public var ACTIVE: Swift.Int?
+            /// 1 if the device administers or is used with a medicinal product, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/ADMINISTERING_MEDICINE`.
+            public var ADMINISTERING_MEDICINE: Swift.Int?
+            /// 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/ANIMAL_TISSUES`.
+            public var ANIMAL_TISSUES: Swift.Int?
+            /// 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/COMPANION_DIAGNOSTICS`.
+            public var COMPANION_DIAGNOSTICS: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/HUMAN_TISSUES`.
+            public var HUMAN_TISSUES: Swift.Int?
+            /// 1 if the device is implantable, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/IMPLANTABLE`.
+            public var IMPLANTABLE: Swift.Int?
+            /// 1 if the device is a kit, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/KIT`.
+            public var KIT: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device has a measuring function, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MEASURING_FUNCTION`.
+            public var MEASURING_FUNCTION: Swift.Int?
+            /// 1 if the device contains microbial substances, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MICROBIAL_SUBSTANCES`.
+            public var MICROBIAL_SUBSTANCES: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/NEAR_PATIENT_TESTING`.
+            public var NEAR_PATIENT_TESTING: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device is reusable, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/REUSABLE`.
+            public var REUSABLE: Swift.Int?
+            /// 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/SELF_TESTING`.
+            public var SELF_TESTING: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Identifier of the device's special device type, if any (e.g. software, orthopaedic device); see /reference.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/SPECIAL_DEVICE_TYPE_ID`.
+            public var SPECIAL_DEVICE_TYPE_ID: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device is a reagent, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/REAGENT`.
+            public var REAGENT: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Identifier grouping this device with other components of a multi-component device system, if applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MULTI_COMPONENT_ID`.
+            public var MULTI_COMPONENT_ID: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device is an instrument, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/INSTRUMENT`.
+            public var INSTRUMENT: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/PROFESSIONAL_TESTING`.
+            public var PROFESSIONAL_TESTING: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device is a suture, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/SUTURES`.
+            public var SUTURES: OpenAPIRuntime.OpenAPIValueContainer?
+            /// 1 if the device incorporates a human-derived product, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/HUMAN_PRODUCT`.
+            public var HUMAN_PRODUCT: Swift.Int?
+            /// 1 if the device incorporates a medicinal product, 0 otherwise.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MEDICINAL_PRODUCT`.
+            public var MEDICINAL_PRODUCT: Swift.Int?
+            /// Name of the device.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/DEVICE_NAME`.
+            public var DEVICE_NAME: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Model designation of the device.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/DEVICE_MODEL`.
+            public var DEVICE_MODEL: Swift.String?
+            /// Identifier of the device's risk class (see /reference; e.g. class I, IIa, IIb, III, or IVD classes A-D).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/RISK_CLASS_ID`.
+            public var RISK_CLASS_ID: Swift.Int?
+            /// Identifier of the legislation the device is registered under (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/APPLICABLE_LEGISLATION_ID`.
+            public var APPLICABLE_LEGISLATION_ID: Swift.Int?
+            /// Classification rule/criterion applied to determine the device's risk class.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/DEVICE_CRITERION`.
+            public var DEVICE_CRITERION: Swift.String?
+            /// Intended medical purpose/use of the device.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MEDICAL_PURPOSE`.
+            public var MEDICAL_PURPOSE: OpenAPIRuntime.OpenAPIValueContainer?
+            /// CND or GMDN nomenclature code assigned to the device.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/NOMENCLATURE_CODE`.
+            public var NOMENCLATURE_CODE: Swift.String?
+            /// Single Registration Number (SRN) of the manufacturer.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MF_SRN`.
+            public var MF_SRN: Swift.String?
+            /// Name of the manufacturer.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MF_NAME`.
+            public var MF_NAME: Swift.String?
+            /// Identifier of the device's market status (see /reference; e.g. on the market, no longer on the market, not intended for the EU market).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/DEVICE_STATUS_TYPE_ID`.
+            public var DEVICE_STATUS_TYPE_ID: Swift.Int?
+            /// Name(s) of the manufacturer actor.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/MF_ACTOR_NAMES`.
+            public var MF_ACTOR_NAMES: Swift.String?
+            /// Abbreviated name(s) of the associated actor(s).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/ACTOR_ABBREVIATED_NAMES`.
+            public var ACTOR_ABBREVIATED_NAMES: Swift.String?
+            /// Identifier of this record's status (see /reference).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/STATUS_ID`.
+            public var STATUS_ID: Swift.Int?
+            /// Name of the authorised representative, if applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/AR_NAME`.
+            public var AR_NAME: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Single Registration Number (SRN) of the authorised representative, if applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/AR_SRN`.
+            public var AR_SRN: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Name(s) of the authorised representative actor, if applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/AR_ACTOR_NAMES`.
+            public var AR_ACTOR_NAMES: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/UNIT_OF_USE_DI`.
+            public var UNIT_OF_USE_DI: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Direct marking Device Identifier, if the device carries a direct UDI marking.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/DIRECT_MARKETING_DI`.
+            public var DIRECT_MARKETING_DI: Swift.String?
+            /// Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/SECONDARY_DI`.
+            public var SECONDARY_DI: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Device Identifiers of the container/package levels for this device, if applicable.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/CONTAINER_PACKAGE_DIS`.
+            public var CONTAINER_PACKAGE_DIS: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Additional sub-statuses associated with the device record.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDevice/SUBSTATUSES`.
+            public var SUBSTATUSES: OpenAPIRuntime.OpenAPIValueContainer?
+            /// Creates a new `UdiDevice`.
+            ///
+            /// - Parameters:
+            ///   - ID: Internal numeric identifier of this UDI-DI record.
+            ///   - UDI_DI_DATA_ULID: ULID identifier of this UDI-DI record.
+            ///   - UUID: Internal EUDAMED UUID of this UDI-DI record.
+            ///   - TRADE_NAME: Trade/brand name of the device.
+            ///   - REFERENCE: Manufacturer's reference/catalogue number for the device.
+            ///   - PLACED_ON_THE_MARKET_ID: Identifier of the country/market where the device is placed on the market.
+            ///   - LATEST_VERSION: 1 if this is the latest version of the record, 0 otherwise.
+            ///   - CMR_SUBSTANCE: 1 if the device contains carcinogenic, mutagenic, or reprotoxic (CMR) substances, 0 otherwise.
+            ///   - ENDOCRINE_DISRUPTOR: 1 if the device contains endocrine-disrupting substances, 0 otherwise.
+            ///   - LATEX: 1 if the device contains natural rubber latex, 0 otherwise.
+            ///   - REPROCESSED: 1 if the device is a reprocessed single-use device, 0 otherwise.
+            ///   - STERILE: 1 if the device is supplied sterile, 0 otherwise.
+            ///   - STERILIZATION: 1 if the device requires sterilization before use, 0 otherwise.
+            ///   - NEW_DEVICE: Whether the device is classified as a "new device" under Article 52(4) MDR, when applicable.
+            ///   - VERSION_NUMBER: Version number of this UDI-DI record.
+            ///   - PRIMARY_DI: Primary Device Identifier (UDI-DI).
+            ///   - BASIC_UDI: Basic UDI-DI shared across all versions/packaging of this device model.
+            ///   - BASIC_UDI_DATA_UUID: EUDAMED UUID of the associated Basic UDI-DI record.
+            ///   - BASIC_UDI_DATA_ULID: ULID of the associated Basic UDI-DI record.
+            ///   - ACTIVE: 1 if the device is an active device, 0 otherwise.
+            ///   - ADMINISTERING_MEDICINE: 1 if the device administers or is used with a medicinal product, 0 otherwise.
+            ///   - ANIMAL_TISSUES: 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
+            ///   - COMPANION_DIAGNOSTICS: 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
+            ///   - HUMAN_TISSUES: 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
+            ///   - IMPLANTABLE: 1 if the device is implantable, 0 otherwise.
+            ///   - KIT: 1 if the device is a kit, 0 otherwise (IVDs only).
+            ///   - MEASURING_FUNCTION: 1 if the device has a measuring function, 0 otherwise.
+            ///   - MICROBIAL_SUBSTANCES: 1 if the device contains microbial substances, 0 otherwise.
+            ///   - NEAR_PATIENT_TESTING: 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
+            ///   - REUSABLE: 1 if the device is reusable, 0 otherwise.
+            ///   - SELF_TESTING: 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
+            ///   - SPECIAL_DEVICE_TYPE_ID: Identifier of the device's special device type, if any (e.g. software, orthopaedic device); see /reference.
+            ///   - REAGENT: 1 if the device is a reagent, 0 otherwise (IVDs only).
+            ///   - MULTI_COMPONENT_ID: Identifier grouping this device with other components of a multi-component device system, if applicable.
+            ///   - INSTRUMENT: 1 if the device is an instrument, 0 otherwise (IVDs only).
+            ///   - PROFESSIONAL_TESTING: 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
+            ///   - SUTURES: 1 if the device is a suture, 0 otherwise.
+            ///   - HUMAN_PRODUCT: 1 if the device incorporates a human-derived product, 0 otherwise.
+            ///   - MEDICINAL_PRODUCT: 1 if the device incorporates a medicinal product, 0 otherwise.
+            ///   - DEVICE_NAME: Name of the device.
+            ///   - DEVICE_MODEL: Model designation of the device.
+            ///   - RISK_CLASS_ID: Identifier of the device's risk class (see /reference; e.g. class I, IIa, IIb, III, or IVD classes A-D).
+            ///   - APPLICABLE_LEGISLATION_ID: Identifier of the legislation the device is registered under (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
+            ///   - DEVICE_CRITERION: Classification rule/criterion applied to determine the device's risk class.
+            ///   - MEDICAL_PURPOSE: Intended medical purpose/use of the device.
+            ///   - NOMENCLATURE_CODE: CND or GMDN nomenclature code assigned to the device.
+            ///   - MF_SRN: Single Registration Number (SRN) of the manufacturer.
+            ///   - MF_NAME: Name of the manufacturer.
+            ///   - DEVICE_STATUS_TYPE_ID: Identifier of the device's market status (see /reference; e.g. on the market, no longer on the market, not intended for the EU market).
+            ///   - MF_ACTOR_NAMES: Name(s) of the manufacturer actor.
+            ///   - ACTOR_ABBREVIATED_NAMES: Abbreviated name(s) of the associated actor(s).
+            ///   - STATUS_ID: Identifier of this record's status (see /reference).
+            ///   - AR_NAME: Name of the authorised representative, if applicable.
+            ///   - AR_SRN: Single Registration Number (SRN) of the authorised representative, if applicable.
+            ///   - AR_ACTOR_NAMES: Name(s) of the authorised representative actor, if applicable.
+            ///   - UNIT_OF_USE_DI: Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
+            ///   - DIRECT_MARKETING_DI: Direct marking Device Identifier, if the device carries a direct UDI marking.
+            ///   - SECONDARY_DI: Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
+            ///   - CONTAINER_PACKAGE_DIS: Device Identifiers of the container/package levels for this device, if applicable.
+            ///   - SUBSTATUSES: Additional sub-statuses associated with the device record.
+            public init(
+                ID: Swift.Int? = nil,
+                UDI_DI_DATA_ULID: Swift.String? = nil,
+                UUID: Swift.String? = nil,
+                TRADE_NAME: Swift.String? = nil,
+                REFERENCE: Swift.String? = nil,
+                PLACED_ON_THE_MARKET_ID: Swift.Int? = nil,
+                LATEST_VERSION: Swift.Int? = nil,
+                CMR_SUBSTANCE: Swift.Int? = nil,
+                ENDOCRINE_DISRUPTOR: Swift.Int? = nil,
+                LATEX: Swift.Int? = nil,
+                REPROCESSED: Swift.Int? = nil,
+                STERILE: Swift.Int? = nil,
+                STERILIZATION: Swift.Int? = nil,
+                NEW_DEVICE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                VERSION_NUMBER: Swift.Int? = nil,
+                PRIMARY_DI: Swift.String? = nil,
+                BASIC_UDI: Swift.String? = nil,
+                BASIC_UDI_DATA_UUID: Swift.String? = nil,
+                BASIC_UDI_DATA_ULID: Swift.String? = nil,
+                ACTIVE: Swift.Int? = nil,
+                ADMINISTERING_MEDICINE: Swift.Int? = nil,
+                ANIMAL_TISSUES: Swift.Int? = nil,
+                COMPANION_DIAGNOSTICS: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                HUMAN_TISSUES: Swift.Int? = nil,
+                IMPLANTABLE: Swift.Int? = nil,
+                KIT: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                MEASURING_FUNCTION: Swift.Int? = nil,
+                MICROBIAL_SUBSTANCES: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                NEAR_PATIENT_TESTING: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                REUSABLE: Swift.Int? = nil,
+                SELF_TESTING: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                SPECIAL_DEVICE_TYPE_ID: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                REAGENT: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                MULTI_COMPONENT_ID: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                INSTRUMENT: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                PROFESSIONAL_TESTING: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                SUTURES: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                HUMAN_PRODUCT: Swift.Int? = nil,
+                MEDICINAL_PRODUCT: Swift.Int? = nil,
+                DEVICE_NAME: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                DEVICE_MODEL: Swift.String? = nil,
+                RISK_CLASS_ID: Swift.Int? = nil,
+                APPLICABLE_LEGISLATION_ID: Swift.Int? = nil,
+                DEVICE_CRITERION: Swift.String? = nil,
+                MEDICAL_PURPOSE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                NOMENCLATURE_CODE: Swift.String? = nil,
+                MF_SRN: Swift.String? = nil,
+                MF_NAME: Swift.String? = nil,
+                DEVICE_STATUS_TYPE_ID: Swift.Int? = nil,
+                MF_ACTOR_NAMES: Swift.String? = nil,
+                ACTOR_ABBREVIATED_NAMES: Swift.String? = nil,
+                STATUS_ID: Swift.Int? = nil,
+                AR_NAME: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                AR_SRN: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                AR_ACTOR_NAMES: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                UNIT_OF_USE_DI: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                DIRECT_MARKETING_DI: Swift.String? = nil,
+                SECONDARY_DI: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                CONTAINER_PACKAGE_DIS: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+                SUBSTATUSES: OpenAPIRuntime.OpenAPIValueContainer? = nil
+            ) {
+                self.ID = ID
+                self.UDI_DI_DATA_ULID = UDI_DI_DATA_ULID
+                self.UUID = UUID
+                self.TRADE_NAME = TRADE_NAME
+                self.REFERENCE = REFERENCE
+                self.PLACED_ON_THE_MARKET_ID = PLACED_ON_THE_MARKET_ID
+                self.LATEST_VERSION = LATEST_VERSION
+                self.CMR_SUBSTANCE = CMR_SUBSTANCE
+                self.ENDOCRINE_DISRUPTOR = ENDOCRINE_DISRUPTOR
+                self.LATEX = LATEX
+                self.REPROCESSED = REPROCESSED
+                self.STERILE = STERILE
+                self.STERILIZATION = STERILIZATION
+                self.NEW_DEVICE = NEW_DEVICE
+                self.VERSION_NUMBER = VERSION_NUMBER
+                self.PRIMARY_DI = PRIMARY_DI
+                self.BASIC_UDI = BASIC_UDI
+                self.BASIC_UDI_DATA_UUID = BASIC_UDI_DATA_UUID
+                self.BASIC_UDI_DATA_ULID = BASIC_UDI_DATA_ULID
+                self.ACTIVE = ACTIVE
+                self.ADMINISTERING_MEDICINE = ADMINISTERING_MEDICINE
+                self.ANIMAL_TISSUES = ANIMAL_TISSUES
+                self.COMPANION_DIAGNOSTICS = COMPANION_DIAGNOSTICS
+                self.HUMAN_TISSUES = HUMAN_TISSUES
+                self.IMPLANTABLE = IMPLANTABLE
+                self.KIT = KIT
+                self.MEASURING_FUNCTION = MEASURING_FUNCTION
+                self.MICROBIAL_SUBSTANCES = MICROBIAL_SUBSTANCES
+                self.NEAR_PATIENT_TESTING = NEAR_PATIENT_TESTING
+                self.REUSABLE = REUSABLE
+                self.SELF_TESTING = SELF_TESTING
+                self.SPECIAL_DEVICE_TYPE_ID = SPECIAL_DEVICE_TYPE_ID
+                self.REAGENT = REAGENT
+                self.MULTI_COMPONENT_ID = MULTI_COMPONENT_ID
+                self.INSTRUMENT = INSTRUMENT
+                self.PROFESSIONAL_TESTING = PROFESSIONAL_TESTING
+                self.SUTURES = SUTURES
+                self.HUMAN_PRODUCT = HUMAN_PRODUCT
+                self.MEDICINAL_PRODUCT = MEDICINAL_PRODUCT
+                self.DEVICE_NAME = DEVICE_NAME
+                self.DEVICE_MODEL = DEVICE_MODEL
+                self.RISK_CLASS_ID = RISK_CLASS_ID
+                self.APPLICABLE_LEGISLATION_ID = APPLICABLE_LEGISLATION_ID
+                self.DEVICE_CRITERION = DEVICE_CRITERION
+                self.MEDICAL_PURPOSE = MEDICAL_PURPOSE
+                self.NOMENCLATURE_CODE = NOMENCLATURE_CODE
+                self.MF_SRN = MF_SRN
+                self.MF_NAME = MF_NAME
+                self.DEVICE_STATUS_TYPE_ID = DEVICE_STATUS_TYPE_ID
+                self.MF_ACTOR_NAMES = MF_ACTOR_NAMES
+                self.ACTOR_ABBREVIATED_NAMES = ACTOR_ABBREVIATED_NAMES
+                self.STATUS_ID = STATUS_ID
+                self.AR_NAME = AR_NAME
+                self.AR_SRN = AR_SRN
+                self.AR_ACTOR_NAMES = AR_ACTOR_NAMES
+                self.UNIT_OF_USE_DI = UNIT_OF_USE_DI
+                self.DIRECT_MARKETING_DI = DIRECT_MARKETING_DI
+                self.SECONDARY_DI = SECONDARY_DI
+                self.CONTAINER_PACKAGE_DIS = CONTAINER_PACKAGE_DIS
+                self.SUBSTATUSES = SUBSTATUSES
+            }
+            public enum CodingKeys: String, CodingKey {
+                case ID
+                case UDI_DI_DATA_ULID
+                case UUID
+                case TRADE_NAME
+                case REFERENCE
+                case PLACED_ON_THE_MARKET_ID
+                case LATEST_VERSION
+                case CMR_SUBSTANCE
+                case ENDOCRINE_DISRUPTOR
+                case LATEX
+                case REPROCESSED
+                case STERILE
+                case STERILIZATION
+                case NEW_DEVICE
+                case VERSION_NUMBER
+                case PRIMARY_DI
+                case BASIC_UDI
+                case BASIC_UDI_DATA_UUID
+                case BASIC_UDI_DATA_ULID
+                case ACTIVE
+                case ADMINISTERING_MEDICINE
+                case ANIMAL_TISSUES
+                case COMPANION_DIAGNOSTICS
+                case HUMAN_TISSUES
+                case IMPLANTABLE
+                case KIT
+                case MEASURING_FUNCTION
+                case MICROBIAL_SUBSTANCES
+                case NEAR_PATIENT_TESTING
+                case REUSABLE
+                case SELF_TESTING
+                case SPECIAL_DEVICE_TYPE_ID
+                case REAGENT
+                case MULTI_COMPONENT_ID
+                case INSTRUMENT
+                case PROFESSIONAL_TESTING
+                case SUTURES
+                case HUMAN_PRODUCT
+                case MEDICINAL_PRODUCT
+                case DEVICE_NAME
+                case DEVICE_MODEL
+                case RISK_CLASS_ID
+                case APPLICABLE_LEGISLATION_ID
+                case DEVICE_CRITERION
+                case MEDICAL_PURPOSE
+                case NOMENCLATURE_CODE
+                case MF_SRN
+                case MF_NAME
+                case DEVICE_STATUS_TYPE_ID
+                case MF_ACTOR_NAMES
+                case ACTOR_ABBREVIATED_NAMES
+                case STATUS_ID
+                case AR_NAME
+                case AR_SRN
+                case AR_ACTOR_NAMES
+                case UNIT_OF_USE_DI
+                case DIRECT_MARKETING_DI
+                case SECONDARY_DI
+                case CONTAINER_PACKAGE_DIS
+                case SUBSTATUSES
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UdiDeviceResponse`.
+        public struct UdiDeviceResponse: Codable, Hashable, Sendable {
+            /// Matching UDI/device records for this page of results.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDeviceResponse/value`.
+            public var value: [Components.Schemas.UdiDevice]?
+            /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
+            ///
+            /// - Remark: Generated from `#/components/schemas/UdiDeviceResponse/nextLink`.
+            public var nextLink: Swift.String?
+            /// Creates a new `UdiDeviceResponse`.
+            ///
+            /// - Parameters:
+            ///   - value: Matching UDI/device records for this page of results.
+            ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
+            public init(
+                value: [Components.Schemas.UdiDevice]? = nil,
+                nextLink: Swift.String? = nil
+            ) {
+                self.value = value
+                self.nextLink = nextLink
+            }
+            public enum CodingKeys: String, CodingKey {
+                case value
+                case nextLink
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/Actor`.
         public struct Actor: Codable, Hashable, Sendable {
             /// Unique EUDAMED identifier (UUID) of the actor.
@@ -1071,535 +1589,13 @@ public enum Operations {
                 public var headers: Operations.getUdi.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/udi/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload`.
-                        public struct valuePayloadPayload: Codable, Hashable, Sendable {
-                            /// Internal numeric identifier of this UDI-DI record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/ID`.
-                            public var ID: Swift.Int?
-                            /// ULID identifier of this UDI-DI record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/UDI_DI_DATA_ULID`.
-                            public var UDI_DI_DATA_ULID: Swift.String?
-                            /// Internal EUDAMED UUID of this UDI-DI record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/UUID`.
-                            public var UUID: Swift.String?
-                            /// Trade/brand name of the device.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/TRADE_NAME`.
-                            public var TRADE_NAME: Swift.String?
-                            /// Manufacturer's reference/catalogue number for the device.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/REFERENCE`.
-                            public var REFERENCE: Swift.String?
-                            /// Identifier of the country/market where the device is placed on the market.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/PLACED_ON_THE_MARKET_ID`.
-                            public var PLACED_ON_THE_MARKET_ID: Swift.Int?
-                            /// 1 if this is the latest version of the record, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/LATEST_VERSION`.
-                            public var LATEST_VERSION: Swift.Int?
-                            /// 1 if the device contains carcinogenic, mutagenic, or reprotoxic (CMR) substances, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/CMR_SUBSTANCE`.
-                            public var CMR_SUBSTANCE: Swift.Int?
-                            /// 1 if the device contains endocrine-disrupting substances, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/ENDOCRINE_DISRUPTOR`.
-                            public var ENDOCRINE_DISRUPTOR: Swift.Int?
-                            /// 1 if the device contains natural rubber latex, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/LATEX`.
-                            public var LATEX: Swift.Int?
-                            /// 1 if the device is a reprocessed single-use device, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/REPROCESSED`.
-                            public var REPROCESSED: Swift.Int?
-                            /// 1 if the device is supplied sterile, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/STERILE`.
-                            public var STERILE: Swift.Int?
-                            /// 1 if the device requires sterilization before use, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/STERILIZATION`.
-                            public var STERILIZATION: Swift.Int?
-                            /// Whether the device is classified as a "new device" under Article 52(4) MDR, when applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/NEW_DEVICE`.
-                            public var NEW_DEVICE: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Version number of this UDI-DI record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/VERSION_NUMBER`.
-                            public var VERSION_NUMBER: Swift.Int?
-                            /// Primary Device Identifier (UDI-DI).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/PRIMARY_DI`.
-                            public var PRIMARY_DI: Swift.String?
-                            /// Basic UDI-DI shared across all versions/packaging of this device model.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/BASIC_UDI`.
-                            public var BASIC_UDI: Swift.String?
-                            /// EUDAMED UUID of the associated Basic UDI-DI record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/BASIC_UDI_DATA_UUID`.
-                            public var BASIC_UDI_DATA_UUID: Swift.String?
-                            /// ULID of the associated Basic UDI-DI record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/BASIC_UDI_DATA_ULID`.
-                            public var BASIC_UDI_DATA_ULID: Swift.String?
-                            /// 1 if the device is an active device, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/ACTIVE`.
-                            public var ACTIVE: Swift.Int?
-                            /// 1 if the device administers or is used with a medicinal product, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/ADMINISTERING_MEDICINE`.
-                            public var ADMINISTERING_MEDICINE: Swift.Int?
-                            /// 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/ANIMAL_TISSUES`.
-                            public var ANIMAL_TISSUES: Swift.Int?
-                            /// 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/COMPANION_DIAGNOSTICS`.
-                            public var COMPANION_DIAGNOSTICS: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/HUMAN_TISSUES`.
-                            public var HUMAN_TISSUES: Swift.Int?
-                            /// 1 if the device is implantable, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/IMPLANTABLE`.
-                            public var IMPLANTABLE: Swift.Int?
-                            /// 1 if the device is a kit, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/KIT`.
-                            public var KIT: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device has a measuring function, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MEASURING_FUNCTION`.
-                            public var MEASURING_FUNCTION: Swift.Int?
-                            /// 1 if the device contains microbial substances, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MICROBIAL_SUBSTANCES`.
-                            public var MICROBIAL_SUBSTANCES: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/NEAR_PATIENT_TESTING`.
-                            public var NEAR_PATIENT_TESTING: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device is reusable, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/REUSABLE`.
-                            public var REUSABLE: Swift.Int?
-                            /// 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/SELF_TESTING`.
-                            public var SELF_TESTING: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Identifier of the device's special device type, if any (e.g. software, orthopaedic device); see /reference.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/SPECIAL_DEVICE_TYPE_ID`.
-                            public var SPECIAL_DEVICE_TYPE_ID: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device is a reagent, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/REAGENT`.
-                            public var REAGENT: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Identifier grouping this device with other components of a multi-component device system, if applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MULTI_COMPONENT_ID`.
-                            public var MULTI_COMPONENT_ID: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device is an instrument, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/INSTRUMENT`.
-                            public var INSTRUMENT: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/PROFESSIONAL_TESTING`.
-                            public var PROFESSIONAL_TESTING: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device is a suture, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/SUTURES`.
-                            public var SUTURES: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// 1 if the device incorporates a human-derived product, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/HUMAN_PRODUCT`.
-                            public var HUMAN_PRODUCT: Swift.Int?
-                            /// 1 if the device incorporates a medicinal product, 0 otherwise.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MEDICINAL_PRODUCT`.
-                            public var MEDICINAL_PRODUCT: Swift.Int?
-                            /// Name of the device.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/DEVICE_NAME`.
-                            public var DEVICE_NAME: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Model designation of the device.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/DEVICE_MODEL`.
-                            public var DEVICE_MODEL: Swift.String?
-                            /// Identifier of the device's risk class (see /reference; e.g. class I, IIa, IIb, III, or IVD classes A-D).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/RISK_CLASS_ID`.
-                            public var RISK_CLASS_ID: Swift.Int?
-                            /// Identifier of the legislation the device is registered under (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/APPLICABLE_LEGISLATION_ID`.
-                            public var APPLICABLE_LEGISLATION_ID: Swift.Int?
-                            /// Classification rule/criterion applied to determine the device's risk class.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/DEVICE_CRITERION`.
-                            public var DEVICE_CRITERION: Swift.String?
-                            /// Intended medical purpose/use of the device.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MEDICAL_PURPOSE`.
-                            public var MEDICAL_PURPOSE: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// CND or GMDN nomenclature code assigned to the device.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/NOMENCLATURE_CODE`.
-                            public var NOMENCLATURE_CODE: Swift.String?
-                            /// Single Registration Number (SRN) of the manufacturer.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MF_SRN`.
-                            public var MF_SRN: Swift.String?
-                            /// Name of the manufacturer.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MF_NAME`.
-                            public var MF_NAME: Swift.String?
-                            /// Identifier of the device's market status (see /reference; e.g. on the market, no longer on the market, not intended for the EU market).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/DEVICE_STATUS_TYPE_ID`.
-                            public var DEVICE_STATUS_TYPE_ID: Swift.Int?
-                            /// Name(s) of the manufacturer actor.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/MF_ACTOR_NAMES`.
-                            public var MF_ACTOR_NAMES: Swift.String?
-                            /// Abbreviated name(s) of the associated actor(s).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/ACTOR_ABBREVIATED_NAMES`.
-                            public var ACTOR_ABBREVIATED_NAMES: Swift.String?
-                            /// Identifier of this record's status (see /reference).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/STATUS_ID`.
-                            public var STATUS_ID: Swift.Int?
-                            /// Name of the authorised representative, if applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/AR_NAME`.
-                            public var AR_NAME: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Single Registration Number (SRN) of the authorised representative, if applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/AR_SRN`.
-                            public var AR_SRN: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Name(s) of the authorised representative actor, if applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/AR_ACTOR_NAMES`.
-                            public var AR_ACTOR_NAMES: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/UNIT_OF_USE_DI`.
-                            public var UNIT_OF_USE_DI: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Direct marking Device Identifier, if the device carries a direct UDI marking.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/DIRECT_MARKETING_DI`.
-                            public var DIRECT_MARKETING_DI: Swift.String?
-                            /// Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/SECONDARY_DI`.
-                            public var SECONDARY_DI: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Device Identifiers of the container/package levels for this device, if applicable.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/CONTAINER_PACKAGE_DIS`.
-                            public var CONTAINER_PACKAGE_DIS: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Additional sub-statuses associated with the device record.
-                            ///
-                            /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/valuePayload/SUBSTATUSES`.
-                            public var SUBSTATUSES: OpenAPIRuntime.OpenAPIValueContainer?
-                            /// Creates a new `valuePayloadPayload`.
-                            ///
-                            /// - Parameters:
-                            ///   - ID: Internal numeric identifier of this UDI-DI record.
-                            ///   - UDI_DI_DATA_ULID: ULID identifier of this UDI-DI record.
-                            ///   - UUID: Internal EUDAMED UUID of this UDI-DI record.
-                            ///   - TRADE_NAME: Trade/brand name of the device.
-                            ///   - REFERENCE: Manufacturer's reference/catalogue number for the device.
-                            ///   - PLACED_ON_THE_MARKET_ID: Identifier of the country/market where the device is placed on the market.
-                            ///   - LATEST_VERSION: 1 if this is the latest version of the record, 0 otherwise.
-                            ///   - CMR_SUBSTANCE: 1 if the device contains carcinogenic, mutagenic, or reprotoxic (CMR) substances, 0 otherwise.
-                            ///   - ENDOCRINE_DISRUPTOR: 1 if the device contains endocrine-disrupting substances, 0 otherwise.
-                            ///   - LATEX: 1 if the device contains natural rubber latex, 0 otherwise.
-                            ///   - REPROCESSED: 1 if the device is a reprocessed single-use device, 0 otherwise.
-                            ///   - STERILE: 1 if the device is supplied sterile, 0 otherwise.
-                            ///   - STERILIZATION: 1 if the device requires sterilization before use, 0 otherwise.
-                            ///   - NEW_DEVICE: Whether the device is classified as a "new device" under Article 52(4) MDR, when applicable.
-                            ///   - VERSION_NUMBER: Version number of this UDI-DI record.
-                            ///   - PRIMARY_DI: Primary Device Identifier (UDI-DI).
-                            ///   - BASIC_UDI: Basic UDI-DI shared across all versions/packaging of this device model.
-                            ///   - BASIC_UDI_DATA_UUID: EUDAMED UUID of the associated Basic UDI-DI record.
-                            ///   - BASIC_UDI_DATA_ULID: ULID of the associated Basic UDI-DI record.
-                            ///   - ACTIVE: 1 if the device is an active device, 0 otherwise.
-                            ///   - ADMINISTERING_MEDICINE: 1 if the device administers or is used with a medicinal product, 0 otherwise.
-                            ///   - ANIMAL_TISSUES: 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
-                            ///   - COMPANION_DIAGNOSTICS: 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
-                            ///   - HUMAN_TISSUES: 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
-                            ///   - IMPLANTABLE: 1 if the device is implantable, 0 otherwise.
-                            ///   - KIT: 1 if the device is a kit, 0 otherwise (IVDs only).
-                            ///   - MEASURING_FUNCTION: 1 if the device has a measuring function, 0 otherwise.
-                            ///   - MICROBIAL_SUBSTANCES: 1 if the device contains microbial substances, 0 otherwise.
-                            ///   - NEAR_PATIENT_TESTING: 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
-                            ///   - REUSABLE: 1 if the device is reusable, 0 otherwise.
-                            ///   - SELF_TESTING: 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
-                            ///   - SPECIAL_DEVICE_TYPE_ID: Identifier of the device's special device type, if any (e.g. software, orthopaedic device); see /reference.
-                            ///   - REAGENT: 1 if the device is a reagent, 0 otherwise (IVDs only).
-                            ///   - MULTI_COMPONENT_ID: Identifier grouping this device with other components of a multi-component device system, if applicable.
-                            ///   - INSTRUMENT: 1 if the device is an instrument, 0 otherwise (IVDs only).
-                            ///   - PROFESSIONAL_TESTING: 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
-                            ///   - SUTURES: 1 if the device is a suture, 0 otherwise.
-                            ///   - HUMAN_PRODUCT: 1 if the device incorporates a human-derived product, 0 otherwise.
-                            ///   - MEDICINAL_PRODUCT: 1 if the device incorporates a medicinal product, 0 otherwise.
-                            ///   - DEVICE_NAME: Name of the device.
-                            ///   - DEVICE_MODEL: Model designation of the device.
-                            ///   - RISK_CLASS_ID: Identifier of the device's risk class (see /reference; e.g. class I, IIa, IIb, III, or IVD classes A-D).
-                            ///   - APPLICABLE_LEGISLATION_ID: Identifier of the legislation the device is registered under (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
-                            ///   - DEVICE_CRITERION: Classification rule/criterion applied to determine the device's risk class.
-                            ///   - MEDICAL_PURPOSE: Intended medical purpose/use of the device.
-                            ///   - NOMENCLATURE_CODE: CND or GMDN nomenclature code assigned to the device.
-                            ///   - MF_SRN: Single Registration Number (SRN) of the manufacturer.
-                            ///   - MF_NAME: Name of the manufacturer.
-                            ///   - DEVICE_STATUS_TYPE_ID: Identifier of the device's market status (see /reference; e.g. on the market, no longer on the market, not intended for the EU market).
-                            ///   - MF_ACTOR_NAMES: Name(s) of the manufacturer actor.
-                            ///   - ACTOR_ABBREVIATED_NAMES: Abbreviated name(s) of the associated actor(s).
-                            ///   - STATUS_ID: Identifier of this record's status (see /reference).
-                            ///   - AR_NAME: Name of the authorised representative, if applicable.
-                            ///   - AR_SRN: Single Registration Number (SRN) of the authorised representative, if applicable.
-                            ///   - AR_ACTOR_NAMES: Name(s) of the authorised representative actor, if applicable.
-                            ///   - UNIT_OF_USE_DI: Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
-                            ///   - DIRECT_MARKETING_DI: Direct marking Device Identifier, if the device carries a direct UDI marking.
-                            ///   - SECONDARY_DI: Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
-                            ///   - CONTAINER_PACKAGE_DIS: Device Identifiers of the container/package levels for this device, if applicable.
-                            ///   - SUBSTATUSES: Additional sub-statuses associated with the device record.
-                            public init(
-                                ID: Swift.Int? = nil,
-                                UDI_DI_DATA_ULID: Swift.String? = nil,
-                                UUID: Swift.String? = nil,
-                                TRADE_NAME: Swift.String? = nil,
-                                REFERENCE: Swift.String? = nil,
-                                PLACED_ON_THE_MARKET_ID: Swift.Int? = nil,
-                                LATEST_VERSION: Swift.Int? = nil,
-                                CMR_SUBSTANCE: Swift.Int? = nil,
-                                ENDOCRINE_DISRUPTOR: Swift.Int? = nil,
-                                LATEX: Swift.Int? = nil,
-                                REPROCESSED: Swift.Int? = nil,
-                                STERILE: Swift.Int? = nil,
-                                STERILIZATION: Swift.Int? = nil,
-                                NEW_DEVICE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                VERSION_NUMBER: Swift.Int? = nil,
-                                PRIMARY_DI: Swift.String? = nil,
-                                BASIC_UDI: Swift.String? = nil,
-                                BASIC_UDI_DATA_UUID: Swift.String? = nil,
-                                BASIC_UDI_DATA_ULID: Swift.String? = nil,
-                                ACTIVE: Swift.Int? = nil,
-                                ADMINISTERING_MEDICINE: Swift.Int? = nil,
-                                ANIMAL_TISSUES: Swift.Int? = nil,
-                                COMPANION_DIAGNOSTICS: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                HUMAN_TISSUES: Swift.Int? = nil,
-                                IMPLANTABLE: Swift.Int? = nil,
-                                KIT: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                MEASURING_FUNCTION: Swift.Int? = nil,
-                                MICROBIAL_SUBSTANCES: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                NEAR_PATIENT_TESTING: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                REUSABLE: Swift.Int? = nil,
-                                SELF_TESTING: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                SPECIAL_DEVICE_TYPE_ID: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                REAGENT: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                MULTI_COMPONENT_ID: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                INSTRUMENT: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                PROFESSIONAL_TESTING: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                SUTURES: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                HUMAN_PRODUCT: Swift.Int? = nil,
-                                MEDICINAL_PRODUCT: Swift.Int? = nil,
-                                DEVICE_NAME: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                DEVICE_MODEL: Swift.String? = nil,
-                                RISK_CLASS_ID: Swift.Int? = nil,
-                                APPLICABLE_LEGISLATION_ID: Swift.Int? = nil,
-                                DEVICE_CRITERION: Swift.String? = nil,
-                                MEDICAL_PURPOSE: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                NOMENCLATURE_CODE: Swift.String? = nil,
-                                MF_SRN: Swift.String? = nil,
-                                MF_NAME: Swift.String? = nil,
-                                DEVICE_STATUS_TYPE_ID: Swift.Int? = nil,
-                                MF_ACTOR_NAMES: Swift.String? = nil,
-                                ACTOR_ABBREVIATED_NAMES: Swift.String? = nil,
-                                STATUS_ID: Swift.Int? = nil,
-                                AR_NAME: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                AR_SRN: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                AR_ACTOR_NAMES: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                UNIT_OF_USE_DI: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                DIRECT_MARKETING_DI: Swift.String? = nil,
-                                SECONDARY_DI: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                CONTAINER_PACKAGE_DIS: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                                SUBSTATUSES: OpenAPIRuntime.OpenAPIValueContainer? = nil
-                            ) {
-                                self.ID = ID
-                                self.UDI_DI_DATA_ULID = UDI_DI_DATA_ULID
-                                self.UUID = UUID
-                                self.TRADE_NAME = TRADE_NAME
-                                self.REFERENCE = REFERENCE
-                                self.PLACED_ON_THE_MARKET_ID = PLACED_ON_THE_MARKET_ID
-                                self.LATEST_VERSION = LATEST_VERSION
-                                self.CMR_SUBSTANCE = CMR_SUBSTANCE
-                                self.ENDOCRINE_DISRUPTOR = ENDOCRINE_DISRUPTOR
-                                self.LATEX = LATEX
-                                self.REPROCESSED = REPROCESSED
-                                self.STERILE = STERILE
-                                self.STERILIZATION = STERILIZATION
-                                self.NEW_DEVICE = NEW_DEVICE
-                                self.VERSION_NUMBER = VERSION_NUMBER
-                                self.PRIMARY_DI = PRIMARY_DI
-                                self.BASIC_UDI = BASIC_UDI
-                                self.BASIC_UDI_DATA_UUID = BASIC_UDI_DATA_UUID
-                                self.BASIC_UDI_DATA_ULID = BASIC_UDI_DATA_ULID
-                                self.ACTIVE = ACTIVE
-                                self.ADMINISTERING_MEDICINE = ADMINISTERING_MEDICINE
-                                self.ANIMAL_TISSUES = ANIMAL_TISSUES
-                                self.COMPANION_DIAGNOSTICS = COMPANION_DIAGNOSTICS
-                                self.HUMAN_TISSUES = HUMAN_TISSUES
-                                self.IMPLANTABLE = IMPLANTABLE
-                                self.KIT = KIT
-                                self.MEASURING_FUNCTION = MEASURING_FUNCTION
-                                self.MICROBIAL_SUBSTANCES = MICROBIAL_SUBSTANCES
-                                self.NEAR_PATIENT_TESTING = NEAR_PATIENT_TESTING
-                                self.REUSABLE = REUSABLE
-                                self.SELF_TESTING = SELF_TESTING
-                                self.SPECIAL_DEVICE_TYPE_ID = SPECIAL_DEVICE_TYPE_ID
-                                self.REAGENT = REAGENT
-                                self.MULTI_COMPONENT_ID = MULTI_COMPONENT_ID
-                                self.INSTRUMENT = INSTRUMENT
-                                self.PROFESSIONAL_TESTING = PROFESSIONAL_TESTING
-                                self.SUTURES = SUTURES
-                                self.HUMAN_PRODUCT = HUMAN_PRODUCT
-                                self.MEDICINAL_PRODUCT = MEDICINAL_PRODUCT
-                                self.DEVICE_NAME = DEVICE_NAME
-                                self.DEVICE_MODEL = DEVICE_MODEL
-                                self.RISK_CLASS_ID = RISK_CLASS_ID
-                                self.APPLICABLE_LEGISLATION_ID = APPLICABLE_LEGISLATION_ID
-                                self.DEVICE_CRITERION = DEVICE_CRITERION
-                                self.MEDICAL_PURPOSE = MEDICAL_PURPOSE
-                                self.NOMENCLATURE_CODE = NOMENCLATURE_CODE
-                                self.MF_SRN = MF_SRN
-                                self.MF_NAME = MF_NAME
-                                self.DEVICE_STATUS_TYPE_ID = DEVICE_STATUS_TYPE_ID
-                                self.MF_ACTOR_NAMES = MF_ACTOR_NAMES
-                                self.ACTOR_ABBREVIATED_NAMES = ACTOR_ABBREVIATED_NAMES
-                                self.STATUS_ID = STATUS_ID
-                                self.AR_NAME = AR_NAME
-                                self.AR_SRN = AR_SRN
-                                self.AR_ACTOR_NAMES = AR_ACTOR_NAMES
-                                self.UNIT_OF_USE_DI = UNIT_OF_USE_DI
-                                self.DIRECT_MARKETING_DI = DIRECT_MARKETING_DI
-                                self.SECONDARY_DI = SECONDARY_DI
-                                self.CONTAINER_PACKAGE_DIS = CONTAINER_PACKAGE_DIS
-                                self.SUBSTATUSES = SUBSTATUSES
-                            }
-                            public enum CodingKeys: String, CodingKey {
-                                case ID
-                                case UDI_DI_DATA_ULID
-                                case UUID
-                                case TRADE_NAME
-                                case REFERENCE
-                                case PLACED_ON_THE_MARKET_ID
-                                case LATEST_VERSION
-                                case CMR_SUBSTANCE
-                                case ENDOCRINE_DISRUPTOR
-                                case LATEX
-                                case REPROCESSED
-                                case STERILE
-                                case STERILIZATION
-                                case NEW_DEVICE
-                                case VERSION_NUMBER
-                                case PRIMARY_DI
-                                case BASIC_UDI
-                                case BASIC_UDI_DATA_UUID
-                                case BASIC_UDI_DATA_ULID
-                                case ACTIVE
-                                case ADMINISTERING_MEDICINE
-                                case ANIMAL_TISSUES
-                                case COMPANION_DIAGNOSTICS
-                                case HUMAN_TISSUES
-                                case IMPLANTABLE
-                                case KIT
-                                case MEASURING_FUNCTION
-                                case MICROBIAL_SUBSTANCES
-                                case NEAR_PATIENT_TESTING
-                                case REUSABLE
-                                case SELF_TESTING
-                                case SPECIAL_DEVICE_TYPE_ID
-                                case REAGENT
-                                case MULTI_COMPONENT_ID
-                                case INSTRUMENT
-                                case PROFESSIONAL_TESTING
-                                case SUTURES
-                                case HUMAN_PRODUCT
-                                case MEDICINAL_PRODUCT
-                                case DEVICE_NAME
-                                case DEVICE_MODEL
-                                case RISK_CLASS_ID
-                                case APPLICABLE_LEGISLATION_ID
-                                case DEVICE_CRITERION
-                                case MEDICAL_PURPOSE
-                                case NOMENCLATURE_CODE
-                                case MF_SRN
-                                case MF_NAME
-                                case DEVICE_STATUS_TYPE_ID
-                                case MF_ACTOR_NAMES
-                                case ACTOR_ABBREVIATED_NAMES
-                                case STATUS_ID
-                                case AR_NAME
-                                case AR_SRN
-                                case AR_ACTOR_NAMES
-                                case UNIT_OF_USE_DI
-                                case DIRECT_MARKETING_DI
-                                case SECONDARY_DI
-                                case CONTAINER_PACKAGE_DIS
-                                case SUBSTATUSES
-                            }
-                        }
-                        /// Matching UDI/device records for this page of results.
-                        ///
-                        /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/value`.
-                        public typealias valuePayload = [Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayloadPayload]
-                        /// Matching UDI/device records for this page of results.
-                        ///
-                        /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/value`.
-                        public var value: Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayload?
-                        /// URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
-                        ///
-                        /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/json/nextLink`.
-                        public var nextLink: Swift.String?
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - value: Matching UDI/device records for this page of results.
-                        ///   - nextLink: URL to the next page of results, present only when more results are available. Extract the `$after` query parameter from this URL and pass it to the next request to retrieve the following page.
-                        public init(
-                            value: Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayload? = nil,
-                            nextLink: Swift.String? = nil
-                        ) {
-                            self.value = value
-                            self.nextLink = nextLink
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case value
-                            case nextLink
-                        }
-                    }
                     /// - Remark: Generated from `#/paths/udi/GET/responses/200/content/application\/json`.
-                    case json(Operations.getUdi.Output.Ok.Body.jsonPayload)
+                    case json(Components.Schemas.UdiDeviceResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.getUdi.Output.Ok.Body.jsonPayload {
+                    public var json: Components.Schemas.UdiDeviceResponse {
                         get throws {
                             switch self {
                             case let .json(body):

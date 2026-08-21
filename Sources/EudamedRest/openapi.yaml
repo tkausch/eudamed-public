@@ -327,223 +327,223 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  value:
-                    type: array
-                    description: Matching UDI/device records for this page of results.
-                    items:
-                      type: object
-                      properties:
-                        ID:
-                          type: integer
-                          description: Internal numeric identifier of this UDI-DI record.
-                        UDI_DI_DATA_ULID:
-                          type: string
-                          description: ULID identifier of this UDI-DI record.
-                        UUID:
-                          type: string
-                          description: Internal EUDAMED UUID of this UDI-DI record.
-                        TRADE_NAME:
-                          type: string
-                          description: Trade/brand name of the device.
-                        REFERENCE:
-                          type: string
-                          description: Manufacturer's reference/catalogue number for the device.
-                        PLACED_ON_THE_MARKET_ID:
-                          type: integer
-                          description: Identifier of the country/market where the device is placed on the market.
-                        LATEST_VERSION:
-                          type: integer
-                          description: 1 if this is the latest version of the record, 0 otherwise.
-                        CMR_SUBSTANCE:
-                          type: integer
-                          description: >-
-                            1 if the device contains carcinogenic, mutagenic,
-                            or reprotoxic (CMR) substances, 0 otherwise.
-                        ENDOCRINE_DISRUPTOR:
-                          type: integer
-                          description: 1 if the device contains endocrine-disrupting substances, 0 otherwise.
-                        LATEX:
-                          type: integer
-                          description: 1 if the device contains natural rubber latex, 0 otherwise.
-                        REPROCESSED:
-                          type: integer
-                          description: 1 if the device is a reprocessed single-use device, 0 otherwise.
-                        STERILE:
-                          type: integer
-                          description: 1 if the device is supplied sterile, 0 otherwise.
-                        STERILIZATION:
-                          type: integer
-                          description: 1 if the device requires sterilization before use, 0 otherwise.
-                        NEW_DEVICE:
-                          nullable: true
-                          description: >-
-                            Whether the device is classified as a "new
-                            device" under Article 52(4) MDR, when applicable.
-                        VERSION_NUMBER:
-                          type: integer
-                          description: Version number of this UDI-DI record.
-                        PRIMARY_DI:
-                          type: string
-                          description: Primary Device Identifier (UDI-DI).
-                        BASIC_UDI:
-                          type: string
-                          description: Basic UDI-DI shared across all versions/packaging of this device model.
-                        BASIC_UDI_DATA_UUID:
-                          type: string
-                          description: EUDAMED UUID of the associated Basic UDI-DI record.
-                        BASIC_UDI_DATA_ULID:
-                          type: string
-                          description: ULID of the associated Basic UDI-DI record.
-                        ACTIVE:
-                          type: integer
-                          description: 1 if the device is an active device, 0 otherwise.
-                        ADMINISTERING_MEDICINE:
-                          type: integer
-                          description: 1 if the device administers or is used with a medicinal product, 0 otherwise.
-                        ANIMAL_TISSUES:
-                          type: integer
-                          description: 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
-                        COMPANION_DIAGNOSTICS:
-                          nullable: true
-                          description: 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
-                        HUMAN_TISSUES:
-                          type: integer
-                          description: 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
-                        IMPLANTABLE:
-                          type: integer
-                          description: 1 if the device is implantable, 0 otherwise.
-                        KIT:
-                          nullable: true
-                          description: 1 if the device is a kit, 0 otherwise (IVDs only).
-                        MEASURING_FUNCTION:
-                          type: integer
-                          description: 1 if the device has a measuring function, 0 otherwise.
-                        MICROBIAL_SUBSTANCES:
-                          nullable: true
-                          description: 1 if the device contains microbial substances, 0 otherwise.
-                        NEAR_PATIENT_TESTING:
-                          nullable: true
-                          description: 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
-                        REUSABLE:
-                          type: integer
-                          description: 1 if the device is reusable, 0 otherwise.
-                        SELF_TESTING:
-                          nullable: true
-                          description: 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
-                        SPECIAL_DEVICE_TYPE_ID:
-                          nullable: true
-                          description: >-
-                            Identifier of the device's special device type, if
-                            any (e.g. software, orthopaedic device); see
-                            /reference.
-                        REAGENT:
-                          nullable: true
-                          description: 1 if the device is a reagent, 0 otherwise (IVDs only).
-                        MULTI_COMPONENT_ID:
-                          nullable: true
-                          description: >-
-                            Identifier grouping this device with other
-                            components of a multi-component device system, if
-                            applicable.
-                        INSTRUMENT:
-                          nullable: true
-                          description: 1 if the device is an instrument, 0 otherwise (IVDs only).
-                        PROFESSIONAL_TESTING:
-                          nullable: true
-                          description: 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
-                        SUTURES:
-                          nullable: true
-                          description: 1 if the device is a suture, 0 otherwise.
-                        HUMAN_PRODUCT:
-                          type: integer
-                          description: 1 if the device incorporates a human-derived product, 0 otherwise.
-                        MEDICINAL_PRODUCT:
-                          type: integer
-                          description: 1 if the device incorporates a medicinal product, 0 otherwise.
-                        DEVICE_NAME:
-                          nullable: true
-                          description: Name of the device.
-                        DEVICE_MODEL:
-                          type: string
-                          description: Model designation of the device.
-                        RISK_CLASS_ID:
-                          type: integer
-                          description: >-
-                            Identifier of the device's risk class (see
-                            /reference; e.g. class I, IIa, IIb, III, or IVD
-                            classes A-D).
-                        APPLICABLE_LEGISLATION_ID:
-                          type: integer
-                          description: >-
-                            Identifier of the legislation the device is
-                            registered under (see /reference; e.g. MDD, MDR,
-                            IVDD, IVDR, AIMDD).
-                        DEVICE_CRITERION:
-                          type: string
-                          description: Classification rule/criterion applied to determine the device's risk class.
-                        MEDICAL_PURPOSE:
-                          nullable: true
-                          description: Intended medical purpose/use of the device.
-                        NOMENCLATURE_CODE:
-                          type: string
-                          description: CND or GMDN nomenclature code assigned to the device.
-                        MF_SRN:
-                          type: string
-                          description: Single Registration Number (SRN) of the manufacturer.
-                        MF_NAME:
-                          type: string
-                          description: Name of the manufacturer.
-                        DEVICE_STATUS_TYPE_ID:
-                          type: integer
-                          description: >-
-                            Identifier of the device's market status (see
-                            /reference; e.g. on the market, no longer on the
-                            market, not intended for the EU market).
-                        MF_ACTOR_NAMES:
-                          type: string
-                          description: Name(s) of the manufacturer actor.
-                        ACTOR_ABBREVIATED_NAMES:
-                          type: string
-                          description: Abbreviated name(s) of the associated actor(s).
-                        STATUS_ID:
-                          type: integer
-                          description: Identifier of this record's status (see /reference).
-                        AR_NAME:
-                          nullable: true
-                          description: Name of the authorised representative, if applicable.
-                        AR_SRN:
-                          nullable: true
-                          description: Single Registration Number (SRN) of the authorised representative, if applicable.
-                        AR_ACTOR_NAMES:
-                          nullable: true
-                          description: Name(s) of the authorised representative actor, if applicable.
-                        UNIT_OF_USE_DI:
-                          nullable: true
-                          description: Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
-                        DIRECT_MARKETING_DI:
-                          type: string
-                          description: Direct marking Device Identifier, if the device carries a direct UDI marking.
-                        SECONDARY_DI:
-                          nullable: true
-                          description: Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
-                        CONTAINER_PACKAGE_DIS:
-                          nullable: true
-                          description: Device Identifiers of the container/package levels for this device, if applicable.
-                        SUBSTATUSES:
-                          nullable: true
-                          description: Additional sub-statuses associated with the device record.
-                  nextLink:
-                    type: string
-                    format: uri
-                    description: >-
-                      URL to the next page of results, present only when more
-                      results are available. Extract the `$after` query
-                      parameter from this URL and pass it to the next request
-                      to retrieve the following page.
+                $ref: '#/components/schemas/UdiDeviceResponse'
 components:
   schemas:
+    UdiDevice:
+      type: object
+      properties:
+        ID:
+          type: integer
+          description: Internal numeric identifier of this UDI-DI record.
+        UDI_DI_DATA_ULID:
+          type: string
+          description: ULID identifier of this UDI-DI record.
+        UUID:
+          type: string
+          description: Internal EUDAMED UUID of this UDI-DI record.
+        TRADE_NAME:
+          type: string
+          description: Trade/brand name of the device.
+        REFERENCE:
+          type: string
+          description: Manufacturer's reference/catalogue number for the device.
+        PLACED_ON_THE_MARKET_ID:
+          type: integer
+          description: Identifier of the country/market where the device is placed on the market.
+        LATEST_VERSION:
+          type: integer
+          description: 1 if this is the latest version of the record, 0 otherwise.
+        CMR_SUBSTANCE:
+          type: integer
+          description: >-
+            1 if the device contains carcinogenic, mutagenic,
+            or reprotoxic (CMR) substances, 0 otherwise.
+        ENDOCRINE_DISRUPTOR:
+          type: integer
+          description: 1 if the device contains endocrine-disrupting substances, 0 otherwise.
+        LATEX:
+          type: integer
+          description: 1 if the device contains natural rubber latex, 0 otherwise.
+        REPROCESSED:
+          type: integer
+          description: 1 if the device is a reprocessed single-use device, 0 otherwise.
+        STERILE:
+          type: integer
+          description: 1 if the device is supplied sterile, 0 otherwise.
+        STERILIZATION:
+          type: integer
+          description: 1 if the device requires sterilization before use, 0 otherwise.
+        NEW_DEVICE:
+          nullable: true
+          description: >-
+            Whether the device is classified as a "new
+            device" under Article 52(4) MDR, when applicable.
+        VERSION_NUMBER:
+          type: integer
+          description: Version number of this UDI-DI record.
+        PRIMARY_DI:
+          type: string
+          description: Primary Device Identifier (UDI-DI).
+        BASIC_UDI:
+          type: string
+          description: Basic UDI-DI shared across all versions/packaging of this device model.
+        BASIC_UDI_DATA_UUID:
+          type: string
+          description: EUDAMED UUID of the associated Basic UDI-DI record.
+        BASIC_UDI_DATA_ULID:
+          type: string
+          description: ULID of the associated Basic UDI-DI record.
+        ACTIVE:
+          type: integer
+          description: 1 if the device is an active device, 0 otherwise.
+        ADMINISTERING_MEDICINE:
+          type: integer
+          description: 1 if the device administers or is used with a medicinal product, 0 otherwise.
+        ANIMAL_TISSUES:
+          type: integer
+          description: 1 if the device incorporates or is derived from animal tissues/cells, 0 otherwise.
+        COMPANION_DIAGNOSTICS:
+          nullable: true
+          description: 1 if the device is a companion diagnostic, 0 otherwise (IVDs only).
+        HUMAN_TISSUES:
+          type: integer
+          description: 1 if the device incorporates or is derived from human tissues/cells, 0 otherwise.
+        IMPLANTABLE:
+          type: integer
+          description: 1 if the device is implantable, 0 otherwise.
+        KIT:
+          nullable: true
+          description: 1 if the device is a kit, 0 otherwise (IVDs only).
+        MEASURING_FUNCTION:
+          type: integer
+          description: 1 if the device has a measuring function, 0 otherwise.
+        MICROBIAL_SUBSTANCES:
+          nullable: true
+          description: 1 if the device contains microbial substances, 0 otherwise.
+        NEAR_PATIENT_TESTING:
+          nullable: true
+          description: 1 if the device is intended for near-patient testing, 0 otherwise (IVDs only).
+        REUSABLE:
+          type: integer
+          description: 1 if the device is reusable, 0 otherwise.
+        SELF_TESTING:
+          nullable: true
+          description: 1 if the device is intended for self-testing, 0 otherwise (IVDs only).
+        SPECIAL_DEVICE_TYPE_ID:
+          nullable: true
+          description: >-
+            Identifier of the device's special device type, if
+            any (e.g. software, orthopaedic device); see /reference.
+        REAGENT:
+          nullable: true
+          description: 1 if the device is a reagent, 0 otherwise (IVDs only).
+        MULTI_COMPONENT_ID:
+          nullable: true
+          description: >-
+            Identifier grouping this device with other
+            components of a multi-component device system, if applicable.
+        INSTRUMENT:
+          nullable: true
+          description: 1 if the device is an instrument, 0 otherwise (IVDs only).
+        PROFESSIONAL_TESTING:
+          nullable: true
+          description: 1 if the device is intended for professional testing, 0 otherwise (IVDs only).
+        SUTURES:
+          nullable: true
+          description: 1 if the device is a suture, 0 otherwise.
+        HUMAN_PRODUCT:
+          type: integer
+          description: 1 if the device incorporates a human-derived product, 0 otherwise.
+        MEDICINAL_PRODUCT:
+          type: integer
+          description: 1 if the device incorporates a medicinal product, 0 otherwise.
+        DEVICE_NAME:
+          nullable: true
+          description: Name of the device.
+        DEVICE_MODEL:
+          type: string
+          description: Model designation of the device.
+        RISK_CLASS_ID:
+          type: integer
+          description: >-
+            Identifier of the device's risk class (see
+            /reference; e.g. class I, IIa, IIb, III, or IVD classes A-D).
+        APPLICABLE_LEGISLATION_ID:
+          type: integer
+          description: >-
+            Identifier of the legislation the device is registered under
+            (see /reference; e.g. MDD, MDR, IVDD, IVDR, AIMDD).
+        DEVICE_CRITERION:
+          type: string
+          description: Classification rule/criterion applied to determine the device's risk class.
+        MEDICAL_PURPOSE:
+          nullable: true
+          description: Intended medical purpose/use of the device.
+        NOMENCLATURE_CODE:
+          type: string
+          description: CND or GMDN nomenclature code assigned to the device.
+        MF_SRN:
+          type: string
+          description: Single Registration Number (SRN) of the manufacturer.
+        MF_NAME:
+          type: string
+          description: Name of the manufacturer.
+        DEVICE_STATUS_TYPE_ID:
+          type: integer
+          description: >-
+            Identifier of the device's market status (see
+            /reference; e.g. on the market, no longer on the market,
+            not intended for the EU market).
+        MF_ACTOR_NAMES:
+          type: string
+          description: Name(s) of the manufacturer actor.
+        ACTOR_ABBREVIATED_NAMES:
+          type: string
+          description: Abbreviated name(s) of the associated actor(s).
+        STATUS_ID:
+          type: integer
+          description: Identifier of this record's status (see /reference).
+        AR_NAME:
+          nullable: true
+          description: Name of the authorised representative, if applicable.
+        AR_SRN:
+          nullable: true
+          description: Single Registration Number (SRN) of the authorised representative, if applicable.
+        AR_ACTOR_NAMES:
+          nullable: true
+          description: Name(s) of the authorised representative actor, if applicable.
+        UNIT_OF_USE_DI:
+          nullable: true
+          description: Unit-of-use Device Identifier, if the device is packaged in a way that requires one.
+        DIRECT_MARKETING_DI:
+          type: string
+          description: Direct marking Device Identifier, if the device carries a direct UDI marking.
+        SECONDARY_DI:
+          nullable: true
+          description: Secondary Device Identifier, if applicable (e.g. for systems and procedure packs).
+        CONTAINER_PACKAGE_DIS:
+          nullable: true
+          description: Device Identifiers of the container/package levels for this device, if applicable.
+        SUBSTATUSES:
+          nullable: true
+          description: Additional sub-statuses associated with the device record.
+    UdiDeviceResponse:
+      type: object
+      properties:
+        value:
+          type: array
+          description: Matching UDI/device records for this page of results.
+          items:
+            $ref: '#/components/schemas/UdiDevice'
+        nextLink:
+          type: string
+          format: uri
+          description: >-
+            URL to the next page of results, present only when more
+            results are available. Extract the `$after` query
+            parameter from this URL and pass it to the next request
+            to retrieve the following page.
     Actor:
       type: object
       properties:

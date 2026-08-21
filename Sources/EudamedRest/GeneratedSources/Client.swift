@@ -517,7 +517,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.getUdi.Output.Ok.Body.jsonPayload.self,
+                            Components.Schemas.UdiDeviceResponse.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)

@@ -6,7 +6,7 @@
 import EudamedRest
 import SwiftData
 
-typealias RawUdiDevice = Operations.getUdi.Output.Ok.Body.jsonPayload.valuePayloadPayload
+typealias RawUdiDevice = Components.Schemas.UdiDevice
 
 public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
     
