@@ -4,6 +4,9 @@
 // All Rights Reserved.
 
 import Foundation
+import os.log
+
+private let logger = Logger(subsystem: "EudamedDataModel", category: "reference")
 
 public actor CachingReferenceRepository: ReferenceRepository {
 
@@ -22,7 +25,10 @@ public actor CachingReferenceRepository: ReferenceRepository {
 
     public func search(query: ReferenceQuery = ReferenceQuery()) async throws -> [ReferenceEntry] {
         let cached = await searchFromCache(query: query)
-        guard cached.isEmpty else { return cached }
+        guard cached.isEmpty else {
+            logger.debug("cache hit: returning \(cached.count) reference(s) from cache")
+            return cached
+        }
         return try await loadFromRemoteAndCache(query: query)
     }
 
