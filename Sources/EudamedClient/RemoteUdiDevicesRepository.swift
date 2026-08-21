@@ -108,7 +108,7 @@ public struct RemoteUdiDevicesRepository: UdiDevicesRepository {
             input.query._dollar_after = cursor
             page += 1
         }
-        return result
+        return result.sorted { $0.primaryDi < $1.primaryDi }
     }
 
     public func device(primaryDi: String) async throws -> UdiDevice? {
