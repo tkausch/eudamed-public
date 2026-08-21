@@ -33,12 +33,12 @@ public actor CachingReferenceRepository: ReferenceRepository {
         return result
     }
 
-    public func getReferenceValue(id: Double, code: String, language: String = "en") async -> String? {
+    public func getReferenceValue(id: Int, code: String, language: String = "en") async -> String? {
         // Query by code+language only so all entries for that reference list are cached together.
         // Filter by id locally to avoid a separate remote call per unique id.
         let query = ReferenceQuery(code: code, language: language)
         let entries = try? await search(query: query)
-        return entries?.first { $0.id == Int(id) }?.value
+        return entries?.first { $0.id == id }?.value
     }
 
 

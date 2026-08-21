@@ -11,7 +11,7 @@ private let logger = Logger(subsystem: "EudamedDataModel", category: "reference"
 
 public protocol ReferenceRepository: Sendable {
     func search(query: ReferenceQuery) async throws -> [ReferenceEntry]
-    func getReferenceValue(id: Double, code: String, language: String) async -> String?
+    func getReferenceValue(id: Int, code: String, language: String) async -> String?
 }
 
 public struct ReferenceQuery: Sendable {
@@ -62,8 +62,8 @@ public struct RemoteReferenceRepository: ReferenceRepository {
         return result
     }
 
-    public func getReferenceValue(id: Double, code: String, language: String) async -> String? {
-        let query = ReferenceQuery(id: Int(id), code: code, language: language)
+    public func getReferenceValue(id: Int, code: String, language: String) async -> String? {
+        let query = ReferenceQuery(id: id, code: code, language: language)
         return try? await search(query: query).first?.value
     }
 
