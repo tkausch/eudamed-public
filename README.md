@@ -36,7 +36,7 @@ Add the products you need:
 | Product | Description |
 |---|---|
 | `EudamedCore` | Low-level OpenAPI-generated REST client. Use when you only need raw API access. |
-| `EudamedClient` | Domain models (`Actor`, `UdiDevice`, `ReferenceEntry`) and the two-layer repository pattern (remote + in-memory cache). |
+| `EudamedClient` | Domain models (`Actor`, `UdiDevice`, `ReferenceEntry`) and remote repositories with automatic pagination. Reference data is cached in memory via `CachingReferenceRepository`. |
 
 ---
 
@@ -64,35 +64,41 @@ The raw client returns one page at a time. For automatic pagination use the `Rem
 
 ## EudamedClient
 
-`EudamedClient` provides lightweight domain model structs and a two-layer repository pattern with no external persistence dependencies.
+`EudamedClient` provides lightweight domain model structs and remote repositories with automatic pagination. Reference data has an additional in-memory caching layer used internally by `UdiDevice` to resolve reference IDs.
 
 ### Domain models
 
 `Actor`, `UdiDevice`, and `ReferenceEntry` are plain `Sendable` structs that map directly from the EUDAMED API responses.
 
-### Repository pattern
-
-Each entity has two repository implementations:
+### Repositories
 
 | Class | Description |
 |---|---|
-| `RemoteActorRepository` | Fetches from the live EUDAMED API, follows pagination automatically. |
-| `CachingActorRepository` | In-memory actor-isolated cache; hits the remote on the first miss, then serves subsequent matching queries from cache. |
-
-The same pattern applies to `UdiDevice` (`RemoteUdiDevicesRepository`, `CachingUdiDeviceRepository`) and `ReferenceEntry` (`RemoteReferenceRepository`, `CachingReferenceRepository`).
+| `RemoteActorRepository` | Fetches actors from the live EUDAMED API, follows pagination automatically. |
+| `RemoteUdiDevicesRepository` | Fetches UDI device records from the live EUDAMED API, follows pagination automatically. |
+| `RemoteReferenceRepository` | Fetches reference/nomenclature data from the live EUDAMED API. |
+| `CachingReferenceRepository` | In-memory actor-isolated cache for reference data; hits the remote on the first miss, then serves subsequent matching queries from memory. Used internally by `UdiDevice` to resolve reference IDs into human-readable labels. |
 
 ### Usage
 
 ```swift
 import EudamedClient
 
-// Remote — always hits the network, automatic pagination
+// Actors — always fetches from the network with automatic pagination
+let actorRepo = try RemoteActorRepository()
+let actors = try await actorRepo.search(query: ActorQuery(name: "Acme"))
+
+// UDI devices — always fetches from the network with automatic pagination
+let udiRepo = try RemoteUdiDevicesRepository()
+let devices = try await udiRepo.search(query: UdiDevicesQuery(deviceName: "catheter"))
+
+// Reference data — remote
 let remote = try RemoteReferenceRepository()
 let entries = try await remote.search(query: ReferenceQuery(code: "refdata.risk-class.class-iii", language: "en"))
 
-// Caching — first call fetches from EUDAMED; subsequent calls with matching filters are served from memory
-let repo = try CachingReferenceRepository()
-let cached = await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-iii", language: "en"))
+// Reference data — cached (first call fetches; subsequent matching queries are served from memory)
+let repo = CachingReferenceRepository()
+let cached = try await repo.search(query: ReferenceQuery(code: "refdata.risk-class.class-iii", language: "en"))
 ```
 
 ### Query types
@@ -120,7 +126,7 @@ All fields are optional; omitting a field means "no filter on that field".
 | `Sources/EudamedRest/TypesExtensions.swift` | Convenience extensions on generated OpenAPI types |
 | `Sources/EudamedClient/models/` | Domain model structs (`Actor`, `UdiDevice`, `ReferenceEntry`) |
 | `Sources/EudamedClient/Remote*.swift` | Remote repository implementations (live API + automatic pagination) |
-| `Sources/EudamedClient/Caching*.swift` | In-memory caching repository implementations |
+| `Sources/EudamedClient/Caching*.swift` | In-memory caching repository for reference data |
 | `Tests/EudamedRestTests/` | Unit tests for the REST client using a mock transport |
 | `Tests/EudamedClientTests/` | Unit tests for remote and caching repositories |
 
