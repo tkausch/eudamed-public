@@ -50,6 +50,12 @@ public actor CachingReferenceRepository: ReferenceRepository {
     private func loadFromRemoteAndCache(query: ReferenceQuery) async throws -> [ReferenceEntry] {
         guard let newReferences = try await remote?.search(query: query) else { return [] }
         cachedEntries += newReferences
+        logger.debug("cache updated: \(newReferences.count) new reference(s) added, total \(self.cachedEntries.count) cached")
+        if logger.isEnabled(type: .debug) {
+            for entry in newReferences {
+                logger.debug("  cached reference: id=\(entry.id) code=\(entry.code) language=\(entry.language) value=\(entry.value)")
+            }
+        }
         return newReferences
     }
 
