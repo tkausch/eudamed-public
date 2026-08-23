@@ -73,6 +73,8 @@ public struct RemoteUdiDevicesRepository: UdiDevicesRepository {
     }
 
     public func search(query: UdiDevicesQuery = UdiDevicesQuery()) async throws -> [UdiDevice] {
+        // The REST API ignores the NOMENCLATURE_CODE query parameter, so it is
+        // omitted from the request and applied as a client-side filter below.
         var input = Operations.getUdi.Input(
             query: .init(
                 PRIMARY_DI: query.primaryDi,
@@ -81,7 +83,7 @@ public struct RemoteUdiDevicesRepository: UdiDevicesRepository {
                 DEVICE_NAME: query.deviceName,
                 DEVICE_MODEL: query.deviceModel,
                 REFERENCE: query.reference,
-                NOMENCLATURE_CODE: query.nomenclatureCode,
+                NOMENCLATURE_CODE: nil,
                 RISK_CLASS_ID: query.riskClassId,
                 APPLICABLE_LEGISLATION_ID: query.applicableLegislationId,
                 PLACED_ON_THE_MARKET_ID: query.placedOnTheMarketId,
@@ -107,6 +109,9 @@ public struct RemoteUdiDevicesRepository: UdiDevicesRepository {
             logger.info("getUdi: following nextLink to page \(page + 1) (cursor: \(cursor))")
             input.query._dollar_after = cursor
             page += 1
+        }
+        if let nomenclatureCode = query.nomenclatureCode {
+            result = result.filter { $0.nomenclatureCode == nomenclatureCode }
         }
         return result.sorted { $0.primaryDi < $1.primaryDi }
     }
