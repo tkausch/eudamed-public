@@ -18,7 +18,7 @@ extension String {
     }
 }
 
-public struct Actor: @unchecked Sendable, Identifiable, Hashable {
+public struct Actor: @unchecked Sendable, Identifiable, Hashable, Encodable {
     /// Unique EUDAMED identifier (UUID) of the actor.
     public var id: String
     public var actorId: String { id }
@@ -30,7 +30,7 @@ public struct Actor: @unchecked Sendable, Identifiable, Hashable {
     public var status: String?
     /// Date from which the current status has applied.
     public var statusFromDate: String?
-    /// Type of actor, e.g. manufacturer, authorised representative, or importer.
+    /// Type of actor, e.g. manufacturer, authorised representative, importer, or competent authority.
     public var actorType: String?
     /// Type of clinical investigation sponsor, if the actor is registered as one.
     public var sponsorType: String?
@@ -110,4 +110,14 @@ public struct Actor: @unchecked Sendable, Identifiable, Hashable {
 
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: Actor, rhs: Actor) -> Bool { lhs.id == rhs.id }
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "actorId"
+        case name, abbreviatedName, status, statusFromDate, actorType, sponsorType
+        case europeanVatNumber, version, countryName, countryIso2Code, countryType
+        case email, telephone, website
+        case addressBuildingNumber, addressStreetName, addressPostBox, addressPostalZone
+        case addressCityName, addressCountryName, addressCountryCode, addressCountryType
+        case prrcFirstName, prrcFamilyName
+    }
 }

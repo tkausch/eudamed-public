@@ -8,8 +8,8 @@ import SwiftData
 
 typealias RawUdiDevice = Components.Schemas.UdiDevice
 
-public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
-    
+public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable, Encodable {
+
     static let references = CachingReferenceRepository()
     
     /// Primary Device Identifier (UDI-DI).
@@ -171,4 +171,15 @@ public struct UdiDevice: @unchecked Sendable, Identifiable, Hashable {
 
     public func hash(into hasher: inout Hasher) { hasher.combine(id) }
     public static func == (lhs: UdiDevice, rhs: UdiDevice) -> Bool { lhs.id == rhs.id }
+
+    private enum CodingKeys: String, CodingKey {
+        case id = "primaryDi"
+        case basicUdi, tradeName, deviceName, deviceModel, reference, nomenclatureCode
+        case mfSrn, mfName, mfActorNames, actorAbbreviatedNames, deviceCriterion, directMarketingDi
+        case versionNumber, latestVersion
+        case active, implantable, sterile, sterilization, reusable, reprocessed
+        case measuringFunction, administeringMedicine, humanTissues, animalTissues
+        case humanProduct, medicinalProduct, cmrSubstance, endocrineDisruptor, latex, companionDiagnostics
+        case riskClass, applicableLegislation, status, deviceStatusType, placedOnTheMarket
+    }
 }
