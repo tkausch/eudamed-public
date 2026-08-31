@@ -646,7 +646,7 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/Actor/STATUS`.
             public var STATUS: Swift.String?
-            /// Type of actor, e.g. manufacturer, authorised representative, or importer.
+            /// Type of actor, e.g. manufacturer, authorised representative, importer, or competent authority.
             ///
             /// - Remark: Generated from `#/components/schemas/Actor/ACTOR_TYPE`.
             public var ACTOR_TYPE: Swift.String?
@@ -734,7 +734,7 @@ public enum Components {
             ///   - ABBREVIATED_NAME: Abbreviated/short name of the actor.
             ///   - STATUS_FROM_DATE: Date from which the current STATUS has applied.
             ///   - STATUS: Current status of the actor's registration, e.g. active.
-            ///   - ACTOR_TYPE: Type of actor, e.g. manufacturer, authorised representative, or importer.
+            ///   - ACTOR_TYPE: Type of actor, e.g. manufacturer, authorised representative, importer, or competent authority.
             ///   - SPONSOR_TYPE: Type of clinical investigation sponsor, if the actor is registered as one.
             ///   - EUROPEAN_VAT_NUMBER: European VAT number of the actor, if applicable.
             ///   - VERSION: Version number of this actor record.
@@ -968,7 +968,7 @@ public enum Operations {
                 ///
                 /// - Remark: Generated from `#/paths/actors/GET/query/ABBREVIATED_NAME`.
                 public var ABBREVIATED_NAME: Swift.String?
-                /// Filter by actor type, e.g. manufacturer, authorised representative, importer, or system/procedure pack producer.
+                /// Filter by actor type, e.g. manufacturer, authorised representative, importer, system/procedure pack producer, or competent authority.
                 ///
                 /// - Remark: Generated from `#/paths/actors/GET/query/ACTOR_TYPE`.
                 public var ACTOR_TYPE: Swift.String?
@@ -1002,7 +1002,7 @@ public enum Operations {
                 ///   - ACTOR_ID: Filter by the actor's unique EUDAMED identifier (UUID).
                 ///   - NAME: Filter by the actor's full registered name.
                 ///   - ABBREVIATED_NAME: Filter by the actor's abbreviated/short name.
-                ///   - ACTOR_TYPE: Filter by actor type, e.g. manufacturer, authorised representative, importer, or system/procedure pack producer.
+                ///   - ACTOR_TYPE: Filter by actor type, e.g. manufacturer, authorised representative, importer, system/procedure pack producer, or competent authority.
                 ///   - CA_NAME: Filter by the name of the Competent Authority (CA) that validated the actor.
                 ///   - CA_ACTOR_ID: Filter by the EUDAMED identifier of the validating Competent Authority.
                 ///   - ACT_COUNTRY_ISO2_CODE: Filter by the actor's country, using its ISO 3166-1 alpha-2 code (e.g. DE, FR).

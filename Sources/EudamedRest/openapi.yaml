@@ -57,7 +57,8 @@ paths:
           in: query
           description: >-
             Filter by actor type, e.g. manufacturer, authorised
-            representative, importer, or system/procedure pack producer.
+            representative, importer, system/procedure pack producer, or
+            competent authority.
           schema:
             type: string
         - name: CA_NAME
@@ -566,7 +567,7 @@ components:
           type: string
           description: >-
             Type of actor, e.g. manufacturer, authorised
-            representative, or importer.
+            representative, importer, or competent authority.
         SPONSOR_TYPE:
           nullable: true
           description: Type of clinical investigation sponsor, if the actor is registered as one.
