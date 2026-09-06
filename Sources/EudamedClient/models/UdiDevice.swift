@@ -4,7 +4,6 @@
 // All Rights Reserved.
 
 import EudamedRest
-import SwiftData
 
 typealias RawUdiDevice = Components.Schemas.UdiDevice
 

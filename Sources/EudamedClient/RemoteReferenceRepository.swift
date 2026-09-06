@@ -5,9 +5,9 @@
 
 import EudamedRest
 import Foundation
-import os.log
+import Logging
 
-private let logger = Logger(subsystem: "EudamedDataModel", category: "reference")
+private let logger = Logger(label: "EudamedDataModel.reference")
 
 public protocol ReferenceRepository: Sendable {
     func search(query: ReferenceQuery) async throws -> [ReferenceEntry]

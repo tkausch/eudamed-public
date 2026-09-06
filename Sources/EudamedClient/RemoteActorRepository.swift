@@ -5,11 +5,11 @@
 
 import EudamedRest
 import Foundation
-import os.log
+import Logging
 
 
 
-private let logger = Logger(subsystem: "EudamedDataModel", category: "pagination")
+private let logger = Logger(label: "EudamedDataModel.pagination")
 
 public protocol ActorRepository: Sendable {
     func search(query: ActorQuery) async throws -> [Actor]

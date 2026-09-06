@@ -5,9 +5,9 @@
 
 import EudamedRest
 import Foundation
-import os.log
+import Logging
 
-private let logger = Logger(subsystem: "EudamedDataModel", category: "udi")
+private let logger = Logger(label: "EudamedDataModel.udi")
 
 public protocol UdiDevicesRepository: Sendable {
     func search(query: UdiDevicesQuery) async throws -> [UdiDevice]

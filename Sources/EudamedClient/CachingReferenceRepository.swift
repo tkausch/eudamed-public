@@ -4,9 +4,9 @@
 // All Rights Reserved.
 
 import Foundation
-import os.log
+import Logging
 
-private let logger = Logger(subsystem: "EudamedDataModel", category: "reference")
+private let logger = Logger(label: "EudamedDataModel.reference")
 
 public actor CachingReferenceRepository: ReferenceRepository {
 

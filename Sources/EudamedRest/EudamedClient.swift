@@ -4,9 +4,9 @@
 import Foundation
 import OpenAPIRuntime
 import OpenAPIURLSession
-import os.log
+import Logging
 
-private let logger = Logger(subsystem: "EudamedClient", category: "pagination")
+private let logger = Logger(label: "EudamedClient.pagination")
 
 extension Client {
     /// Creates a client for the EUDAMED public API.
